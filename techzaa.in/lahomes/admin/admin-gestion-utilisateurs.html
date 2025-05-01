@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="fr">
+<!-- Mirrored from techzaa.in/lahomes/admin/admin-gestion-utilisateurs-v2.html -->
+<head>
+    <meta charset="utf-8" />
+    <title>Gestion des Utilisateurs | Espace Admin</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Gestion des comptes utilisateurs par l'administrateur." />
+    <meta name="author" content="Votre Nom/Entreprise" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <link rel="shortcut icon" href="assets/images/favicon.ico">
+    <link href="assets/css/vendor.min.css" rel="stylesheet" type="text/css" />
+    <link href="assets/css/icons.min.css" rel="stylesheet" type="text/css" />
+    <link href="assets/css/app.min.css" rel="stylesheet" type="text/css" />
+    <script src="assets/js/config.min.js"></script>
+    <style>
+        .table th, .table td { vertical-align: middle; font-size: 0.875rem; }
+        .table th { font-weight: 500; }
+        .btn-sm i { font-size: 1rem; vertical-align: middle; } /* Aligner icônes */
+        .form-control-sm, .form-select-sm { height: calc(1.5em + .5rem + 2px); padding: .25rem .5rem; font-size: .875rem; }
+        .loading-row td, .no-results-row td { text-align: center; font-style: italic; color: #6c757d; padding: 1rem; }
+        .placeholder-glow span { min-height: 1em; display: inline-block; }
+        td .placeholder { width: 80%; }
+        /* Style actif pour les onglets */
+        .nav-tabs .nav-link.active { background-color: #604ae3; color: white; border-color: #604ae3;}
+        .nav-tabs .nav-link { color: #604ae3; }
+        .avatar-sm-custom { width: 32px; height: 32px; }
+        .search-filter-row { margin-bottom: 1rem; padding: 1rem; background-color: #f8f9fa; border-radius: 0.25rem; }
+    </style>
+</head>
+<body>
+    <div class="wrapper">
+        <!-- ========== Topbar Start ========== -->
+        <!-- COLLER VOTRE CODE TOPBAR ADMIN ICI -->
+        <header class=""> <div class="topbar"> <div class="container-fluid"> <div class="navbar-header"> <div class="d-flex align-items-center gap-2"> <div class="topbar-item"><button type="button" class="button-toggle-menu topbar-button"><i class="ri-menu-2-line fs-24"></i></button></div> <form class="app-search d-none d-md-block me-auto"><div class="position-relative"><input type="search" class="form-control border-0" placeholder="Rechercher..." autocomplete="off" value=""><i class="ri-search-line search-widget-icon"></i></div></form> </div> <div class="d-flex align-items-center gap-1"> <div class="topbar-item"><button type="button" class="topbar-button" id="light-dark-mode"><i class="ri-moon-line fs-24 light-mode"></i><i class="ri-sun-line fs-24 dark-mode"></i></button></div> <div class="dropdown topbar-item d-none d-lg-flex"><button type="button" class="topbar-button" data-toggle="fullscreen"><i class="ri-fullscreen-line fs-24 fullscreen"></i><i class="ri-fullscreen-exit-line fs-24 quit-fullscreen"></i></button></div> <div class="dropdown topbar-item"> <button type="button" class="topbar-button position-relative" id="page-header-notifications-dropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="ri-notification-3-line fs-24"></i><span id="topbarAdminUnreadCount" class="position-absolute topbar-badge fs-10 translate-middle badge bg-danger rounded-pill">0<span class="visually-hidden">unread</span></span></button> <div class="dropdown-menu py-0 dropdown-lg dropdown-menu-end" aria-labelledby="page-header-notifications-dropdown"> <div class="p-3 border-top-0 border-start-0 border-end-0 border-dashed border"><div class="row align-items-center"><div class="col"><h6 class="m-0 fs-16 fw-semibold"> Notifications Admin</h6></div><div class="col-auto"><a href="javascript: void(0);" class="text-dark text-decoration-underline"> <small>Marquer tout comme lu</small></a></div></div></div> <div data-simplebar style="max-height: 280px;" id="topbarAdminNotificationList"></div> <div class="text-center py-3"><a href="admin-notifications.html" class="btn btn-primary btn-sm">Tout voir <i class="ri-arrow-right-line ms-1"></i></a></div> </div> </div> <div class="topbar-item d-none d-md-flex"><button type="button" class="topbar-button" id="theme-settings-btn" data-bs-toggle="offcanvas" data-bs-target="#theme-settings-offcanvas" aria-controls="theme-settings-offcanvas"><i class="ri-settings-4-line fs-24"></i></button></div> <div class="dropdown topbar-item"> <a type="button" class="topbar-button" id="page-header-user-dropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span class="d-flex align-items-center"><img class="rounded-circle" width="32" src="assets/images/users/avatar-admin.png" alt="admin"></span></a> <div class="dropdown-menu dropdown-menu-end"> <h6 class="dropdown-header">Admin</h6> <a class="dropdown-item" href="admin-profil.html"><i class="ri-user-line align-middle me-1"></i> Mon Profil</a> <a class="dropdown-item" href="admin-parametres.html"><i class="ri-settings-3-line align-middle me-1"></i> Paramètres</a> <div class="dropdown-divider my-1"></div> <a class="dropdown-item text-danger" href="auth-signin.html"><i class="ri-logout-box-line align-middle me-1"></i> Déconnexion</a> </div> </div> </div> </div> </div> </div> </header>
+        <!-- ========== Topbar End ========== -->
+
+        <!-- ========== Right Sidebar Start ========== -->
+        <!-- COLLER VOTRE CODE RIGHT SIDEBAR ICI -->
+        <div> <div class="offcanvas offcanvas-end border-0 rounded-start-4 overflow-hidden" tabindex="-1" id="theme-settings-offcanvas"> <div class="d-flex align-items-center bg-primary p-3 offcanvas-header"><h5 class="text-white m-0">Theme Settings</h5><button type="button" class="btn-close btn-close-white ms-auto" data-bs-dismiss="offcanvas" aria-label="Close"></button></div><div class="offcanvas-body p-0"><div data-simplebar class="h-100"><div class="p-3 settings-bar"></div></div></div><div class="offcanvas-footer border-top p-3 text-center"><div class="row"><div class="col"><button type="button" class="btn btn-danger w-100" id="reset-layout">Reset</button></div></div></div> </div> </div>
+        <!-- ========== Right Sidebar End ========== -->
+
+        <!-- ========== App Menu Start ========== -->
+         <div class="main-nav">
+            <div class="logo-box"> <a href="admin-dashboard.html" class="logo-dark"><img src="assets/images/logo-sm.png" class="logo-sm"><img src="assets/images/logo-dark.png" class="logo-lg"></a> <a href="admin-dashboard.html" class="logo-light"><img src="assets/images/logo-sm.png" class="logo-sm"><img src="assets/images/logo-light.png" class="logo-lg"></a> </div>
+            <button type="button" class="button-sm-hover" aria-label="Show Full Sidebar"><i class="ri-menu-2-line fs-24 button-sm-hover-icon"></i></button>
+            <div class="scrollbar" data-simplebar>
+                 <ul class="navbar-nav" id="navbar-nav">
+                      <li class="menu-title">Menu Admin</li>
+                      <li class="nav-item"><a class="nav-link" href="admin-dashboard.html"><span class="nav-icon"><i class="ri-dashboard-line"></i></span><span class="nav-text">Tableau de Bord</span></a></li>
+                      <li class="nav-item"><a class="nav-link active" href="admin-gestion-utilisateurs.html"><span class="nav-icon"><i class="ri-account-circle-line"></i></span><span class="nav-text">Gestion Utilisateurs</span></a></li>
+                      <li class="nav-item"><a class="nav-link" href="admin-supervision-biens.html"><span class="nav-icon"><i class="ri-building-line"></i></span><span class="nav-text">Supervision Biens</span></a></li>
+                      <li class="nav-item"><a class="nav-link" href="admin-suivi-transactions.html"><span class="nav-icon"><i class="ri-money-dollar-box-line"></i></span><span class="nav-text">Suivi Transactions</span></a></li>
+                      <li class="nav-item"><a class="nav-link" href="admin-parametres.html"><span class="nav-icon"><i class="ri-settings-3-line"></i></span><span class="nav-text">Paramètres</span></a></li>
+                 </ul>
+            </div>
+       </div>
+        <!-- ========== App Menu End ========== -->
+
+        <div class="page-content">
+            <div class="container-fluid">
+                <!-- ========== Page Title Start ========== -->
+                 <div class="row"> <div class="col-12"> <div class="page-title-box"> <h4 class="mb-0 fw-semibold">Gestion des Utilisateurs</h4> <ol class="breadcrumb mb-0"> <li class="breadcrumb-item"><a href="admin-dashboard.html">Admin</a></li> <li class="breadcrumb-item active">Utilisateurs</li> </ol> </div> </div> </div>
+                <!-- ========== Page Title End ========== -->
+
+                 <!-- Barre de recherche et filtre global -->
+                 <div class="row search-filter-row">
+                      <div class="col-lg-6">
+                           <form id="globalUserSearchForm">
+                                <div class="input-group input-group-sm">
+                                     <input type="search" id="globalUserSearchInput" class="form-control" placeholder="Rechercher dans l'onglet actif...">
+                                     <button class="btn btn-light" type="submit"><i class="ri-search-line"></i></button>
+                                 </div>
+                           </form>
+                      </div>
+                      <div class="col-lg-6 text-lg-end mt-2 mt-lg-0">
+                            <button type="button" class="btn btn-success btn-sm" data-bs-toggle="modal" data-bs-target="#modalAddNotaire"><i class="ri-user-add-line"></i> Ajouter un Notaire</button>
+                      </div>
+                 </div>
+
+                <!-- Onglets pour chaque rôle -->
+                 <ul class="nav nav-tabs nav-justified mb-3" id="userManagementTabs" role="tablist">
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link active" id="notaires-tab" data-bs-toggle="tab" data-bs-target="#notaires-tab-pane" type="button" role="tab" aria-controls="notaires-tab-pane" aria-selected="true">
+                            <i class="ri-user-star-line me-1"></i> Notaires <span id="notairesCountBadge" class="badge rounded-pill bg-light text-dark ms-1">?</span>
+                        </button>
+                    </li>
+                     <li class="nav-item" role="presentation">
+                        <button class="nav-link" id="proprietaires-tab" data-bs-toggle="tab" data-bs-target="#proprietaires-tab-pane" type="button" role="tab" aria-controls="proprietaires-tab-pane" aria-selected="false">
+                             <i class="ri-user-settings-line me-1"></i> Propriétaires <span id="proprietairesCountBadge" class="badge rounded-pill bg-light text-dark ms-1">?</span>
+                         </button>
+                    </li>
+                     <li class="nav-item" role="presentation">
+                        <button class="nav-link" id="locataires-tab" data-bs-toggle="tab" data-bs-target="#locataires-tab-pane" type="button" role="tab" aria-controls="locataires-tab-pane" aria-selected="false">
+                             <i class="ri-user-line me-1"></i> Locataires <span id="locatairesCountBadge" class="badge rounded-pill bg-light text-dark ms-1">?</span>
+                         </button>
+                    </li>
+                 </ul>
+
+                 <!-- Contenu des onglets -->
+                 <div class="tab-content" id="userManagementTabsContent">
+
+                      <!-- ### Onglet Notaires ### -->
+                     <div class="tab-pane fade show active" id="notaires-tab-pane" role="tabpanel" aria-labelledby="notaires-tab" tabindex="0">
+                         <div class="card">
+                             <div class="card-body p-0">
+                                 <div class="table-responsive">
+                                     <table class="table table-sm table-hover table-centered mb-0"> <!-- table-sm pour plus de compacité -->
+                                         <thead class="table-light">
+                                             <tr>
+                                                  <th>Nom & Prénom</th>
+                                                  <th>Email</th>
+                                                  <th>Téléphone</th>
+                                                  <th>Cabinet</th>
+                                                  <th>Statut</th> <!-- Actif, Inactif, En attente approbation -->
+                                                  <th style="width: 150px;">Actions</th>
+                                             </tr>
+                                         </thead>
+                                         <tbody id="notairesTableBody">
+                                              <!-- Ligne Chargement -->
+                                             <tr class="loading-row placeholder-glow"><td><span class="placeholder col-8"></span></td><td><span class="placeholder col-7"></span></td><td><span class="placeholder col-6"></span></td><td><span class="placeholder col-7"></span></td><td><span class="placeholder col-4"></span></td><td><span class="placeholder col-10"></span></td></tr>
+                                             <tr class="loading-row placeholder-glow"><td><span class="placeholder col-7"></span></td><td><span class="placeholder col-8"></span></td><td><span class="placeholder col-5"></span></td><td><span class="placeholder col-6"></span></td><td><span class="placeholder col-5"></span></td><td><span class="placeholder col-11"></span></td></tr>
+                                              <!-- Ligne Aucun Résultat -->
+                                             <tr class="no-results-row d-none"><td colspan="6" class="text-center py-3">Aucun notaire trouvé.</td></tr>
+                                              <!-- Données réelles chargées par JS -->
+                                         </tbody>
+                                     </table>
+                                 </div>
+                             </div>
+                              <div class="card-footer bg-white border-top d-flex justify-content-end">
+                                  <nav aria-label="Pagination Notaires"><ul id="paginationNotaires" class="pagination pagination-sm mb-0"></ul></nav>
+                              </div>
+                         </div>
+                     </div><!-- Fin Onglet Notaires -->
+
+                      <!-- ### Onglet Propriétaires ### -->
+                     <div class="tab-pane fade" id="proprietaires-tab-pane" role="tabpanel" aria-labelledby="proprietaires-tab" tabindex="0">
+                          <div class="card">
+                             <div class="card-body p-0">
+                                 <div class="table-responsive">
+                                     <table class="table table-sm table-hover table-centered mb-0">
+                                          <thead class="table-light">
+                                             <tr>
+                                                  <th>Nom & Prénom</th>
+                                                  <th>Email</th>
+                                                  <th>Nb Biens</th>
+                                                  <th>Statut Compte</th> <!-- Actif, Inactif -->
+                                                  <th style="width: 100px;">Actions</th>
+                                             </tr>
+                                         </thead>
+                                         <tbody id="proprietairesTableBody">
+                                               <!-- Ligne Chargement -->
+                                              <tr class="loading-row placeholder-glow"><td><span class="placeholder col-8"></span></td><td><span class="placeholder col-7"></span></td><td><span class="placeholder col-3"></span></td><td><span class="placeholder col-4"></span></td><td><span class="placeholder col-8"></span></td></tr>
+                                               <tr class="loading-row placeholder-glow"><td><span class="placeholder col-7"></span></td><td><span class="placeholder col-8"></span></td><td><span class="placeholder col-2"></span></td><td><span class="placeholder col-5"></span></td><td><span class="placeholder col-9"></span></td></tr>
+                                                <!-- Ligne Aucun Résultat -->
+                                              <tr class="no-results-row d-none"><td colspan="5" class="text-center py-3">Aucun propriétaire trouvé.</td></tr>
+                                              <!-- Données réelles chargées par JS -->
+                                         </tbody>
+                                     </table>
+                                 </div>
+                             </div>
+                               <div class="card-footer bg-white border-top d-flex justify-content-end">
+                                   <nav aria-label="Pagination Proprietaires"><ul id="paginationProprietaires" class="pagination pagination-sm mb-0"></ul></nav>
+                               </div>
+                          </div>
+                     </div><!-- Fin Onglet Propriétaires -->
+
+                      <!-- ### Onglet Locataires ### -->
+                     <div class="tab-pane fade" id="locataires-tab-pane" role="tabpanel" aria-labelledby="locataires-tab" tabindex="0">
+                          <div class="card">
+                             <div class="card-body p-0">
+                                 <div class="table-responsive">
+                                     <table class="table table-sm table-hover table-centered mb-0">
+                                          <thead class="table-light">
+                                             <tr>
+                                                  <th>Nom & Prénom</th>
+                                                  <th>Email</th>
+                                                  <th>Téléphone</th>
+                                                  <th>Logement Actuel</th>
+                                                  <th>Statut Compte</th> <!-- Actif, Inactif -->
+                                                  <th style="width: 100px;">Actions</th>
+                                             </tr>
+                                         </thead>
+                                         <tbody id="locatairesTableBodyAdmin">
+                                               <!-- Ligne Chargement -->
+                                              <tr class="loading-row placeholder-glow"><td><span class="placeholder col-8"></span></td><td><span class="placeholder col-7"></span></td><td><span class="placeholder col-6"></span></td><td><span class="placeholder col-9"></span></td><td><span class="placeholder col-4"></span></td><td><span class="placeholder col-8"></span></td></tr>
+                                               <tr class="loading-row placeholder-glow"><td><span class="placeholder col-7"></span></td><td><span class="placeholder col-8"></span></td><td><span class="placeholder col-5"></span></td><td><span class="placeholder col-8"></span></td><td><span class="placeholder col-5"></span></td><td><span class="placeholder col-9"></span></td></tr>
+                                                <!-- Ligne Aucun Résultat -->
+                                              <tr class="no-results-row d-none"><td colspan="6" class="text-center py-3">Aucun locataire trouvé.</td></tr>
+                                               <!-- Données réelles chargées par JS -->
+                                         </tbody>
+                                     </table>
+                                 </div>
+                             </div>
+                               <div class="card-footer bg-white border-top d-flex justify-content-end">
+                                   <nav aria-label="Pagination Locataires"><ul id="paginationLocatairesAdmin" class="pagination pagination-sm mb-0"></ul></nav>
+                               </div>
+                          </div>
+                     </div><!-- Fin Onglet Locataires -->
+
+                 </div> <!-- Fin Tab Content -->
+
+            </div> <!-- container-fluid -->
+        </div> <!-- page-content -->
+
+        <!-- Modals (Ajout Notaire, Détails Utilisateur) -->
+        <!-- COLLER LES MODALS de la version précédente ici -->
+        <!-- Modal Ajouter/Modifier Notaire --> <div class="modal fade" id="modalAddNotaire" tabindex="-1" aria-labelledby="modalAddNotaireLabel" aria-hidden="true"> <div class="modal-dialog modal-lg"> <div class="modal-content"> <div class="modal-header"> <h5 class="modal-title" id="modalAddNotaireLabel">Ajouter un Notaire</h5> <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button> </div> <div class="modal-body"> <form id="formAddNotaire" action="backend/add_notaire.php" method="POST"> <div class="row"> <div class="col-md-6 mb-3"><label for="notaireNom" class="form-label">Nom*</label><input type="text" class="form-control" id="notaireNom" name="nom" required></div> <div class="col-md-6 mb-3"><label for="notairePrenom" class="form-label">Prénom*</label><input type="text" class="form-control" id="notairePrenom" name="prenom" required></div> </div> <div class="mb-3"><label for="notaireEmail" class="form-label">Email*</label><input type="email" class="form-control" id="notaireEmail" name="email" required></div> <div class="row"> <div class="col-md-6 mb-3"><label for="notaireTel" class="form-label">Téléphone</label><input type="tel" class="form-control" id="notaireTel" name="telephone"></div> <div class="col-md-6 mb-3"><label for="notaireCni" class="form-label">Numéro CNI</label><input type="text" class="form-control" id="notaireCni" name="numeroCNI"></div> </div> <div class="mb-3"><label for="notaireAdresse" class="form-label">Adresse Notaire</label><input type="text" class="form-control" id="notaireAdresse" name="adresse"></div> <hr><h6 class="mb-3">Informations Cabinet (Optionnel)</h6> <div class="mb-3"><label for="cabinetNom" class="form-label">Nom du Cabinet</label><input type="text" class="form-control" id="cabinetNom" name="nomCabinet"></div> <div class="mb-3"><label for="cabinetAdresse" class="form-label">Adresse du Cabinet</label><input type="text" class="form-control" id="cabinetAdresse" name="adresseCabinet"></div> <hr> <div class="mb-3"> <label for="notairePassword" class="form-label">Mot de Passe Initial*</label> <input type="password" class="form-control" id="notairePassword" name="motDePasse" required minlength="8" placeholder="8 caractères minimum"> </div> </form> </div> <div class="modal-footer"> <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button> <button type="submit" form="formAddNotaire" class="btn btn-primary">Enregistrer Notaire</button> </div> </div> </div> </div>
+        <!-- Modal Voir Détails (Générique) --> <div class="modal fade" id="modalUserDetails" tabindex="-1" aria-labelledby="modalUserDetailsLabel" aria-hidden="true"> <div class="modal-dialog modal-lg modal-dialog-scrollable"> <div class="modal-content"> <div class="modal-header"><h5 class="modal-title" id="modalUserDetailsLabel">Détails Utilisateur</h5><button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button></div> <div class="modal-body" id="userDetailsContent"><p class="text-center py-4">Chargement...</p></div> <div class="modal-footer"><button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button></div> </div> </div> </div>
+
+        <!-- ========== Footer Start ========== -->
+        <!-- COLLER VOTRE CODE FOOTER ICI -->
+         <footer class="footer"> <div class="container-fluid"> <div class="row"> <div class="col-12 text-center"> <script>document.write(new Date().getFullYear())</script> © Gestion Locative Notariale - Admin. </div> </div> </div> </footer>
+        <!-- ========== Footer End ========== -->
+    </div> <!-- wrapper -->
+
+    <script src="assets/js/vendor.js"></script>
+    <script src="assets/js/app.js"></script>
+    <script>
+        // --- Fonctions Globales Actions ---
+        window.viewUserDetails = function(userId, role) {
+            const modalEl = document.getElementById('modalUserDetails');
+            const modalBody = document.getElementById('userDetailsContent');
+            const modalLabel = document.getElementById('modalUserDetailsLabel');
+            const modal = bootstrap.Modal.getOrCreateInstance(modalEl);
+             modalLabel.textContent = `Détails ${role.charAt(0).toUpperCase() + role.slice(1)}`; // Titre dynamique
+            modalBody.innerHTML = '<p class="text-center py-4"><span class="spinner-border spinner-border-sm me-2"></span> Chargement...</p>';
+            modal.show();
+
+            // TODO: Fetch backend/get_user_details_admin.php?id=${userId}&role=${role}
+            console.log(`Voir détails ${role} ID: ${userId}`);
+            setTimeout(() => { // Simulation
+                let detailsHtml = `<h4>Informations ${role}</h4><p>Données spécifiques pour ${role} ID ${userId}...</p>`;
+                 // Adapter l'affichage selon le rôle si nécessaire
+                 modalBody.innerHTML = detailsHtml;
+            }, 800);
+        }
+         window.toggleUserStatus = function(userId, currentStatus) {
+            const action = currentStatus === 'Actif' ? 'désactiver' : 'activer';
+            if (confirm(`Voulez-vous vraiment ${action} cet utilisateur (ID: ${userId}) ?`)) {
+                console.log(`${action} user ID: ${userId}`);
+                 // TODO: AJAX POST vers backend/toggle_user_status.php { id: userId }
+                 alert(`Utilisateur ${action} (Simulation).`);
+                  // Recharger la table de l'onglet actif
+                  const activeTabId = document.querySelector('#userManagementTabs .nav-link.active').id;
+                  const role = activeTabId.split('-')[0];
+                 loadUsers(role);
+             }
+         }
+         window.deleteUser = function(userId, userName) {
+             // Confirmer la suppression (surtout pour un notaire)
+             if (confirm(`ATTENTION : Êtes-vous sûr de vouloir supprimer définitivement l'utilisateur '${userName}' (ID: ${userId}) ? Cette action est irréversible et peut affecter les données associées.`)) {
+                 console.log(`Supprimer user ID: ${userId}`);
+                 // TODO: AJAX POST vers backend/delete_user.php { id: userId }
+                 alert(`Utilisateur ${userName} supprimé (Simulation).`);
+                 // Recharger la table de l'onglet actif
+                 const activeTabId = document.querySelector('#userManagementTabs .nav-link.active').id;
+                 const role = activeTabId.split('-')[0];
+                  loadUsers(role);
+             }
+         }
+
+        // --- Script Principal ---
+        document.addEventListener('DOMContentLoaded', function() {
+            // --- Refs DOM ---
+            const tabBodies = {
+                notaires: document.getElementById('notairesTableBody'),
+                proprietaires: document.getElementById('proprietairesTableBody'),
+                locataires: document.getElementById('locatairesTableBodyAdmin')
+            };
+            const loadingRow = document.querySelector('.loading-row'); // Un seul modèle suffit
+            const noResultsRows = {
+                 notaires: document.querySelector('#notaires-tab-pane .no-results-row'),
+                 proprietaires: document.querySelector('#proprietaires-tab-pane .no-results-row'),
+                 locataires: document.querySelector('#locataires-tab-pane .no-results-row'),
+            };
+            const paginations = {
+                 notaires: document.getElementById('paginationNotaires'),
+                 proprietaires: document.getElementById('paginationProprietaires'),
+                 locataires: document.getElementById('paginationLocatairesAdmin'),
+            };
+             const countBadges = {
+                 notaires: document.getElementById('notairesCountBadge'),
+                 proprietaires: document.getElementById('proprietairesCountBadge'),
+                 locataires: document.getElementById('locatairesCountBadge'),
+             };
+            const globalSearchForm = document.getElementById('globalUserSearchForm');
+            const globalSearchInput = document.getElementById('globalUserSearchInput');
+            const formAddNotaire = document.getElementById('formAddNotaire');
+             const modalAddNotaireEl = document.getElementById('modalAddNotaire');
+            // Assumer que les formulaires de filtre par onglet n'existent plus, on utilise la recherche globale
+
+            // --- Fonction Chargement générique ---
+            function loadUsers(role, page = 1, searchTerm = '') {
+                const tableBody = tabBodies[role];
+                const noResultsRow = noResultsRows[role];
+                const paginationControls = paginations[role];
+                const countBadge = countBadges[role];
+
+                tableBody.innerHTML = ''; // Vider
+                for (let i = 0; i < 5; i++) { tableBody.appendChild(loadingRow.cloneNode(true)); } // Afficher placeholders
+                noResultsRow.classList.add('d-none');
+
+                const params = new URLSearchParams({ role, page, search: searchTerm });
+                // TODO: Endpoint unique get_users_admin.php
+                const url = `backend/get_users_admin.php?${params.toString()}`;
+                console.log(`Fetching ${role} from: ${url}`);
+
+                // TODO: Remplacer par fetch()
+                 setTimeout(() => { // Simulation
+                      // --- Données simulées ---
+                     let responseData = { success: true, users: [], pagination: { currentPage: page, totalPages: 1, totalItems: 0 } };
+                     // Remplir avec des données *différentes* pour chaque rôle pour bien voir la différence
+                     if (role === 'notaires') {
+                          responseData.users = [ { idUser: 51, nom: "Kossi", prenom: "Maitre A.", email:"kossi@notaire.bj", tel: "90000001", cabinet:"Etude Kossi", statut:"Actif" }, { idUser: 52, nom: "Agbo", prenom: "Maitre B.", email:"agbo@notaire.bj", tel: "91000002", cabinet:null, statut:"Inactif" } ];
+                          responseData.pagination = {currentPage: 1, totalPages: 1, totalItems: 2};
+                      } else if (role === 'proprietaires') {
+                          responseData.users = [ { idUser: 101, nom: "Dupont", prenom: "Jean P.", email: "jean.d@prop.com", nbBiens: 3, statut:"Actif" }, { idUser: 102, nom: "Martin", prenom: "Alice P.", email: "alice.m@prop.com", nbBiens: 1, statut:"Actif" }, { idUser: 103, nom: "Soglo", prenom: "Marie P.", email: "marie.s@prop.com", nbBiens: 0, statut:"Inactif" } ];
+                           responseData.pagination = {currentPage: 1, totalPages: 1, totalItems: 3};
+                      } else if (role === 'locataires') {
+                          responseData.users = [ { idUser: 201, nom: "Bello", prenom: "Ahmed L.", email: "ahmed.b@loc.com", tel: "95000003", logement: "789 Bd du Port", statut:"Actif" }, { idUser: 204, nom: "Test", prenom: "Locataire", email: "test@loc.com", tel: "94000004", logement: null, statut:"Inactif" } ];
+                           responseData.pagination = {currentPage: 1, totalPages: 1, totalItems: 2};
+                      }
+                      // --- Fin Données Simulées ---
+
+                      tableBody.innerHTML = ''; // Vider placeholders
+
+                      if (responseData.success && responseData.users.length > 0) {
+                          if(countBadge) countBadge.textContent = responseData.pagination.totalItems;
+
+                          responseData.users.forEach(user => {
+                               const row = document.createElement('tr');
+                               let cells = '';
+                               const statutCompteBadge = user.statut === 'Actif' ? `<span class="badge bg-success">${user.statut}</span>` : `<span class="badge bg-secondary">${user.statut || 'Inactif'}</span>`;
+                               const actions = `<div class="d-flex gap-1"> <button onclick="viewUserDetails(${user.idUser}, '${role}')" class="btn btn-sm btn-light" title="Voir Détails"><i class="ri-eye-line"></i></button> <button onclick="toggleUserStatus(${user.idUser}, '${user.statut}')" class="btn btn-sm ${user.statut === 'Actif' ? 'btn-warning' : 'btn-success'}" title="${user.statut === 'Actif' ? 'Désactiver' : 'Activer'}"><i class="${user.statut === 'Actif' ? 'ri-user-unfollow-line' : 'ri-user-follow-line'}"></i></button> ${role === 'notaires' ? '<button onclick="deleteUser('+user.idUser+', \''+user.nom+'\')" class="btn btn-sm btn-danger" title="Supprimer"><i class="ri-delete-bin-line"></i></button>' : ''} </div>`;
+
+                                if (role === 'notaires') { cells = `<td>${user.nom} ${user.prenom}</td><td>${user.email}</td><td>${user.tel || '-'}</td><td>${user.cabinet || '-'}</td><td>${statutCompteBadge}</td><td>${actions}</td>`; }
+                                else if (role === 'proprietaires') { cells = `<td>${user.nom} ${user.prenom}</td><td>${user.email}</td><td>${user.nbBiens}</td><td>${statutCompteBadge}</td><td>${actions}</td>`; }
+                                else if (role === 'locataires') { cells = `<td>${user.nom} ${user.prenom}</td><td>${user.email}</td><td>${user.tel || '-'}</td><td>${user.logement || '-'}</td><td>${statutCompteBadge}</td><td>${actions}</td>`; }
+                                row.innerHTML = cells;
+                                tableBody.appendChild(row);
+                          });
+                      } else {
+                           noResultsRow.classList.remove('d-none');
+                           tableBody.appendChild(noResultsRow);
+                            if(countBadge) countBadge.textContent = 0;
+                      }
+                       updatePagination(paginationControls, responseData.pagination, (newPage) => loadUsers(role, newPage, searchTerm));
+                 }, 500);
+             }
+
+             // --- Fonction Pagination Générique ---
+              function updatePagination(controlsElement, paginationInfo, loadFunctionCallback) {
+                 controlsElement.innerHTML = ''; // Vider
+                 if (!paginationInfo || paginationInfo.totalPages <= 1) return;
+                 // ... (Logique Précédent, Pages, Suivant comme avant) ...
+                 // Dans l'écouteur de clic : loadFunctionCallback(page);
+             }
+
+            // --- Gestion Onglets ---
+             const userTabs = document.querySelectorAll('#userManagementTabs button[data-bs-toggle="tab"]');
+             userTabs.forEach(tabEl => {
+                 tabEl.addEventListener('shown.bs.tab', event => {
+                     const role = event.target.id.split('-')[0];
+                     const searchTerm = globalSearchInput.value.trim(); // Conserver recherche si changement d'onglet
+                     loadUsers(role, 1, searchTerm);
+                 });
+             });
+
+             // --- Gestion Recherche Globale ---
+              globalSearchForm.addEventListener('submit', function(e) {
+                  e.preventDefault();
+                  const searchTerm = globalSearchInput.value.trim();
+                  const activeTabId = document.querySelector('#userManagementTabs .nav-link.active').id;
+                  const role = activeTabId.split('-')[0];
+                  loadUsers(role, 1, searchTerm); // Lance la recherche sur l'onglet actif, page 1
+              });
+
+             // --- Gestion Ajout Notaire ---
+              formAddNotaire.addEventListener('submit', function(e){ /* ... (comme avant) ... */ });
+
+             // --- Chargement Initial ---
+             loadUsers('notaires'); // Charger le premier onglet
+
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,547 @@
+<!DOCTYPE html>
+<html lang="fr"> <!-- Langue en Français -->
+
+<!-- Mirrored from techzaa.in/lahomes/admin/locataire-paiements.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 08 Apr 2025 XX:XX:XX GMT -->
+<head>
+    <!-- Title Meta -->
+    <meta charset="utf-8" />
+    <!-- Titre mis à jour -->
+    <title>Paiements & Quittances | Gestion Locative Notariale</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Gestion des paiements et consultation des quittances pour les locataires." />
+    <meta name="author" content="Votre Nom/Entreprise" /> <!-- Mettre à jour -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+    <!-- App favicon -->
+    <link rel="shortcut icon" href="assets/images/favicon.ico">
+
+    <!-- Vendor css (Require in all Page) -->
+    <link href="assets/css/vendor.min.css" rel="stylesheet" type="text/css" />
+    <!-- Flatpickr CSS (si besoin pour filtres date) -->
+    <!-- <link href="assets/libs/flatpickr/flatpickr.min.css" rel="stylesheet" type="text/css" /> -->
+
+    <!-- Icons css (Require in all Page) -->
+    <link href="assets/css/icons.min.css" rel="stylesheet" type="text/css" />
+
+    <!-- App css (Require in all Page) -->
+    <link href="assets/css/app.min.css" rel="stylesheet" type="text/css" />
+
+    <!-- Theme Config js (Require in all Page) -->
+    <script src="assets/js/config.min.js"></script>
+
+     <!-- Custom CSS for this page -->
+     <style>
+          .payment-action-card .amount-due { font-size: 1.5rem; font-weight: 600; color: #dc3545; /* Rouge pour montant dû */}
+          .payment-action-card .amount-due.zero { color: #198754; /* Vert si 0 */}
+          .payment-action-card .btn-pay { font-size: 1.1rem; }
+          .table th, .table td { vertical-align: middle; }
+          .history-table th { font-size: 0.85rem; }
+          .history-table td { font-size: 0.875rem; }
+
+          /* Placeholder style */
+          .placeholder-glow span { min-height: 1em; display: inline-block; }
+          .card .placeholder { min-height: 1em; }
+          .payment-action-card .amount-due .placeholder { width: 40%; }
+
+          /* Style pour indicateur chargement/vide table */
+           #paymentsHistoryBody .loading-row td,
+           #paymentsHistoryBody .no-results-row td {
+              text-align: center;
+              font-style: italic;
+              color: #6c757d;
+              padding: 1rem;
+           }
+     </style>
+
+</head>
+
+<body>
+
+    <!-- START Wrapper -->
+    <div class="wrapper">
+
+        <!-- ========== Topbar Start ========== -->
+        <!-- COLLER VOTRE CODE TOPBAR EXISTANT ICI -->
+        <!-- Adapter le menu utilisateur et le compteur de notifications -->
+         <header class="">
+               <div class="topbar">
+                    <div class="container-fluid">
+                         <div class="navbar-header">
+                              <div class="d-flex align-items-center gap-2">
+                                   <div class="topbar-item"><button type="button" class="button-toggle-menu topbar-button"><i class="ri-menu-2-line fs-24"></i></button></div>
+                                   <form class="app-search d-none d-md-block me-auto"><div class="position-relative"><input type="search" class="form-control border-0" placeholder="Rechercher..." autocomplete="off" value=""><i class="ri-search-line search-widget-icon"></i></div></form>
+                              </div>
+                              <div class="d-flex align-items-center gap-1">
+                                   <div class="topbar-item"><button type="button" class="topbar-button" id="light-dark-mode"><i class="ri-moon-line fs-24 light-mode"></i><i class="ri-sun-line fs-24 dark-mode"></i></button></div>
+                                   <div class="dropdown topbar-item d-none d-lg-flex"><button type="button" class="topbar-button" data-toggle="fullscreen"><i class="ri-fullscreen-line fs-24 fullscreen"></i><i class="ri-fullscreen-exit-line fs-24 quit-fullscreen"></i></button></div>
+                                   <!-- Notifications Dropdown -->
+                                   <div class="dropdown topbar-item">
+                                        <button type="button" class="topbar-button position-relative" id="page-header-notifications-dropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="ri-notification-3-line fs-24"></i><span id="topbarUnreadCount" class="position-absolute topbar-badge fs-10 translate-middle badge bg-danger rounded-pill">0<span class="visually-hidden">notifications non lues</span></span></button>
+                                        <div class="dropdown-menu py-0 dropdown-lg dropdown-menu-end" aria-labelledby="page-header-notifications-dropdown">
+                                             <div class="p-3 border-top-0 border-start-0 border-end-0 border-dashed border"><div class="row align-items-center"><div class="col"><h6 class="m-0 fs-16 fw-semibold"> Notifications</h6></div><div class="col-auto"><a href="javascript: void(0);" class="text-dark text-decoration-underline" onclick="markAllAsRead()"> <small>Marquer tout comme lu</small></a></div></div></div>
+                                             <div data-simplebar style="max-height: 280px;" id="topbarNotificationList"><!-- Aperçu rapide des notifs ici --></div>
+                                             <div class="text-center py-3"><a href="locataire-notifications.html" class="btn btn-primary btn-sm">Voir toutes les notifications <i class="ri-arrow-right-line ms-1"></i></a></div>
+                                        </div>
+                                   </div>
+                                   <!-- Theme Settings -->
+                                   <div class="topbar-item d-none d-md-flex"><button type="button" class="topbar-button" id="theme-settings-btn" data-bs-toggle="offcanvas" data-bs-target="#theme-settings-offcanvas" aria-controls="theme-settings-offcanvas"><i class="ri-settings-4-line fs-24"></i></button></div>
+                                   <!-- User Menu Locataire -->
+                                   <div class="dropdown topbar-item">
+                                        <a type="button" class="topbar-button" id="page-header-user-dropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span class="d-flex align-items-center"><img class="rounded-circle" width="32" src="assets/images/users/avatar-placeholder.png" alt="avatar-locataire"></span></a>
+                                        <div class="dropdown-menu dropdown-menu-end">
+                                             <h6 class="dropdown-header" id="userDropdownHeader">Bienvenue !</h6>
+                                              <a class="dropdown-item" href="locataire-profil.html"><i class="ri-user-line align-middle me-1"></i> <span class="align-middle">Mon Profil</span></a>
+                                             <a class="dropdown-item active" href="locataire-paiements.html"><i class="ri-secure-payment-line align-middle me-1"></i> <span class="align-middle">Paiements & Quittances</span></a>
+                                             <div class="dropdown-divider my-1"></div>
+                                             <a class="dropdown-item text-danger" href="auth-signin.html"><i class="ri-logout-box-line align-middle me-1"></i> <span class="align-middle">Déconnexion</span></a>
+                                        </div>
+                                   </div>
+                              </div>
+                         </div>
+                    </div>
+               </div>
+          </header>
+        <!-- ========== Topbar End ========== -->
+
+        <!-- ========== Right Sidebar (Theme Settings) Start ========== -->
+        <!-- COLLER VOTRE CODE RIGHT SIDEBAR EXISTANT ICI -->
+         <div>
+               <div class="offcanvas offcanvas-end border-0 rounded-start-4 overflow-hidden" tabindex="-1" id="theme-settings-offcanvas">
+                    <div class="d-flex align-items-center bg-primary p-3 offcanvas-header"><h5 class="text-white m-0">Theme Settings</h5><button type="button" class="btn-close btn-close-white ms-auto" data-bs-dismiss="offcanvas" aria-label="Close"></button></div><div class="offcanvas-body p-0"><div data-simplebar class="h-100"><div class="p-3 settings-bar"><!-- Settings --></div></div></div><div class="offcanvas-footer border-top p-3 text-center"><div class="row"><div class="col"><button type="button" class="btn btn-danger w-100" id="reset-layout">Reset</button></div></div></div>
+               </div>
+          </div>
+        <!-- ========== Right Sidebar (Theme Settings) End ========== -->
+
+
+        <!-- ========== App Menu Start ========== -->
+        <!-- Adapter le menu pour le locataire -->
+         <div class="main-nav">
+               <div class="logo-box"> <!-- Logo -->
+                    <a href="locataire-dashboard.html" class="logo-dark"><img src="assets/images/logo-sm.png" class="logo-sm" alt="logo sm"><img src="assets/images/logo-dark.png" class="logo-lg" alt="logo dark"></a>
+                    <a href="locataire-dashboard.html" class="logo-light"><img src="assets/images/logo-sm.png" class="logo-sm" alt="logo sm"><img src="assets/images/logo-light.png" class="logo-lg" alt="logo light"></a>
+               </div>
+               <button type="button" class="button-sm-hover" aria-label="Show Full Sidebar"><i class="ri-menu-2-line fs-24 button-sm-hover-icon"></i></button>
+               <div class="scrollbar" data-simplebar>
+                    <ul class="navbar-nav" id="navbar-nav">
+                         <li class="menu-title">Menu Locataire</li>
+                         <li class="nav-item">
+                              <a class="nav-link" href="locataire-dashboard.html"><span class="nav-icon"><i class="ri-dashboard-line"></i></span><span class="nav-text">Tableau de Bord</span></a>
+                         </li>
+                         <li class="nav-item">
+                              <a class="nav-link" href="locataire-contrat.html"><span class="nav-icon"><i class="ri-file-text-line"></i></span><span class="nav-text">Mon Contrat</span></a>
+                         </li>
+                          <li class="nav-item">
+                              <!-- Lien Actif -->
+                              <a class="nav-link active" href="locataire-paiements.html"><span class="nav-icon"><i class="ri-secure-payment-line"></i></span><span class="nav-text">Paiements & Quittances</span></a>
+                         </li>
+                         <li class="nav-item">
+                              <a class="nav-link" href="locataire-maintenance.html"><span class="nav-icon"><i class="ri-tools-line"></i></span><span class="nav-text">Maintenance</span></a>
+                         </li>
+                         <li class="nav-item">
+                              <a class="nav-link" href="locataire-notifications.html"><span class="nav-icon"><i class="ri-notification-3-line"></i></span><span class="nav-text">Notifications</span><span class="badge bg-danger badge-pill text-end" id="sidebarUnreadCount" style="display: none;"></span></a>
+                         </li>
+                    </ul>
+               </div>
+          </div>
+        <!-- ========== App Menu End ========== -->
+
+        <!-- ==================================================== -->
+        <!-- Start right Content here -->
+        <!-- ==================================================== -->
+        <div class="page-content">
+
+            <!-- Start Container Fluid -->
+            <div class="container-fluid">
+
+                <!-- ========== Page Title Start ========== -->
+                <div class="row">
+                    <div class="col-12">
+                        <div class="page-title-box">
+                            <h4 class="mb-0 fw-semibold">Paiements & Quittances</h4>
+                            <ol class="breadcrumb mb-0">
+                                <li class="breadcrumb-item"><a href="locataire-dashboard.html">Espace Locataire</a></li>
+                                <li class="breadcrumb-item active">Paiements</li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+                <!-- ========== Page Title End ========== -->
+
+                <!-- Section Effectuer un Paiement -->
+                <div class="row">
+                    <div class="col-12">
+                        <div class="card payment-action-card">
+                             <div class="card-body text-center">
+                                 <h5 class="card-title">Prochain Paiement</h5>
+                                 <p class="text-muted mb-2">Montant dû pour la prochaine échéance :</p>
+                                 <div class="amount-due my-3 placeholder-glow">
+                                     <span id="amountDueValue" class="placeholder col-4">--</span>
+                                     <!-- Classe 'zero' ajoutée par JS si montant = 0 -->
+                                 </div>
+                                 <!-- IMPORTANT: Le href doit pointer vers la page/modalité de paiement réelle -->
+                                 <a href="#" id="payNowBtn" class="btn btn-success btn-pay disabled">
+                                     <!-- Disabled initialement -->
+                                     <i class="ri-secure-payment-fill me-1"></i> Payer Maintenant
+                                 </a>
+                                 <p id="paymentMessage" class="mt-3 text-muted small" style="display: none;">
+                                     <!-- Message contextuel affiché par JS (ex: paiement non requis) -->
+                                 </p>
+                             </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Section Historique des Paiements -->
+                <div class="row">
+                     <div class="col-12">
+                          <div class="card">
+                               <div class="card-header d-flex justify-content-between align-items-center">
+                                    <h5 class="card-title mb-0">Historique des Paiements</h5>
+                                    <!-- Optionnel: Filtre par Année -->
+                                     <form id="filterPaymentsForm" class="ms-auto d-flex align-items-center">
+                                        <label for="filterYear" class="form-label me-2 mb-0 small">Année :</label>
+                                         <select class="form-select form-select-sm" id="filterYear" name="annee" style="width: auto;">
+                                             <option value="">Toutes</option>
+                                             <!-- Années à remplir par JS -->
+                                              <option value="2024">2024</option>
+                                              <option value="2023">2023</option>
+                                         </select>
+                                         <button type="submit" class="btn btn-sm btn-light ms-2"><i class="ri-filter-3-line"></i></button>
+                                     </form>
+                               </div>
+                               <div class="card-body p-0">
+                                    <div class="table-responsive">
+                                         <table id="paymentsHistoryTable" class="table table-hover table-centered history-table mb-0">
+                                              <thead class="table-light">
+                                                   <tr>
+                                                        <th>Date Paiement</th>
+                                                        <th>Type</th>
+                                                        <th>Période / Motif</th>
+                                                        <th class="text-end">Montant (FCFA)</th>
+                                                        <th>Statut</th>
+                                                        <th>Action</th>
+                                                   </tr>
+                                              </thead>
+                                              <tbody id="paymentsHistoryBody">
+                                                   <!-- Ligne Chargement -->
+                                                   <tr class="loading-row">
+                                                      <td colspan="6">
+                                                          <div class="d-flex justify-content-center align-items-center py-3">
+                                                              <span class="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span>
+                                                              Chargement de l'historique...
+                                                          </div>
+                                                      </td>
+                                                  </tr>
+                                                   <!-- Ligne Aucun Résultat -->
+                                                  <tr class="no-results-row d-none">
+                                                      <td colspan="6">Aucun paiement trouvé pour les critères sélectionnés.</td>
+                                                  </tr>
+
+                                                   <!-- ================================================== -->
+                                                   <!-- Début: EXEMPLES (Générés par JS/Backend)        -->
+                                                   <!-- ================================================== -->
+                                                  <!-- Exemple Validé -->
+                                                   <tr>
+                                                        <td>2024-07-05</td>
+                                                        <td><span class="badge bg-info">Loyer</span></td>
+                                                        <td>Juillet 2024</td>
+                                                        <td class="text-end">150 000</td>
+                                                        <td><span class="badge bg-success">Validé</span></td>
+                                                        <td>
+                                                             <button class="btn btn-sm btn-outline-primary" title="Télécharger Quittance" onclick="downloadQuittance(1001)">
+                                                                 <i class="ri-download-2-line"></i>
+                                                             </button>
+                                                        </td>
+                                                   </tr>
+                                                    <!-- Exemple En Attente -->
+                                                    <tr>
+                                                         <td>2024-08-01</td>
+                                                         <td><span class="badge bg-info">Loyer</span></td>
+                                                         <td>Août 2024</td>
+                                                         <td class="text-end">150 000</td>
+                                                         <td><span class="badge bg-warning text-dark">En attente</span></td>
+                                                         <td>
+                                                              <button class="btn btn-sm btn-outline-primary" title="Télécharger Quittance" disabled>
+                                                                  <i class="ri-download-2-line"></i>
+                                                              </button>
+                                                         </td>
+                                                    </tr>
+                                                   <!-- Exemple Caution -->
+                                                   <tr>
+                                                        <td>2024-01-01</td>
+                                                        <td><span class="badge bg-secondary">Caution</span></td>
+                                                        <td>Dépôt de garantie initial</td>
+                                                         <td class="text-end">300 000</td>
+                                                         <td><span class="badge bg-success">Validé</span></td>
+                                                        <td>
+                                                             <button class="btn btn-sm btn-outline-primary" title="Télécharger Reçu Caution" onclick="downloadQuittance(1000)">
+                                                                 <i class="ri-download-2-line"></i>
+                                                             </button>
+                                                        </td>
+                                                   </tr>
+                                                   <!-- ================================================== -->
+                                                   <!-- Fin: EXEMPLES                                     -->
+                                                   <!-- ================================================== -->
+                                              </tbody>
+                                         </table>
+                                    </div>
+                               </div><!-- end card-body -->
+
+                               <!-- Pied de carte pour la pagination -->
+                               <div class="card-footer bg-white border-top d-flex justify-content-end">
+                                    <nav aria-label="Pagination Historique Paiements">
+                                      <ul id="paginationControls" class="pagination pagination-sm mb-0">
+                                        <!-- Contrôles de pagination générés par JS -->
+                                        <li class="page-item disabled"><a class="page-link" href="#">Précédent</a></li>
+                                        <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                                        <li class="page-item"><a class="page-link" href="#">Suivant</a></li>
+                                      </ul>
+                                    </nav>
+                               </div> <!-- end card-footer -->
+
+                          </div> <!-- end card -->
+                     </div> <!-- end col -->
+                </div> <!-- End row -->
+
+
+            </div>
+            <!-- End Container Fluid -->
+
+            <!-- ========== Footer Start ========== -->
+            <!-- COLLER VOTRE CODE FOOTER EXISTANT ICI -->
+              <footer class="footer">
+                   <div class="container-fluid">
+                       <div class="row">
+                           <div class="col-12 text-center">
+                               <script>document.write(new Date().getFullYear())</script> © Gestion Locative Notariale.
+                           </div>
+                       </div>
+                   </div>
+               </footer>
+            <!-- ========== Footer End ========== -->
+
+        </div>
+        <!-- ==================================================== -->
+        <!-- End Page Content -->
+        <!-- ==================================================== -->
+
+    </div>
+    <!-- END Wrapper -->
+
+    <!-- Vendor Javascript (Require in all Page) -->
+    <script src="assets/js/vendor.js"></script>
+    <!-- Flatpickr JS (si besoin pour filtres date) -->
+    <!-- <script src="assets/libs/flatpickr/flatpickr.min.js"></script> -->
+    <!-- <script src="assets/libs/flatpickr/l10n/fr.js"></script> -->
+
+    <!-- App Javascript (Require in all Page) -->
+    <script src="assets/js/app.js"></script>
+
+     <!-- Custom JS for this page -->
+     <script>
+          // Fonction globale pour télécharger quittance
+          window.downloadQuittance = function(paiementId) {
+             // TODO: Construire l'URL réelle backend/download_quittance.php?id=...
+             const url = `backend/download_quittance.php?idPaiement=${paiementId}`;
+             console.log("Téléchargement quittance demandée:", url);
+             alert("Fonctionnalité de téléchargement de quittance à implémenter. URL: " + url);
+             // window.open(url, '_blank');
+         }
+
+
+         document.addEventListener('DOMContentLoaded', function() {
+             const elements = {
+                 amountDueValue: document.getElementById('amountDueValue'),
+                 payNowBtn: document.getElementById('payNowBtn'),
+                 paymentMessage: document.getElementById('paymentMessage'),
+                 historyTableBody: document.getElementById('paymentsHistoryBody'),
+                 loadingRow: document.querySelector('#paymentsHistoryBody .loading-row'),
+                 noResultsRow: document.querySelector('#paymentsHistoryBody .no-results-row'),
+                 paginationControls: document.getElementById('paginationControls'),
+                 filterForm: document.getElementById('filterPaymentsForm'),
+                 filterYearSelect: document.getElementById('filterYear')
+             };
+
+             const currencyFormatter = new Intl.NumberFormat('fr-FR', { style: 'currency', currency: 'XOF', minimumFractionDigits: 0 });
+             const numberFormatter = new Intl.NumberFormat('fr-FR');
+             const dateFormatter = new Intl.DateTimeFormat('fr-FR', { year: 'numeric', month: '2-digit', day: '2-digit' });
+
+             // --- Fonction pour charger données page paiement ---
+             function loadPaymentPageData(page = 1, filters = {}) {
+                 elements.loadingRow.classList.remove('d-none');
+                 elements.noResultsRow.classList.add('d-none');
+                 elements.historyTableBody.querySelectorAll('tr:not(.loading-row):not(.no-results-row)').forEach(row => row.remove());
+
+                 // Nettoyer l'état du bouton Payer
+                 elements.amountDueValue.innerHTML = '<span class="placeholder col-4">--</span>';
+                 elements.amountDueValue.classList.remove('zero');
+                 elements.payNowBtn.classList.add('disabled');
+                 elements.paymentMessage.style.display = 'none';
+
+                 const params = new URLSearchParams(filters);
+                 params.append('page', page);
+                 // TODO: Remplacer par UN SEUL appel AJAX backend/get_locataire_paiements_data.php
+                 const url = `backend/get_locataire_paiements_data.php?${params.toString()}`;
+
+                 console.log("Fetching payments data from:", url);
+
+                 // TODO: Remplacer ce setTimeout par un vrai fetch()
+                 setTimeout(() => {
+                      // --- Simulation Réponse Backend ---
+                      const response = {
+                          success: true,
+                          amountDue: 150000, // Montant du prochain paiement
+                          // amountDue: 0, // Cas où rien n'est dû
+                           paymentRequired: true, // Si le bouton payer doit être actif
+                           paymentMessage: null, // Ou "Vos paiements sont à jour."
+                          history: [ // Historique paginé
+                              { idPaiement: 1001, datePaiement: '2024-07-05', typePaiement: 'Loyer', motif: 'Juillet 2024', montant: 150000, statutPaiement: 'Validé' },
+                              { idPaiement: 1000, datePaiement: '2024-01-01', typePaiement: 'Caution', motif: 'Dépôt de garantie initial', montant: 300000, statutPaiement: 'Validé' },
+                              { idPaiement: 999, datePaiement: '2024-06-05', typePaiement: 'Loyer', motif: 'Juin 2024', montant: 150000, statutPaiement: 'Validé' },
+                              // Ajouter plus pour pagination
+                          ],
+                          pagination: {
+                              currentPage: page,
+                              totalPages: 1, // Exemple
+                              totalItems: 3 // Exemple
+                          }
+                      };
+                       // --- Fin Simulation ---
+
+                       elements.loadingRow.classList.add('d-none'); // Masquer chargement
+
+                      if (response.success) {
+                            // Mise à jour section "Effectuer Paiement"
+                            const amountDue = response.amountDue !== undefined ? response.amountDue : null;
+                             if (elements.amountDueValue) {
+                                 if (amountDue !== null) {
+                                     elements.amountDueValue.textContent = currencyFormatter.format(amountDue);
+                                     elements.amountDueValue.classList.toggle('zero', amountDue === 0);
+                                 } else {
+                                      elements.amountDueValue.textContent = "N/A";
+                                      elements.amountDueValue.classList.remove('zero');
+                                 }
+                                 elements.amountDueValue.closest('.placeholder-glow')?.classList.remove('placeholder-glow');
+                                 elements.amountDueValue.classList.remove('placeholder', 'col-4');
+                             }
+                             if (elements.payNowBtn) {
+                                  elements.payNowBtn.classList.toggle('disabled', !response.paymentRequired || amountDue === null || amountDue <= 0);
+                                  // TODO: Ajouter le vrai lien de paiement ici si nécessaire
+                                  // elements.payNowBtn.href = response.paymentUrl || '#';
+                             }
+                             if (elements.paymentMessage && response.paymentMessage) {
+                                 elements.paymentMessage.textContent = response.paymentMessage;
+                                 elements.paymentMessage.style.display = 'block';
+                             }
+
+                            // Mise à jour Historique Paiements
+                            if (response.history && response.history.length > 0) {
+                                response.history.forEach(p => {
+                                    const row = document.createElement('tr');
+                                    const formattedDate = p.datePaiement ? dateFormatter.format(new Date(p.datePaiement)) : '-';
+                                     const formattedAmount = numberFormatter.format(p.montant || 0);
+
+                                     // Badges pour Type et Statut
+                                     let typeBadge = `<span class="badge bg-secondary">${p.typePaiement || 'N/A'}</span>`;
+                                     if (p.typePaiement) {
+                                         switch (p.typePaiement.toLowerCase()) {
+                                             case 'loyer': typeBadge = `<span class="badge bg-info">Loyer</span>`; break;
+                                             case 'caution': typeBadge = `<span class="badge bg-warning text-dark">Caution</span>`; break;
+                                             case 'avance': typeBadge = `<span class="badge bg-primary">Avance</span>`; break;
+                                              // Ajouter d'autres types si nécessaire
+                                         }
+                                     }
+                                     let statusBadge = `<span class="badge bg-secondary">Indéfini</span>`;
+                                     let downloadDisabled = true;
+                                     if (p.statutPaiement) {
+                                          switch (p.statutPaiement.toLowerCase()) {
+                                               case 'validé':
+                                                   statusBadge = `<span class="badge bg-success">Validé</span>`;
+                                                   downloadDisabled = false; // Activer le bouton
+                                                   break;
+                                               case 'en attente': statusBadge = `<span class="badge bg-warning text-dark">En attente</span>`; break;
+                                               case 'échoué': case 'refusé': statusBadge = `<span class="badge bg-danger">Échoué</span>`; break;
+                                           }
+                                     }
+
+                                     row.innerHTML = `
+                                         <td>${formattedDate}</td>
+                                         <td>${typeBadge}</td>
+                                         <td>${p.motif || '-'}</td>
+                                         <td class="text-end">${formattedAmount}</td>
+                                         <td>${statusBadge}</td>
+                                         <td>
+                                              <button class="btn btn-sm btn-outline-primary" title="Télécharger Quittance" onclick="downloadQuittance(${p.idPaiement})" ${downloadDisabled ? 'disabled' : ''}>
+                                                  <i class="ri-download-2-line"></i>
+                                              </button>
+                                         </td>
+                                     `;
+                                     elements.historyTableBody.appendChild(row);
+                                });
+                            } else {
+                                elements.noResultsRow.classList.remove('d-none');
+                            }
+
+                            // Mise à jour Pagination
+                             updatePaymentsPagination(response.pagination, filters);
+
+                       } else {
+                             elements.noResultsRow.classList.remove('d-none');
+                            elements.noResultsRow.textContent = "Erreur lors du chargement de l'historique.";
+                             console.error("Erreur chargement paiements data:", response.message);
+                             // Laisser le bouton Payer désactivé etc.
+                       }
+                 }, 700); // Simuler délai
+             }
+
+             // --- Fonction màj pagination (similaire aux autres pages) ---
+              function updatePaymentsPagination(paginationInfo, currentFilters) {
+                 elements.paginationControls.innerHTML = ''; // Vider
+                 if (!paginationInfo || paginationInfo.totalPages <= 1) return;
+
+                 const createPageLink = (page, text, isDisabled = false, isActive = false) => { /* ... idem ... */ };
+                 // ... (Logique Précédent, Pages, Suivant comme dans les autres pages) ...
+
+                  // Ajouter les écouteurs
+                 elements.paginationControls.querySelectorAll('.page-link').forEach(link => {
+                     link.addEventListener('click', function(e) {
+                         e.preventDefault();
+                         const page = parseInt(this.getAttribute('data-page'));
+                          if (page && !this.closest('.page-item').classList.contains('disabled') && !this.closest('.page-item').classList.contains('active')) {
+                             const currentFormData = new FormData(elements.filterForm);
+                             const currentFiltersObj = Object.fromEntries(currentFormData.entries());
+                             loadPaymentPageData(page, currentFiltersObj);
+                         }
+                     });
+                 });
+             }
+
+             // --- Gestion Filtres ---
+             if (elements.filterForm) {
+                 elements.filterForm.addEventListener('submit', function(e) {
+                     e.preventDefault();
+                     const formData = new FormData(elements.filterForm);
+                     const filters = Object.fromEntries(formData.entries());
+                     loadPaymentPageData(1, filters); // Recharge page 1 avec filtres
+                 });
+                  // Remplir le filtre année (exemple)
+                  const currentYear = new Date().getFullYear();
+                 for (let y = currentYear; y >= currentYear - 5; y--) {
+                     elements.filterYearSelect.add(new Option(y, y));
+                 }
+             }
+
+
+             // --- Chargement initial ---
+             loadPaymentPageData();
+
+         }); // Fin DOMContentLoaded
+     </script>
+
+    <!-- Iconify Icons (Import only if needed) -->
+    <!-- <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script> -->
+
+</body>
+
+<!-- Mirrored from techzaa.in/lahomes/admin/locataire-paiements.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 08 Apr 2025 XX:XX:XX GMT -->
+</html>

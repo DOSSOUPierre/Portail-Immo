@@ -1,0 +1,526 @@
+<!DOCTYPE html>
+<html lang="fr"> <!-- Langue en Français -->
+
+<!-- Mirrored from techzaa.in/lahomes/admin/locataire-dashboard.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 08 Apr 2025 XX:XX:XX GMT -->
+<!-- NOTE: Mettre à jour l'URL -->
+<head>
+    <!-- Title Meta -->
+    <meta charset="utf-8" />
+    <!-- Titre mis à jour -->
+    <title>Tableau de Bord Locataire | Gestion Locative Notariale</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Tableau de bord principal pour les locataires." />
+    <meta name="author" content="Votre Nom/Entreprise" /> <!-- Mettre à jour -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+    <!-- App favicon -->
+    <link rel="shortcut icon" href="assets/images/favicon.ico">
+
+    <!-- Vendor css (Require in all Page) -->
+    <link href="assets/css/vendor.min.css" rel="stylesheet" type="text/css" />
+
+    <!-- Icons css (Require in all Page) -->
+    <link href="assets/css/icons.min.css" rel="stylesheet" type="text/css" />
+
+    <!-- App css (Require in all Page) -->
+    <link href="assets/css/app.min.css" rel="stylesheet" type="text/css" />
+
+    <!-- Theme Config js (Require in all Page) -->
+    <script src="assets/js/config.min.js"></script>
+
+     <!-- Custom CSS for Dashboard Locataire -->
+     <style>
+          .welcome-message { margin-bottom: 1.5rem; }
+          .contract-summary-card dt { font-weight: 500; color: #6c757d; min-width: 130px; float: left; clear: left; }
+          .contract-summary-card dd { margin-left: 140px; font-weight: 600; color: #343a40; margin-bottom: 0.5rem;}
+          .payment-status-card .status-text { font-size: 1.1rem; font-weight: 500; }
+          .payment-action-card .btn-lg { padding: 0.75rem 1.5rem; font-size: 1.1rem; }
+
+          /* Styles pour liste notifications récentes (similaire à page notifs) */
+          .recent-notifications-card .list-group-item { padding: 0.75rem 1rem; }
+          .recent-notifications-card .list-group-item:last-child { border-bottom: none; }
+          .recent-notifications-card .notification-icon-sm { width: 28px; height: 28px; font-size: 1rem; }
+          .recent-notifications-card .notification-text { font-size: 0.85rem; line-height: 1.4; }
+          .recent-notifications-card .notification-time-sm { font-size: 0.75rem; color: #6c757d; }
+
+          /* Placeholder style */
+          .placeholder-glow span { min-height: 1em; display: inline-block; }
+          .card .placeholder { min-height: 1em; }
+          dl dd span.placeholder { width: 60%; } /* Ajuster taille placeholder pour dd */
+
+          /* Espacement */
+           .row > * { margin-bottom: 1.5rem; }
+           .row:last-child > * { margin-bottom: 0; }
+
+     </style>
+
+</head>
+
+<body>
+
+    <!-- START Wrapper -->
+    <div class="wrapper">
+
+        <!-- ========== Topbar Start ========== -->
+        <!-- COLLER VOTRE CODE TOPBAR EXISTANT ICI -->
+        <!-- Adapter le menu utilisateur et le compteur de notifications -->
+         <header class="">
+               <div class="topbar">
+                    <div class="container-fluid">
+                         <div class="navbar-header">
+                              <div class="d-flex align-items-center gap-2">
+                                   <div class="topbar-item"><button type="button" class="button-toggle-menu topbar-button"><i class="ri-menu-2-line fs-24"></i></button></div>
+                                   <form class="app-search d-none d-md-block me-auto"><div class="position-relative"><input type="search" class="form-control border-0" placeholder="Rechercher..." autocomplete="off" value=""><i class="ri-search-line search-widget-icon"></i></div></form>
+                              </div>
+                              <div class="d-flex align-items-center gap-1">
+                                   <div class="topbar-item"><button type="button" class="topbar-button" id="light-dark-mode"><i class="ri-moon-line fs-24 light-mode"></i><i class="ri-sun-line fs-24 dark-mode"></i></button></div>
+                                   <div class="dropdown topbar-item d-none d-lg-flex"><button type="button" class="topbar-button" data-toggle="fullscreen"><i class="ri-fullscreen-line fs-24 fullscreen"></i><i class="ri-fullscreen-exit-line fs-24 quit-fullscreen"></i></button></div>
+                                   <!-- Notifications Dropdown -->
+                                   <div class="dropdown topbar-item">
+                                        <button type="button" class="topbar-button position-relative" id="page-header-notifications-dropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="ri-notification-3-line fs-24"></i><span id="topbarUnreadCount" class="position-absolute topbar-badge fs-10 translate-middle badge bg-danger rounded-pill">0<span class="visually-hidden">notifications non lues</span></span></button>
+                                        <div class="dropdown-menu py-0 dropdown-lg dropdown-menu-end" aria-labelledby="page-header-notifications-dropdown">
+                                             <div class="p-3 border-top-0 border-start-0 border-end-0 border-dashed border"><div class="row align-items-center"><div class="col"><h6 class="m-0 fs-16 fw-semibold"> Notifications</h6></div><div class="col-auto"><a href="javascript: void(0);" class="text-dark text-decoration-underline" onclick="markAllAsRead()"> <small>Marquer tout comme lu</small></a></div></div></div>
+                                             <div data-simplebar style="max-height: 280px;" id="topbarNotificationList"><!-- Aperçu rapide des notifs ici --></div>
+                                             <div class="text-center py-3"><a href="locataire-notifications.html" class="btn btn-primary btn-sm">Voir toutes les notifications <i class="ri-arrow-right-line ms-1"></i></a></div>
+                                        </div>
+                                   </div>
+                                   <!-- Theme Settings -->
+                                   <div class="topbar-item d-none d-md-flex"><button type="button" class="topbar-button" id="theme-settings-btn" data-bs-toggle="offcanvas" data-bs-target="#theme-settings-offcanvas" aria-controls="theme-settings-offcanvas"><i class="ri-settings-4-line fs-24"></i></button></div>
+                                   <!-- User Menu Locataire -->
+                                   <div class="dropdown topbar-item">
+                                        <a type="button" class="topbar-button" id="page-header-user-dropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span class="d-flex align-items-center"><img class="rounded-circle" width="32" src="assets/images/users/avatar-placeholder.png" alt="avatar-locataire"></span></a>
+                                        <div class="dropdown-menu dropdown-menu-end">
+                                             <h6 class="dropdown-header" id="userDropdownHeader">Bienvenue !</h6>
+                                             <a class="dropdown-item" href="locataire-profil.html"> <!-- Lien vers la page profil locataire -->
+                                                  <i class="ri-user-line align-middle me-1"></i> <span class="align-middle">Mon Profil</span>
+                                              </a>
+                                             <a class="dropdown-item" href="locataire-contrat.html">
+                                                  <i class="ri-file-list-3-line align-middle me-1"></i> <span class="align-middle">Mon Contrat</span>
+                                              </a>
+                                             <div class="dropdown-divider my-1"></div>
+                                             <a class="dropdown-item text-danger" href="auth-signin.html"> <!-- Lien de déconnexion -->
+                                                   <i class="ri-logout-box-line align-middle me-1"></i> <span class="align-middle">Déconnexion</span>
+                                               </a>
+                                        </div>
+                                   </div>
+                              </div>
+                         </div>
+                    </div>
+               </div>
+          </header>
+        <!-- ========== Topbar End ========== -->
+
+        <!-- ========== Right Sidebar (Theme Settings) Start ========== -->
+        <!-- COLLER VOTRE CODE RIGHT SIDEBAR EXISTANT ICI -->
+        <!-- ... -->
+         <div>
+               <div class="offcanvas offcanvas-end border-0 rounded-start-4 overflow-hidden" tabindex="-1" id="theme-settings-offcanvas">
+                    <div class="d-flex align-items-center bg-primary p-3 offcanvas-header"><h5 class="text-white m-0">Theme Settings</h5><button type="button" class="btn-close btn-close-white ms-auto" data-bs-dismiss="offcanvas" aria-label="Close"></button></div><div class="offcanvas-body p-0"><div data-simplebar class="h-100"><div class="p-3 settings-bar"><!-- Settings options --></div></div></div><div class="offcanvas-footer border-top p-3 text-center"><div class="row"><div class="col"><button type="button" class="btn btn-danger w-100" id="reset-layout">Reset</button></div></div></div>
+               </div>
+          </div>
+        <!-- ========== Right Sidebar (Theme Settings) End ========== -->
+
+
+        <!-- ========== App Menu Start ========== -->
+        <!-- Adapter le menu pour le locataire -->
+         <div class="main-nav">
+               <div class="logo-box"> <!-- Logo -->
+                    <a href="locataire-dashboard.html" class="logo-dark"><img src="assets/images/logo-sm.png" class="logo-sm" alt="logo sm"><img src="assets/images/logo-dark.png" class="logo-lg" alt="logo dark"></a>
+                    <a href="locataire-dashboard.html" class="logo-light"><img src="assets/images/logo-sm.png" class="logo-sm" alt="logo sm"><img src="assets/images/logo-light.png" class="logo-lg" alt="logo light"></a>
+               </div>
+               <button type="button" class="button-sm-hover" aria-label="Show Full Sidebar"><i class="ri-menu-2-line fs-24 button-sm-hover-icon"></i></button>
+               <div class="scrollbar" data-simplebar>
+                    <ul class="navbar-nav" id="navbar-nav">
+                         <li class="menu-title">Menu Locataire</li>
+                         <li class="nav-item">
+                              <!-- Lien Actif -->
+                              <a class="nav-link active" href="locataire-dashboard.html">
+                                   <span class="nav-icon"><i class="ri-dashboard-line"></i></span>
+                                   <span class="nav-text">Tableau de Bord</span>
+                              </a>
+                         </li>
+                         <li class="nav-item">
+                              <a class="nav-link" href="locataire-contrat.html">
+                                   <span class="nav-icon"><i class="ri-file-text-line"></i></span>
+                                   <span class="nav-text">Mon Contrat</span>
+                              </a>
+                         </li>
+                          <li class="nav-item">
+                              <a class="nav-link" href="locataire-paiements.html">
+                                   <span class="nav-icon"><i class="ri-secure-payment-line"></i></span>
+                                   <span class="nav-text">Paiements & Quittances</span>
+                              </a>
+                         </li>
+                         <li class="nav-item">
+                              <a class="nav-link" href="locataire-maintenance.html">
+                                   <span class="nav-icon"><i class="ri-tools-line"></i></span>
+                                   <span class="nav-text">Maintenance</span>
+                              </a>
+                         </li>
+                         <li class="nav-item">
+                              <a class="nav-link" href="locataire-notifications.html">
+                                   <span class="nav-icon"><i class="ri-notification-3-line"></i></span>
+                                   <span class="nav-text">Notifications</span>
+                                   <span class="badge bg-danger badge-pill text-end" id="sidebarUnreadCount" style="display: none;"></span> <!-- Compteur non lus sidebar -->
+                              </a>
+                         </li>
+                         <!-- Autres liens si besoin -->
+                    </ul>
+               </div>
+          </div>
+        <!-- ========== App Menu End ========== -->
+
+        <!-- ==================================================== -->
+        <!-- Start right Content here -->
+        <!-- ==================================================== -->
+        <div class="page-content">
+
+            <!-- Start Container Fluid -->
+            <div class="container-fluid">
+
+                <!-- ========== Page Title Start ========== -->
+                <div class="row">
+                    <div class="col-12">
+                        <div class="page-title-box">
+                            <h4 class="mb-0 fw-semibold">Tableau de Bord Locataire</h4>
+                            <ol class="breadcrumb mb-0">
+                                <li class="breadcrumb-item"><a href="javascript: void(0);">Espace Locataire</a></li>
+                                <li class="breadcrumb-item active">Tableau de Bord</li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+                <!-- ========== Page Title End ========== -->
+
+                <!-- Message d'accueil -->
+                 <div class="row">
+                     <div class="col-12">
+                           <h4 class="welcome-message placeholder-glow">Bonjour, <span id="locatairePrenom" class="placeholder col-2"> [Prénom]</span> !</h4>
+                     </div>
+                 </div>
+
+                <div class="row">
+                    <!-- Colonne Principale (Contrat, Paiement) -->
+                    <div class="col-lg-7 col-xl-8">
+                        <!-- Résumé Contrat -->
+                        <div class="card contract-summary-card">
+                            <div class="card-header">
+                                <h5 class="card-title mb-0"><i class="ri-home-heart-line me-1"></i> Mon Logement Actuel</h5>
+                            </div>
+                             <div class="card-body">
+                                <dl class="mb-0">
+                                    <dt>Adresse :</dt>
+                                    <dd class="placeholder-glow"><span id="logementAdresse" class="placeholder col-8">--</span></dd>
+
+                                    <dt>Fin du Contrat :</dt>
+                                    <dd class="placeholder-glow"><span id="contratDateFin" class="placeholder col-4">--</span></dd>
+
+                                    <dt>Montant Loyer :</dt>
+                                    <dd class="placeholder-glow"><span id="contratMontantLoyer" class="placeholder col-5">--</span></dd>
+
+                                    <dt>Prochaine Échéance :</dt>
+                                     <dd class="placeholder-glow"><span id="prochaineEcheance" class="placeholder col-4">--</span></dd>
+
+                                    <dt>Prochain Montant Dû :</dt>
+                                    <dd class="placeholder-glow"><span id="prochainMontantDu" class="placeholder col-5">--</span></dd>
+                                </dl>
+                             </div>
+                        </div>
+
+                        <!-- Statut et Action Paiement -->
+                        <div class="card payment-action-card text-center">
+                             <div class="card-body">
+                                 <h5 class="card-title">Statut des Paiements</h5>
+                                 <div id="paiementStatusMessage" class="status-text my-3 placeholder-glow">
+                                    <span class="placeholder col-6">Chargement du statut...</span>
+                                     <!-- Exemples:
+                                          <span class="text-success"><i class="ri-check-double-line me-1"></i>Vos paiements sont à jour.</span>
+                                          <span class="text-warning"><i class="ri-error-warning-line me-1"></i>Le loyer de Juillet est en attente.</span>
+                                          <span class="text-danger"><i class="ri-alert-line me-1"></i>Vous avez des paiements en retard.</span>
+                                     -->
+                                 </div>
+                                 <a href="locataire-paiements.html" id="btnPayerMain" class="btn btn-success btn-lg mt-2">
+                                     <i class="ri-secure-payment-line me-2"></i> <span id="btnPayerText">Effectuer un Paiement</span>
+                                 </a>
+                             </div>
+                        </div>
+                    </div> <!-- Fin Colonne Principale -->
+
+                    <!-- Colonne Latérale (Maintenance, Notifications) -->
+                     <div class="col-lg-5 col-xl-4 d-flex flex-column">
+                         <!-- Demandes de Maintenance -->
+                         <div class="card mb-4"> <!-- mb-4 pour espacer -->
+                              <div class="card-header">
+                                   <h5 class="card-title mb-0"><i class="ri-tools-line me-1"></i> Maintenance</h5>
+                              </div>
+                              <div class="card-body">
+                                   <p id="maintenanceStatus" class="mb-2 placeholder-glow">
+                                       <span class="placeholder col-7">Chargement...</span>
+                                        <!-- Exemples: "Aucune demande en cours." ou "2 demandes en cours." -->
+                                    </p>
+                                   <a href="locataire-maintenance.html" class="btn btn-outline-secondary btn-sm">
+                                       <i class="ri-add-line me-1"></i> Nouvelle demande / Voir détails
+                                   </a>
+                              </div>
+                         </div>
+
+                         <!-- Notifications Récentes -->
+                        <div class="card recent-notifications-card flex-grow-1"> <!-- flex-grow-1 -->
+                            <div class="card-header d-flex justify-content-between align-items-center">
+                                <h5 class="card-title mb-0"><i class="ri-notification-3-line me-1"></i> Notifications Récentes</h5>
+                                <a href="locataire-notifications.html" class="btn-link fw-medium">Tout voir</a>
+                            </div>
+                             <div class="card-body p-0">
+                                 <div class="list-group list-group-flush" id="recentNotificationsList">
+                                    <!-- Placeholder Initial -->
+                                     <div class="list-group-item placeholder-glow">
+                                         <div class="d-flex align-items-center">
+                                             <div class="flex-shrink-0 me-2"><span class="placeholder rounded-circle notification-icon-sm"></span></div>
+                                             <div class="flex-grow-1"><span class="placeholder col-10 d-block"></span><small><span class="placeholder col-5"></span></small></div>
+                                         </div>
+                                     </div>
+                                      <div class="list-group-item placeholder-glow">
+                                          <div class="d-flex align-items-center">
+                                              <div class="flex-shrink-0 me-2"><span class="placeholder rounded-circle notification-icon-sm"></span></div>
+                                              <div class="flex-grow-1"><span class="placeholder col-11 d-block"></span><small><span class="placeholder col-4"></span></small></div>
+                                          </div>
+                                      </div>
+                                      <!-- Message si vide -->
+                                     <div id="noRecentNotifications" class="list-group-item text-center text-muted py-3 d-none">
+                                          Aucune notification récente.
+                                     </div>
+                                 </div>
+                             </div>
+                        </div>
+                    </div> <!-- Fin Colonne Latérale -->
+                </div>
+
+            </div>
+            <!-- End Container Fluid -->
+
+            <!-- ========== Footer Start ========== -->
+            <!-- COLLER VOTRE CODE FOOTER EXISTANT ICI -->
+              <footer class="footer">
+                   <div class="container-fluid">
+                       <div class="row">
+                           <div class="col-12 text-center">
+                               <script>document.write(new Date().getFullYear())</script> © Gestion Locative Notariale.
+                           </div>
+                       </div>
+                   </div>
+               </footer>
+            <!-- ========== Footer End ========== -->
+
+        </div>
+        <!-- ==================================================== -->
+        <!-- End Page Content -->
+        <!-- ==================================================== -->
+
+    </div>
+    <!-- END Wrapper -->
+
+    <!-- Vendor Javascript (Require in all Page) -->
+    <script src="assets/js/vendor.js"></script>
+
+    <!-- App Javascript (Require in all Page) -->
+    <script src="assets/js/app.js"></script>
+
+    <!-- Custom Dashboard JS -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+
+            // --- Références DOM ---
+            const elements = {
+                welcome: document.getElementById('locatairePrenom'),
+                userHeader: document.getElementById('userDropdownHeader'),
+                contract: {
+                    adresse: document.getElementById('logementAdresse'),
+                    dateFin: document.getElementById('contratDateFin'),
+                    montantLoyer: document.getElementById('contratMontantLoyer'),
+                    echeance: document.getElementById('prochaineEcheance'),
+                    montantDu: document.getElementById('prochainMontantDu')
+                },
+                payment: {
+                    statusMsg: document.getElementById('paiementStatusMessage'),
+                    btnPayerText: document.getElementById('btnPayerText'),
+                     btnPayer: document.getElementById('btnPayerMain')
+                },
+                maintenance: {
+                    status: document.getElementById('maintenanceStatus')
+                },
+                notifications: {
+                    list: document.getElementById('recentNotificationsList'),
+                    noMsg: document.getElementById('noRecentNotifications')
+                },
+                topbar: {
+                    unreadCount: document.getElementById('topbarUnreadCount')
+                },
+                 sidebar: {
+                     unreadCount: document.getElementById('sidebarUnreadCount')
+                 }
+            };
+
+             // --- Formatters ---
+            const currencyFormatter = new Intl.NumberFormat('fr-FR', { style: 'currency', currency: 'XOF', minimumFractionDigits: 0 });
+            const dateFormatter = new Intl.DateTimeFormat('fr-FR', { year: 'numeric', month: 'long', day: 'numeric' });
+            const shortDateFormatter = new Intl.DateTimeFormat('fr-FR', { day: '2-digit', month: 'short', year: 'numeric' });
+
+             // --- Fonction pour màj les placeholders ---
+             function removePlaceholders(containerElement) {
+                 containerElement.querySelectorAll('.placeholder').forEach(el => {
+                    // Garder la structure (span) mais enlever les classes placeholder
+                    el.classList.remove('placeholder', 'col-2', 'col-3', 'col-4', 'col-5', 'col-6', 'col-7', 'col-8');
+                    // Si le span est vide après le chargement (valeur null/undefined), on peut le masquer ou mettre 'N/A'
+                    if (!el.textContent && el.textContent !== '0') {
+                         el.textContent = 'N/A'; // Ou el.style.display = 'none';
+                    }
+                 });
+                  containerElement.classList.remove('placeholder-glow');
+             }
+
+             // --- Fonction pour charger les données du dashboard ---
+            function loadDashboardData() {
+                console.log("Fetching Locataire dashboard data...");
+
+                // TODO: Remplacer par UN SEUL appel AJAX vers backend/get_locataire_dashboard_data.php
+                fetch('backend/get_locataire_dashboard_data.php')
+                    .then(response => response.ok ? response.json() : Promise.reject(`HTTP error ${response.status}`))
+                    .then(data => {
+                        console.log("Data received:", data);
+                        if (data.success) {
+                            // Accueil
+                             if (elements.welcome) elements.welcome.textContent = data.prenomLocataire || '';
+                             if (elements.userHeader) elements.userHeader.textContent = `Bienvenue, ${data.prenomLocataire || ''} !`;
+                             removePlaceholders(document.querySelector('.welcome-message')); // Enlever placeholder accueil
+
+                            // Contrat
+                            if (data.contratActif) {
+                                const contrat = data.contratActif;
+                                if (elements.contract.adresse) elements.contract.adresse.textContent = contrat.adresse || 'Non spécifiée';
+                                if (elements.contract.dateFin) elements.contract.dateFin.textContent = contrat.dateFin ? dateFormatter.format(new Date(contrat.dateFin)) : 'N/A';
+                                if (elements.contract.montantLoyer) elements.contract.montantLoyer.textContent = contrat.montantLoyer ? currencyFormatter.format(contrat.montantLoyer) : 'N/A';
+                                if (elements.contract.echeance) elements.contract.echeance.textContent = contrat.prochaineEcheance ? shortDateFormatter.format(new Date(contrat.prochaineEcheance)) : 'N/A';
+                                if (elements.contract.montantDu) elements.contract.montantDu.textContent = contrat.prochainMontantDu ? currencyFormatter.format(contrat.prochainMontantDu) : 'À calculer';
+                            } else {
+                                // Gérer le cas où il n'y a pas de contrat actif
+                                 if (elements.contract.adresse) elements.contract.adresse.textContent = "Aucun contrat actif";
+                                 // Vider les autres champs
+                            }
+                            removePlaceholders(document.querySelector('.contract-summary-card .card-body'));
+
+                            // Statut Paiement
+                             if (elements.payment.statusMsg) {
+                                 elements.payment.statusMsg.innerHTML = data.paymentStatus.message || '<span class="text-muted">Statut indisponible</span>'; // message vient du backend avec classe couleur
+                                 elements.payment.statusMsg.className = `status-text my-3 ${data.paymentStatus.class || 'text-muted'}`; // Appliquer la classe
+                             }
+                             if (elements.payment.btnPayerText) elements.payment.btnPayerText.textContent = data.paymentStatus.buttonText || 'Effectuer un Paiement';
+                            // Optionnel : changer style bouton si paiement non requis
+                            if (elements.payment.btnPayer && data.paymentStatus.disablePaymentButton) {
+                                elements.payment.btnPayer.classList.remove('btn-success');
+                                elements.payment.btnPayer.classList.add('btn-secondary', 'disabled');
+                            } else if (elements.payment.btnPayer) {
+                                elements.payment.btnPayer.classList.remove('btn-secondary', 'disabled');
+                                elements.payment.btnPayer.classList.add('btn-success');
+                            }
+                             removePlaceholders(document.querySelector('.payment-action-card .card-body'));
+
+                            // Maintenance
+                             if (elements.maintenance.status) {
+                                elements.maintenance.status.textContent = data.maintenanceStatus.message || 'Statut indisponible.';
+                             }
+                              removePlaceholders(document.querySelector('#maintenanceStatus').parentElement);
+
+
+                            // Notifications Récentes
+                             renderRecentNotifications(data.recentNotifications);
+
+                             // Compteur Topbar & Sidebar
+                             updateUnreadCount(data.unreadNotificationCount);
+
+                         } else {
+                             console.error("Erreur chargement dashboard data:", data.message || "Format de réponse invalide");
+                             // Afficher des erreurs génériques ou garder placeholders
+                             document.body.querySelectorAll('.placeholder-glow').forEach(el => removePlaceholders(el)); // Clean up placeholders anyway
+                             alert("Impossible de charger toutes les données du tableau de bord.");
+                         }
+                     })
+                     .catch(error => {
+                         console.error('Erreur fetch dashboard data:', error);
+                          document.body.querySelectorAll('.placeholder-glow').forEach(el => removePlaceholders(el));
+                         alert("Erreur de connexion lors du chargement du tableau de bord.");
+                     });
+            }
+
+             // --- Fonction pour afficher les notifications récentes ---
+             function renderRecentNotifications(notifications = []) {
+                 const listEl = elements.notifications.list;
+                 const noMsgEl = elements.notifications.noMsg;
+                 listEl.innerHTML = ''; // Vider
+                 if (notifications.length > 0) {
+                     noMsgEl.classList.add('d-none');
+                     notifications.forEach(notif => {
+                          const item = document.createElement('a');
+                          item.href = `locataire-notifications.html#notif-${notif.idNotif}`;
+                          item.classList.add('list-group-item', 'list-group-item-action');
+                           if (notif.statutNotif !== 'Lu') { item.classList.add('notification-unread'); } // Style non lu si besoin
+
+                          let iconClass = 'ri-information-line'; let iconColor = 'text-secondary'; let bgColor='bg-light';
+                           switch (notif.typeNotif ? notif.typeNotif.toLowerCase() : 'systeme') {
+                              case 'paiement': case 'rappel': iconClass = 'ri-money-dollar-circle-line'; iconColor = 'text-success'; bgColor='bg-success-subtle'; break;
+                              case 'contrat': iconClass = 'ri-file-text-line'; iconColor = 'text-info'; bgColor='bg-info-subtle'; break;
+                              case 'maintenance': iconClass = 'ri-tools-line'; iconColor = 'text-primary'; bgColor='bg-primary-subtle'; break;
+                              case 'message': iconClass = 'ri-message-2-line'; iconColor = 'text-warning'; bgColor='bg-warning-subtle'; break;
+                              default: iconClass = 'ri-notification-3-line'; iconColor = 'text-muted'; bgColor='bg-light'; break;
+                           }
+                          const dateObj = new Date(notif.dateNotif);
+                          const formattedTime = dateObj.toLocaleTimeString('fr-FR', { hour: '2-digit', minute: '2-digit' });
+                          const simpleContent = notif.contenu.replace(/<[^>]*>/g, "").substring(0, 70) + "...";
+
+                         item.innerHTML = `
+                              <div class="d-flex align-items-center">
+                                  <div class="flex-shrink-0 me-2">
+                                      <div class="avatar-sm rounded-circle ${bgColor} d-flex align-items-center justify-content-center notification-icon-sm">
+                                          <i class="${iconClass} ${iconColor}"></i>
+                                      </div>
+                                  </div>
+                                  <div class="flex-grow-1 overflow-hidden">
+                                      <p class="notification-text text-truncate mb-0">${simpleContent}</p>
+                                      <small class="notification-time-sm text-muted">${formattedTime}</small>
+                                  </div>
+                              </div>`;
+                         listEl.appendChild(item);
+                     });
+                 } else {
+                     noMsgEl.classList.remove('d-none');
+                 }
+             }
+
+             // --- Fonction màj compteur topbar/sidebar (globale) ---
+              window.updateUnreadCount = function(count) {
+                 const topbarEl = elements.topbar.unreadCount;
+                 const sidebarEl = elements.sidebar.unreadCount;
+                  if (count === undefined || count === null) count = 0; // Default to 0 if undefined
+
+                  if (topbarEl) {
+                      topbarEl.textContent = count > 9 ? '9+' : count;
+                      topbarEl.classList.toggle('d-none', count === 0);
+                  }
+                   if (sidebarEl) { // Mettre à jour aussi le badge sidebar
+                       sidebarEl.textContent = count;
+                       sidebarEl.style.display = count > 0 ? 'inline-block' : 'none';
+                   }
+             }
+
+             // --- Chargement Initial ---
+             loadDashboardData();
+
+        }); // Fin DOMContentLoaded
+    </script>
+
+    <!-- Iconify Icons (Import only if needed) -->
+    <!-- <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script> -->
+
+</body>
+
+<!-- Mirrored from techzaa.in/lahomes/admin/locataire-dashboard.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 08 Apr 2025 XX:XX:XX GMT -->
+</html>

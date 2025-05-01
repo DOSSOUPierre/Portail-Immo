@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="fr"> <!-- Langue mise à jour -->
+
+
+<!-- Mirrored from techzaa.in/lahomes/admin/portail-immobilier-inscription.html by HTTrack Website Copier/3.x -->
+<head>
+     <!-- Title Meta -->
+     <meta charset="utf-8" />
+     <!-- Titre mis à jour -->
+     <title>Inscription | Portail Immobilier Notarial</title>
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <meta name="description" content="Page d'inscription pour le portail immobilier notarial." />
+     <meta name="author" content="Votre Nom/Entreprise" /> <!-- Mettre à jour -->
+     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+     <!-- App favicon -->
+     <link rel="shortcut icon" href="assets/images/favicon.ico">
+
+     <!-- Vendor css (Require in all Page) -->
+     <link href="assets/css/vendor.min.css" rel="stylesheet" type="text/css" />
+
+     <!-- Icons css (Require in all Page) -->
+     <link href="assets/css/icons.min.css" rel="stylesheet" type="text/css" />
+
+     <!-- App css (Require in all Page) -->
+     <link href="assets/css/app.min.css" rel="stylesheet" type="text/css" />
+
+     <!-- Theme Config js (Require in all Page) -->
+     <script src="assets/js/config.min.js"></script>
+
+     <style>
+          /* Optionnel: Ajustement léger si nécessaire */
+          .auth-logo img { max-height: 40px; /* Légèrement plus grand ? */ }
+          .card.auth-card { border: none; box-shadow: 0 0 35px rgba(0,0,0,0.1); }
+          .form-control::placeholder { color: #98a6ad; }
+          #passwordHelp { font-size: 0.8em; margin-top: 0.25rem; }
+     </style>
+</head>
+
+<body class="authentication-bg">
+
+     <div class="account-pages pt-2 pt-sm-5 pb-4 pb-sm-5">
+          <div class="container">
+               <div class="row justify-content-center">
+                    <div class="col-xl-6 col-lg-7"> <!-- Légèrement plus large pour plus de champs -->
+                         <div class="card auth-card">
+                              <div class="card-body px-sm-4 py-5">
+                                   <div class="mx-auto mb-4 text-center auth-logo">
+                                        <a href="index.html" class="logo-dark">
+                                             <!-- Utiliser votre logo -->
+                                             <img src="assets/images/logo-dark.png" height="35" alt="Logo Portail Immobilier">
+                                        </a>
+                                        <a href="index.html" class="logo-light">
+                                              <img src="assets/images/logo-light.png" height="35" alt="Logo Portail Immobilier Light">
+                                        </a>
+                                   </div>
+
+                                   <!-- Titre et sous-titre mis à jour -->
+                                   <h2 class="fw-bold text-uppercase text-center fs-18">Inscription - Portail Immobilier</h2>
+                                   <p class="text-muted text-center mt-1 mb-4">Créez votre compte pour accéder à nos services.</p>
+
+                                   <div class="px-sm-3">
+                                        <!-- Action et Méthode mises à jour -->
+                                        <form action="backend/register_process.php" method="POST" class="authentication-form" id="signupForm">
+                                             <div class="row">
+                                                  <div class="col-md-6 mb-3">
+                                                       <label class="form-label" for="nom">Nom</label>
+                                                       <input type="text" id="nom" name="nom" class="form-control bg-light bg-opacity-50 border-light py-2" placeholder="Votre nom de famille" required>
+                                                  </div>
+                                                  <div class="col-md-6 mb-3">
+                                                       <label class="form-label" for="prenom">Prénom</label>
+                                                       <input type="text" id="prenom" name="prenom" class="form-control bg-light bg-opacity-50 border-light py-2" placeholder="Votre prénom" required>
+                                                  </div>
+                                             </div>
+
+                                             <div class="mb-3">
+                                                  <label class="form-label" for="email">Adresse e-mail</label>
+                                                  <input type="email" id="email" name="email" class="form-control bg-light bg-opacity-50 border-light py-2" placeholder="Entrez votre email" required>
+                                             </div>
+
+                                             <div class="row">
+                                                  <div class="col-md-6 mb-3">
+                                                       <label class="form-label" for="motDePasse">Mot de Passe</label>
+                                                       <input type="password" id="motDePasse" name="motDePasse" class="form-control bg-light bg-opacity-50 border-light py-2" placeholder="Entrez un mot de passe" required minlength="8">
+                                                  </div>
+                                                  <div class="col-md-6 mb-3">
+                                                       <label class="form-label" for="motDePasseConfirm">Confirmer Mot de Passe</label>
+                                                       <input type="password" id="motDePasseConfirm" name="motDePasseConfirm" class="form-control bg-light bg-opacity-50 border-light py-2" placeholder="Confirmez le mot de passe" required minlength="8">
+                                                       <div id="passwordHelp" class="form-text text-danger d-none">Les mots de passe ne correspondent pas.</div>
+                                                  </div>
+                                             </div>
+
+                                             <div class="mb-3">
+                                                  <label class="form-label" for="role">Vous êtes ?</label>
+                                                  <select class="form-select bg-light bg-opacity-50 border-light py-2" id="role" name="role" required>
+                                                       <option value="" selected disabled>-- Choisir un rôle --</option>
+                                                       <option value="Propriétaire">Propriétaire</option>
+                                                       <option value="Locataire">Locataire</option>
+                                                       <!-- Ne pas inclure Notaire/Admin pour l'inscription publique -->
+                                                  </select>
+                                             </div>
+
+                                             <div class="mb-3">
+                                                  <div class="form-check">
+                                                       <input type="checkbox" class="form-check-input" id="checkbox-signup" name="terms" required>
+                                                       <!-- Texte mis à jour -->
+                                                       <label class="form-check-label" for="checkbox-signup">J'accepte les <a href="/conditions-generales" target="_blank" class="text-muted">Termes et Conditions</a></label>
+                                                  </div>
+                                             </div>
+
+                                             <div class="mb-1 text-center d-grid">
+                                                  <!-- Bouton mis à jour -->
+                                                  <button class="btn btn-primary py-2" type="submit">Créer mon Compte</button>
+                                             </div>
+                                        </form>
+                                        <!-- Section connexion sociale retirée -->
+                                   </div> <!-- end px-sm-3 -->
+                              </div> <!-- end card-body -->
+                         </div> <!-- end card -->
+
+                         <!-- Lien connexion mis à jour -->
+                         <p class="mb-0 text-center text-muted">Déjà un compte ? <a href="auth-signin.html" class="text-reset text-decoration-underline fw-bold ms-1">Connectez-vous</a></p>
+                    </div> <!-- end col -->
+               </div> <!-- end row -->
+          </div>
+     </div>
+
+
+     <!-- Vendor Javascript (Require in all Page) -->
+     <script src="assets/js/vendor.js"></script>
+
+     <!-- App Javascript (Require in all Page) -->
+     <script src="assets/js/app.js"></script>
+
+     <!-- Script Validation Mot de Passe -->
+     <script>
+        const password = document.getElementById('motDePasse');
+        const confirmPassword = document.getElementById('motDePasseConfirm');
+        const passwordHelp = document.getElementById('passwordHelp');
+        const signupForm = document.getElementById('signupForm');
+
+        function validatePasswords() {
+            if (password.value !== confirmPassword.value && confirmPassword.value !== '') {
+                passwordHelp.classList.remove('d-none'); // Affiche msg erreur
+                confirmPassword.classList.add('is-invalid'); // Style erreur Bootstrap
+                return false;
+            } else {
+                passwordHelp.classList.add('d-none'); // Masque msg erreur
+                confirmPassword.classList.remove('is-invalid'); // Enlève style erreur
+                return true;
+            }
+        }
+
+        // Vérifie pendant la saisie
+        confirmPassword.addEventListener('input', validatePasswords);
+        password.addEventListener('input', validatePasswords); // Vérifie aussi si on modifie le premier champ
+
+        // Vérifie avant soumission
+        signupForm.addEventListener('submit', function(event) {
+            if (!validatePasswords()) {
+                alert("Veuillez vérifier que les mots de passe correspondent.");
+                confirmPassword.focus(); // Met le focus sur le champ
+                event.preventDefault(); // Empêche l'envoi du formulaire
+            }
+            // Ici, on pourrait ajouter d'autres validations JS si nécessaire
+        });
+    </script>
+
+</body>
+
+<!-- Mirrored from techzaa.in/lahomes/admin/portail-immobilier-inscription.html by HTTrack Website Copier/3.x -->
+</html>

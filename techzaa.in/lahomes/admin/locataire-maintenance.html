@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html lang="fr"> <!-- Langue en Français -->
+
+<!-- Mirrored from techzaa.in/lahomes/admin/locataire-maintenance.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 08 Apr 2025 XX:XX:XX GMT -->
+<head>
+    <!-- Title Meta -->
+    <meta charset="utf-8" />
+    <!-- Titre mis à jour -->
+    <title>Demandes de Maintenance | Gestion Locative Notariale</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Soumission et suivi des demandes de maintenance pour les locataires." />
+    <meta name="author" content="Votre Nom/Entreprise" /> <!-- Mettre à jour -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+    <!-- App favicon -->
+    <link rel="shortcut icon" href="assets/images/favicon.ico">
+
+    <!-- Vendor css (Require in all Page) -->
+    <link href="assets/css/vendor.min.css" rel="stylesheet" type="text/css" />
+
+    <!-- Icons css (Require in all Page) -->
+    <link href="assets/css/icons.min.css" rel="stylesheet" type="text/css" />
+
+    <!-- App css (Require in all Page) -->
+    <link href="assets/css/app.min.css" rel="stylesheet" type="text/css" />
+
+    <!-- Theme Config js (Require in all Page) -->
+    <script src="assets/js/config.min.js"></script>
+
+     <!-- Custom CSS for this page -->
+     <style>
+          .table th, .table td { vertical-align: middle; }
+          .table th { font-size: 0.85rem; }
+          .table td { font-size: 0.875rem; }
+          .description-column { min-width: 250px; white-space: normal; /* Permet le retour à la ligne */ }
+          #nouvelleDemandeDescription { min-height: 100px; }
+
+          /* Placeholder style */
+          .placeholder-glow span { min-height: 1em; display: inline-block; }
+          .card .placeholder { min-height: 1em; }
+
+          /* Style pour indicateur chargement/vide table */
+           #maintenanceRequestsBody .loading-row td,
+           #maintenanceRequestsBody .no-results-row td {
+              text-align: center;
+              font-style: italic;
+              color: #6c757d;
+              padding: 1rem;
+           }
+     </style>
+
+</head>
+
+<body>
+
+    <!-- START Wrapper -->
+    <div class="wrapper">
+
+        <!-- ========== Topbar Start ========== -->
+        <!-- COLLER VOTRE CODE TOPBAR EXISTANT ICI -->
+        <!-- Adapter le menu utilisateur et le compteur de notifications -->
+         <header class="">
+               <div class="topbar">
+                    <div class="container-fluid">
+                         <div class="navbar-header">
+                              <div class="d-flex align-items-center gap-2">
+                                   <div class="topbar-item"><button type="button" class="button-toggle-menu topbar-button"><i class="ri-menu-2-line fs-24"></i></button></div>
+                                   <form class="app-search d-none d-md-block me-auto"><div class="position-relative"><input type="search" class="form-control border-0" placeholder="Rechercher..." autocomplete="off" value=""><i class="ri-search-line search-widget-icon"></i></div></form>
+                              </div>
+                              <div class="d-flex align-items-center gap-1">
+                                   <div class="topbar-item"><button type="button" class="topbar-button" id="light-dark-mode"><i class="ri-moon-line fs-24 light-mode"></i><i class="ri-sun-line fs-24 dark-mode"></i></button></div>
+                                   <div class="dropdown topbar-item d-none d-lg-flex"><button type="button" class="topbar-button" data-toggle="fullscreen"><i class="ri-fullscreen-line fs-24 fullscreen"></i><i class="ri-fullscreen-exit-line fs-24 quit-fullscreen"></i></button></div>
+                                   <!-- Notifications Dropdown -->
+                                   <div class="dropdown topbar-item">
+                                        <button type="button" class="topbar-button position-relative" id="page-header-notifications-dropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="ri-notification-3-line fs-24"></i><span id="topbarUnreadCount" class="position-absolute topbar-badge fs-10 translate-middle badge bg-danger rounded-pill">0<span class="visually-hidden">notifications non lues</span></span></button>
+                                        <div class="dropdown-menu py-0 dropdown-lg dropdown-menu-end" aria-labelledby="page-header-notifications-dropdown">
+                                             <div class="p-3 border-top-0 border-start-0 border-end-0 border-dashed border"><div class="row align-items-center"><div class="col"><h6 class="m-0 fs-16 fw-semibold"> Notifications</h6></div><div class="col-auto"><a href="javascript: void(0);" class="text-dark text-decoration-underline" onclick="markAllAsRead()"> <small>Marquer tout comme lu</small></a></div></div></div>
+                                             <div data-simplebar style="max-height: 280px;" id="topbarNotificationList"><!-- Aperçu --></div>
+                                             <div class="text-center py-3"><a href="locataire-notifications.html" class="btn btn-primary btn-sm">Voir toutes les notifications <i class="ri-arrow-right-line ms-1"></i></a></div>
+                                        </div>
+                                   </div>
+                                   <!-- Theme Settings -->
+                                   <div class="topbar-item d-none d-md-flex"><button type="button" class="topbar-button" id="theme-settings-btn" data-bs-toggle="offcanvas" data-bs-target="#theme-settings-offcanvas" aria-controls="theme-settings-offcanvas"><i class="ri-settings-4-line fs-24"></i></button></div>
+                                   <!-- User Menu Locataire -->
+                                   <div class="dropdown topbar-item">
+                                        <a type="button" class="topbar-button" id="page-header-user-dropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span class="d-flex align-items-center"><img class="rounded-circle" width="32" src="assets/images/users/avatar-placeholder.png" alt="avatar-locataire"></span></a>
+                                        <div class="dropdown-menu dropdown-menu-end">
+                                             <h6 class="dropdown-header" id="userDropdownHeader">Bienvenue !</h6>
+                                              <a class="dropdown-item" href="locataire-profil.html"><i class="ri-user-line align-middle me-1"></i> <span class="align-middle">Mon Profil</span></a>
+                                             <a class="dropdown-item active" href="locataire-maintenance.html"><i class="ri-tools-line align-middle me-1"></i> <span class="align-middle">Maintenance</span></a>
+                                             <div class="dropdown-divider my-1"></div>
+                                             <a class="dropdown-item text-danger" href="auth-signin.html"><i class="ri-logout-box-line align-middle me-1"></i> <span class="align-middle">Déconnexion</span></a>
+                                        </div>
+                                   </div>
+                              </div>
+                         </div>
+                    </div>
+               </div>
+          </header>
+        <!-- ========== Topbar End ========== -->
+
+        <!-- ========== Right Sidebar (Theme Settings) Start ========== -->
+        <!-- COLLER VOTRE CODE RIGHT SIDEBAR EXISTANT ICI -->
+         <div>
+               <div class="offcanvas offcanvas-end border-0 rounded-start-4 overflow-hidden" tabindex="-1" id="theme-settings-offcanvas">
+                    <div class="d-flex align-items-center bg-primary p-3 offcanvas-header"><h5 class="text-white m-0">Theme Settings</h5><button type="button" class="btn-close btn-close-white ms-auto" data-bs-dismiss="offcanvas" aria-label="Close"></button></div><div class="offcanvas-body p-0"><div data-simplebar class="h-100"><div class="p-3 settings-bar"><!-- Settings --></div></div></div><div class="offcanvas-footer border-top p-3 text-center"><div class="row"><div class="col"><button type="button" class="btn btn-danger w-100" id="reset-layout">Reset</button></div></div></div>
+               </div>
+          </div>
+        <!-- ========== Right Sidebar (Theme Settings) End ========== -->
+
+
+        <!-- ========== App Menu Start ========== -->
+        <!-- Adapter le menu pour le locataire -->
+         <div class="main-nav">
+               <div class="logo-box"> <!-- Logo -->
+                    <a href="locataire-dashboard.html" class="logo-dark"><img src="assets/images/logo-sm.png" class="logo-sm" alt="logo sm"><img src="assets/images/logo-dark.png" class="logo-lg" alt="logo dark"></a>
+                    <a href="locataire-dashboard.html" class="logo-light"><img src="assets/images/logo-sm.png" class="logo-sm" alt="logo sm"><img src="assets/images/logo-light.png" class="logo-lg" alt="logo light"></a>
+               </div>
+               <button type="button" class="button-sm-hover" aria-label="Show Full Sidebar"><i class="ri-menu-2-line fs-24 button-sm-hover-icon"></i></button>
+               <div class="scrollbar" data-simplebar>
+                    <ul class="navbar-nav" id="navbar-nav">
+                         <li class="menu-title">Menu Locataire</li>
+                         <li class="nav-item"><a class="nav-link" href="locataire-dashboard.html"><span class="nav-icon"><i class="ri-dashboard-line"></i></span><span class="nav-text">Tableau de Bord</span></a></li>
+                         <li class="nav-item"><a class="nav-link" href="locataire-contrat.html"><span class="nav-icon"><i class="ri-file-text-line"></i></span><span class="nav-text">Mon Contrat</span></a></li>
+                         <li class="nav-item"><a class="nav-link" href="locataire-paiements.html"><span class="nav-icon"><i class="ri-secure-payment-line"></i></span><span class="nav-text">Paiements & Quittances</span></a></li>
+                         <li class="nav-item">
+                              <!-- Lien Actif -->
+                              <a class="nav-link active" href="locataire-maintenance.html"><span class="nav-icon"><i class="ri-tools-line"></i></span><span class="nav-text">Maintenance</span></a>
+                         </li>
+                         <li class="nav-item">
+                              <a class="nav-link" href="locataire-notifications.html"><span class="nav-icon"><i class="ri-notification-3-line"></i></span><span class="nav-text">Notifications</span><span class="badge bg-danger badge-pill text-end" id="sidebarUnreadCount" style="display: none;"></span></a>
+                         </li>
+                    </ul>
+               </div>
+          </div>
+        <!-- ========== App Menu End ========== -->
+
+        <!-- ==================================================== -->
+        <!-- Start right Content here -->
+        <!-- ==================================================== -->
+        <div class="page-content">
+
+            <!-- Start Container Fluid -->
+            <div class="container-fluid">
+
+                <!-- ========== Page Title Start ========== -->
+                <div class="row">
+                    <div class="col-12">
+                        <div class="page-title-box">
+                            <h4 class="mb-0 fw-semibold">Demandes de Maintenance</h4>
+                            <ol class="breadcrumb mb-0">
+                                <li class="breadcrumb-item"><a href="locataire-dashboard.html">Espace Locataire</a></li>
+                                <li class="breadcrumb-item active">Maintenance</li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+                <!-- ========== Page Title End ========== -->
+
+                <!-- Bouton Nouvelle Demande -->
+                 <div class="row mb-3">
+                      <div class="col-12 text-end">
+                           <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalNouvelleDemande">
+                                <i class="ri-add-line me-1"></i> Nouvelle Demande de Maintenance
+                           </button>
+                      </div>
+                 </div>
+
+                 <!-- Tableau Historique Demandes -->
+                 <div class="row">
+                     <div class="col-12">
+                          <div class="card">
+                               <div class="card-header">
+                                    <h5 class="card-title mb-0">Historique de vos Demandes</h5>
+                               </div>
+                               <div class="card-body p-0">
+                                    <div class="table-responsive">
+                                         <table id="tableDemandesMaintenance" class="table table-hover table-centered mb-0">
+                                              <thead class="table-light">
+                                                   <tr>
+                                                        <th>Date Soumission</th>
+                                                        <th class="description-column">Description du Problème</th>
+                                                        <th>Statut</th>
+                                                        <!-- Optionnel: Actions (Voir détails?) -->
+                                                        <!-- <th>Action</th> -->
+                                                   </tr>
+                                              </thead>
+                                              <tbody id="maintenanceRequestsBody">
+                                                   <!-- Ligne Chargement -->
+                                                   <tr class="loading-row">
+                                                      <td colspan="3"> <!-- Ajuster colspan -->
+                                                          <div class="d-flex justify-content-center align-items-center py-3">
+                                                              <span class="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span>
+                                                              Chargement des demandes...
+                                                          </div>
+                                                      </td>
+                                                  </tr>
+                                                   <!-- Ligne Aucun Résultat -->
+                                                  <tr class="no-results-row d-none">
+                                                      <td colspan="3">Aucune demande de maintenance trouvée.</td>
+                                                  </tr>
+
+                                                   <!-- ================================================== -->
+                                                   <!-- Début: EXEMPLES (Générés par JS/Backend)        -->
+                                                   <!-- ================================================== -->
+                                                   <tr>
+                                                       <td>2024-07-25 10:15</td>
+                                                       <td class="description-column">Fuite d'eau sous l'évier de la cuisine. Le goutte-à-goutte est constant.</td>
+                                                       <td><span class="badge bg-warning text-dark">Envoyée</span></td>
+                                                        <!-- <td><button class="btn btn-sm btn-light"><i class="ri-eye-line"></i></button></td> -->
+                                                   </tr>
+                                                   <tr>
+                                                        <td>2024-07-10 14:00</td>
+                                                        <td class="description-column">La fenêtre de la chambre principale ne ferme plus correctement.</td>
+                                                        <td><span class="badge bg-info">Prise en charge</span></td>
+                                                    </tr>
+                                                    <tr>
+                                                         <td>2024-06-15 08:30</td>
+                                                         <td class="description-column">Problème avec la chasse d'eau des toilettes.</td>
+                                                         <td><span class="badge bg-success">Terminée</span></td>
+                                                     </tr>
+                                                   <!-- ================================================== -->
+                                                   <!-- Fin: EXEMPLES                                     -->
+                                                   <!-- ================================================== -->
+                                              </tbody>
+                                         </table>
+                                    </div>
+                               </div><!-- end card-body -->
+
+                               <!-- Pied de carte pour la pagination -->
+                               <div class="card-footer bg-white border-top d-flex justify-content-end">
+                                    <nav aria-label="Pagination Demandes Maintenance">
+                                      <ul id="paginationControls" class="pagination pagination-sm mb-0">
+                                        <!-- Contrôles de pagination générés par JS -->
+                                        <li class="page-item disabled"><a class="page-link" href="#">Précédent</a></li>
+                                        <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                                        <li class="page-item"><a class="page-link" href="#">Suivant</a></li>
+                                      </ul>
+                                    </nav>
+                               </div> <!-- end card-footer -->
+
+                          </div> <!-- end card -->
+                     </div> <!-- end col -->
+                 </div> <!-- End row -->
+
+
+            </div>
+            <!-- End Container Fluid -->
+
+            <!-- ========== Footer Start ========== -->
+            <!-- COLLER VOTRE CODE FOOTER EXISTANT ICI -->
+             <footer class="footer">
+                   <div class="container-fluid">
+                       <div class="row">
+                           <div class="col-12 text-center">
+                               <script>document.write(new Date().getFullYear())</script> © Gestion Locative Notariale.
+                           </div>
+                       </div>
+                   </div>
+               </footer>
+            <!-- ========== Footer End ========== -->
+
+        </div>
+        <!-- ==================================================== -->
+        <!-- End Page Content -->
+        <!-- ==================================================== -->
+
+    </div>
+    <!-- END Wrapper -->
+
+     <!-- START MODALS -->
+
+     <!-- Modal: Nouvelle Demande de Maintenance -->
+     <div class="modal fade" id="modalNouvelleDemande" tabindex="-1" aria-labelledby="modalNouvelleDemandeLabel" aria-hidden="true">
+         <div class="modal-dialog modal-lg modal-dialog-centered">
+             <div class="modal-content">
+                 <div class="modal-header">
+                     <h5 class="modal-title" id="modalNouvelleDemandeLabel">Nouvelle Demande de Maintenance</h5>
+                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                 </div>
+                 <div class="modal-body">
+                     <!-- IMPORTANT: enctype pour l'upload -->
+                     <form id="formNouvelleDemande" action="backend/submit_maintenance_request.php" method="POST" enctype="multipart/form-data">
+                         <div class="mb-3">
+                             <label for="nouvelleDemandeDescription" class="form-label">Description du problème <span class="text-danger">*</span></label>
+                             <textarea class="form-control" id="nouvelleDemandeDescription" name="description" rows="5" placeholder="Veuillez décrire le problème le plus précisément possible..." required></textarea>
+                         </div>
+                         <div class="mb-3">
+                            <label for="nouvelleDemandePhoto" class="form-label">Joindre une photo (Optionnel)</label>
+                            <input class="form-control" type="file" id="nouvelleDemandePhoto" name="photo" accept="image/png, image/jpeg">
+                             <div class="form-text">Formats acceptés : PNG, JPG. Taille max : 5Mo.</div>
+                         </div>
+                         <!-- Champ caché pour ID contrat/bien si nécessaire côté backend -->
+                         <!-- <input type="hidden" name="idContrat" value="ID_CONTRAT_ACTIF"> -->
+                     </form>
+                 </div>
+                 <div class="modal-footer">
+                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
+                     <button type="submit" form="formNouvelleDemande" class="btn btn-primary" id="submitDemandeBtn">Envoyer la Demande</button>
+                 </div>
+             </div>
+         </div>
+     </div>
+     <!-- End Modal: Nouvelle Demande -->
+
+     <!-- END MODALS -->
+
+
+    <!-- Vendor Javascript (Require in all Page) -->
+    <script src="assets/js/vendor.js"></script>
+
+    <!-- App Javascript (Require in all Page) -->
+    <script src="assets/js/app.js"></script>
+
+     <!-- Custom JS for this page -->
+     <script>
+         document.addEventListener('DOMContentLoaded', function() {
+             const tableBody = document.getElementById('maintenanceRequestsBody');
+             const loadingRow = tableBody.querySelector('.loading-row');
+             const noResultsRow = tableBody.querySelector('.no-results-row');
+             const paginationControls = document.getElementById('paginationControls');
+             const formNouvelleDemande = document.getElementById('formNouvelleDemande');
+             const modalNouvelleDemande = new bootstrap.Modal(document.getElementById('modalNouvelleDemande'));
+             const submitDemandeBtn = document.getElementById('submitDemandeBtn');
+
+             const dateFormatter = new Intl.DateTimeFormat('fr-FR', { year: 'numeric', month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit' });
+
+             // --- Fonction pour charger les demandes ---
+             function loadMaintenanceRequests(page = 1) {
+                 loadingRow.classList.remove('d-none');
+                 noResultsRow.classList.add('d-none');
+                 tableBody.querySelectorAll('tr:not(.loading-row):not(.no-results-row)').forEach(row => row.remove());
+
+                 // TODO: Remplacer par l'appel AJAX backend/get_locataire_maintenance.php?page=...
+                 const url = `backend/get_locataire_maintenance.php?page=${page}`;
+                 console.log("Fetching maintenance requests from:", url);
+
+                 // TODO: Remplacer setTimeout par fetch()
+                 setTimeout(() => {
+                     // --- Simulation Réponse Backend ---
+                      const response = {
+                          success: true,
+                          requests: [
+                               { id: 10, dateSoumission: '2024-07-25 10:15:00', description: "Fuite d'eau sous l'évier de la cuisine. Le goutte-à-goutte est constant.", statut: 'Envoyée' },
+                               { id: 9, dateSoumission: '2024-07-10 14:00:00', description: "La fenêtre de la chambre principale ne ferme plus correctement.", statut: 'Prise en charge' },
+                               { id: 8, dateSoumission: '2024-06-15 08:30:00', description: "Problème avec la chasse d'eau des toilettes.", statut: 'Terminée' }
+                          ],
+                          pagination: { currentPage: page, totalPages: 1 }
+                      };
+                     // --- Fin Simulation ---
+
+                     loadingRow.classList.add('d-none');
+
+                     if (response.success && response.requests.length > 0) {
+                         response.requests.forEach(req => {
+                             const row = document.createElement('tr');
+                             const formattedDate = req.dateSoumission ? dateFormatter.format(new Date(req.dateSoumission)) : '-';
+
+                             // Badge pour Statut
+                              let statusBadge = `<span class="badge bg-secondary">Inconnu</span>`;
+                             if (req.statut) {
+                                  switch (req.statut.toLowerCase()) {
+                                       case 'envoyée': statusBadge = `<span class="badge bg-warning text-dark">${req.statut}</span>`; break;
+                                       case 'prise en charge': case 'en cours': statusBadge = `<span class="badge bg-info">${req.statut}</span>`; break;
+                                       case 'terminée': case 'résolue': statusBadge = `<span class="badge bg-success">${req.statut}</span>`; break;
+                                       case 'refusée': case 'annulée': statusBadge = `<span class="badge bg-danger">${req.statut}</span>`; break;
+                                   }
+                             }
+
+                             row.innerHTML = `
+                                 <td>${formattedDate}</td>
+                                 <td class="description-column">${req.description || '-'}</td>
+                                 <td>${statusBadge}</td>
+                                 <!-- <td>Optional Action Button</td> -->
+                             `;
+                             tableBody.appendChild(row);
+                         });
+                     } else {
+                         noResultsRow.classList.remove('d-none');
+                     }
+
+                     updateMaintenancePagination(response.pagination);
+
+                 }, 600); // Simuler délai réseau
+             }
+
+              // --- Fonction màj pagination ---
+              function updateMaintenancePagination(paginationInfo) {
+                  paginationControls.innerHTML = ''; // Vider
+                 if (!paginationInfo || paginationInfo.totalPages <= 1) return;
+
+                 const createPageLink = (page, text, isDisabled = false, isActive = false) => { /* ... idem ... */ };
+                 // ... Logique Précédent, Pages, Suivant ...
+
+                 // Ajouter les écouteurs
+                 paginationControls.querySelectorAll('.page-link').forEach(link => {
+                     link.addEventListener('click', function(e) {
+                         e.preventDefault();
+                         const page = parseInt(this.getAttribute('data-page'));
+                          if (page && !this.closest('.page-item').classList.contains('disabled') && !this.closest('.page-item').classList.contains('active')) {
+                             loadMaintenanceRequests(page);
+                         }
+                     });
+                 });
+             }
+
+
+             // --- Gestion Soumission Nouvelle Demande ---
+             if (formNouvelleDemande) {
+                 formNouvelleDemande.addEventListener('submit', function(e) {
+                     e.preventDefault();
+                     const formData = new FormData(formNouvelleDemande);
+                     const originalButtonText = submitDemandeBtn.innerHTML;
+
+                     submitDemandeBtn.disabled = true;
+                     submitDemandeBtn.innerHTML = `<span class="spinner-border spinner-border-sm me-1" role="status" aria-hidden="true"></span> Envoi...`;
+
+                      // TODO: Remplacer par le vrai fetch() vers le backend
+                     fetch(formNouvelleDemande.action, {
+                         method: 'POST',
+                         body: formData,
+                         // headers: { 'X-CSRF-TOKEN': '...' } // Si CSRF token nécessaire
+                     })
+                     .then(response => response.ok ? response.json() : Promise.reject('Erreur réseau ou serveur'))
+                     .then(data => {
+                         if (data.success) {
+                             modalNouvelleDemande.hide(); // Fermer le modal
+                             formNouvelleDemande.reset(); // Vider le formulaire
+                              alert("Votre demande de maintenance a été envoyée avec succès.");
+                             loadMaintenanceRequests(1); // Recharger la liste (page 1)
+                         } else {
+                             alert("Erreur lors de l'envoi de la demande : " + (data.message || "Veuillez réessayer."));
+                         }
+                     })
+                     .catch(error => {
+                         console.error("Erreur soumission demande:", error);
+                         alert("Une erreur technique est survenue. Veuillez réessayer.");
+                     })
+                     .finally(() => {
+                         submitDemandeBtn.disabled = false;
+                         submitDemandeBtn.innerHTML = originalButtonText;
+                     });
+                 });
+             }
+
+             // --- Chargement initial ---
+             loadMaintenanceRequests();
+
+         }); // Fin DOMContentLoaded
+     </script>
+
+    <!-- Iconify Icons (Import only if needed) -->
+    <!-- <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script> -->
+
+</body>
+
+<!-- Mirrored from techzaa.in/lahomes/admin/locataire-maintenance.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 08 Apr 2025 XX:XX:XX GMT -->
+</html>

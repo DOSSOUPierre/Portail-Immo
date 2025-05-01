@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="fr">
+<!-- Mirrored from techzaa.in/lahomes/admin/admin-supervision-biens.html -->
+<head>
+    <meta charset="utf-8" />
+    <title>Supervision des Biens | Espace Admin</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Supervision et validation des biens immobiliers par l'administrateur." />
+    <meta name="author" content="Votre Nom/Entreprise" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <link rel="shortcut icon" href="assets/images/favicon.ico">
+    <link href="assets/css/vendor.min.css" rel="stylesheet" type="text/css" />
+    <link href="assets/css/icons.min.css" rel="stylesheet" type="text/css" />
+    <link href="assets/css/app.min.css" rel="stylesheet" type="text/css" />
+    <script src="assets/js/config.min.js"></script>
+    <style> /* Styles copiés de notaire-gestion-biens */
+        .table th, .table td { vertical-align: middle; font-size: 0.875rem; }
+        .table th { font-weight: 500; }
+        .btn-sm i { font-size: 1rem; }
+        .form-select-sm { height: calc(1.5em + .5rem + 2px); padding: .25rem .5rem; font-size: .875rem; }
+        .loading-row td, .no-results-row td { text-align: center; font-style: italic; color: #6c757d; padding: 1rem; }
+        .placeholder-glow span { min-height: 1em; display: inline-block; }
+        td .placeholder { width: 80%; }
+    </style>
+</head>
+<body>
+    <div class="wrapper">
+        <!-- ========== Topbar Start ========== -->
+        <!-- COLLER VOTRE CODE TOPBAR ADMIN ICI -->
+        <header class=""> <div class="topbar"> <div class="container-fluid"> <div class="navbar-header"> <div class="d-flex align-items-center gap-2"> <div class="topbar-item"><button type="button" class="button-toggle-menu topbar-button"><i class="ri-menu-2-line fs-24"></i></button></div> <form class="app-search d-none d-md-block me-auto"><div class="position-relative"><input type="search" class="form-control border-0" placeholder="Rechercher..." autocomplete="off" value=""><i class="ri-search-line search-widget-icon"></i></div></form> </div> <div class="d-flex align-items-center gap-1"> <div class="topbar-item"><button type="button" class="topbar-button" id="light-dark-mode"><i class="ri-moon-line fs-24 light-mode"></i><i class="ri-sun-line fs-24 dark-mode"></i></button></div> <div class="dropdown topbar-item d-none d-lg-flex"><button type="button" class="topbar-button" data-toggle="fullscreen"><i class="ri-fullscreen-line fs-24 fullscreen"></i><i class="ri-fullscreen-exit-line fs-24 quit-fullscreen"></i></button></div> <div class="dropdown topbar-item"> <button type="button" class="topbar-button position-relative" id="page-header-notifications-dropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="ri-notification-3-line fs-24"></i><span id="topbarAdminUnreadCount" class="position-absolute topbar-badge fs-10 translate-middle badge bg-danger rounded-pill">0<span class="visually-hidden">unread</span></span></button> <div class="dropdown-menu py-0 dropdown-lg dropdown-menu-end" aria-labelledby="page-header-notifications-dropdown"> <div class="p-3 border-top-0 border-start-0 border-end-0 border-dashed border"><div class="row align-items-center"><div class="col"><h6 class="m-0 fs-16 fw-semibold"> Notifications Admin</h6></div><div class="col-auto"><a href="javascript: void(0);" class="text-dark text-decoration-underline"> <small>Marquer tout comme lu</small></a></div></div></div> <div data-simplebar style="max-height: 280px;" id="topbarAdminNotificationList"></div> <div class="text-center py-3"><a href="admin-notifications.html" class="btn btn-primary btn-sm">Tout voir <i class="ri-arrow-right-line ms-1"></i></a></div> </div> </div> <div class="topbar-item d-none d-md-flex"><button type="button" class="topbar-button" id="theme-settings-btn" data-bs-toggle="offcanvas" data-bs-target="#theme-settings-offcanvas" aria-controls="theme-settings-offcanvas"><i class="ri-settings-4-line fs-24"></i></button></div> <div class="dropdown topbar-item"> <a type="button" class="topbar-button" id="page-header-user-dropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span class="d-flex align-items-center"><img class="rounded-circle" width="32" src="assets/images/users/avatar-admin.png" alt="admin"></span></a> <div class="dropdown-menu dropdown-menu-end"> <h6 class="dropdown-header">Admin</h6> <a class="dropdown-item" href="admin-profil.html"><i class="ri-user-line align-middle me-1"></i> Mon Profil</a> <a class="dropdown-item" href="admin-parametres.html"><i class="ri-settings-3-line align-middle me-1"></i> Paramètres</a> <div class="dropdown-divider my-1"></div> <a class="dropdown-item text-danger" href="auth-signin.html"><i class="ri-logout-box-line align-middle me-1"></i> Déconnexion</a> </div> </div> </div> </div> </div> </div> </header>
+        <!-- ========== Topbar End ========== -->
+
+        <!-- ========== Right Sidebar Start ========== -->
+        <!-- COLLER VOTRE CODE RIGHT SIDEBAR ICI -->
+        <div> <div class="offcanvas offcanvas-end border-0 rounded-start-4 overflow-hidden" tabindex="-1" id="theme-settings-offcanvas"> <div class="d-flex align-items-center bg-primary p-3 offcanvas-header"><h5 class="text-white m-0">Theme Settings</h5><button type="button" class="btn-close btn-close-white ms-auto" data-bs-dismiss="offcanvas" aria-label="Close"></button></div><div class="offcanvas-body p-0"><div data-simplebar class="h-100"><div class="p-3 settings-bar"></div></div></div><div class="offcanvas-footer border-top p-3 text-center"><div class="row"><div class="col"><button type="button" class="btn btn-danger w-100" id="reset-layout">Reset</button></div></div></div> </div> </div>
+        <!-- ========== Right Sidebar End ========== -->
+
+        <!-- ========== App Menu Start ========== -->
+        <div class="main-nav">
+             <div class="logo-box"> <a href="admin-dashboard.html" class="logo-dark"><img src="assets/images/logo-sm.png" class="logo-sm"><img src="assets/images/logo-dark.png" class="logo-lg"></a> <a href="admin-dashboard.html" class="logo-light"><img src="assets/images/logo-sm.png" class="logo-sm"><img src="assets/images/logo-light.png" class="logo-lg"></a> </div>
+             <button type="button" class="button-sm-hover" aria-label="Show Full Sidebar"><i class="ri-menu-2-line fs-24 button-sm-hover-icon"></i></button>
+             <div class="scrollbar" data-simplebar>
+                  <ul class="navbar-nav" id="navbar-nav">
+                       <li class="menu-title">Menu Admin</li>
+                       <li class="nav-item"><a class="nav-link" href="admin-dashboard.html"><span class="nav-icon"><i class="ri-dashboard-line"></i></span><span class="nav-text">Tableau de Bord</span></a></li>
+                       <li class="nav-item"><a class="nav-link" href="admin-gestion-utilisateurs.html"><span class="nav-icon"><i class="ri-account-circle-line"></i></span><span class="nav-text">Gestion Utilisateurs</span></a></li>
+                       <li class="nav-item"><a class="nav-link active" href="admin-supervision-biens.html"><span class="nav-icon"><i class="ri-building-line"></i></span><span class="nav-text">Supervision Biens</span></a></li>
+                       <li class="nav-item"><a class="nav-link" href="admin-suivi-transactions.html"><span class="nav-icon"><i class="ri-money-dollar-box-line"></i></span><span class="nav-text">Suivi Transactions</span></a></li>
+                       <li class="nav-item"><a class="nav-link" href="admin-parametres.html"><span class="nav-icon"><i class="ri-settings-3-line"></i></span><span class="nav-text">Paramètres</span></a></li>
+                  </ul>
+             </div>
+        </div>
+        <!-- ========== App Menu End ========== -->
+
+        <div class="page-content">
+            <div class="container-fluid">
+                <!-- ========== Page Title Start ========== -->
+                 <div class="row"> <div class="col-12"> <div class="page-title-box"> <h4 class="mb-0 fw-semibold">Supervision des Biens</h4> <ol class="breadcrumb mb-0"> <li class="breadcrumb-item"><a href="admin-dashboard.html">Admin</a></li> <li class="breadcrumb-item active">Supervision Biens</li> </ol> </div> </div> </div>
+                <!-- ========== Page Title End ========== -->
+
+                 <!-- Filtres -->
+                 <div class="row mb-3">
+                    <div class="col-12">
+                        <div class="card">
+                            <div class="card-body pb-2">
+                                <form id="filterAdminBiensForm" class="row gy-2 gx-3 align-items-center">
+                                     <!-- Copier les filtres de notaire-gestion-biens.html -->
+                                     <div class="col-xl-3 col-lg-4"><label for="filterAdminProprietaire" class="visually-hidden">Propriétaire</label><select class="form-select form-select-sm" id="filterAdminProprietaire" name="idProprietaire"><option value="">Tous propriétaires</option></select></div>
+                                     <div class="col-xl-2 col-lg-4"><label for="filterAdminNotaire" class="visually-hidden">Notaire</label><select class="form-select form-select-sm" id="filterAdminNotaire" name="idNotaire"><option value="">Tous notaires</option></select></div>
+                                     <div class="col-xl-2 col-lg-4"><label for="filterAdminStatutLoc" class="visually-hidden">Statut Location</label><select class="form-select form-select-sm" id="filterAdminStatutLoc" name="statutLocation"><option value="">Tous statuts loc.</option><option value="Libre">Libre</option><option value="Occupé">Occupé</option></select></div>
+                                     <div class="col-xl-2 col-lg-4"><label for="filterAdminStatutSup" class="visually-hidden">Statut Supervision</label><select class="form-select form-select-sm" id="filterAdminStatutSup" name="statutSupervision"><option value="">Tous statuts sup.</option><option value="En attente">En attente</option><option value="Validé">Validé</option><option value="Suspendu">Suspendu</option></select></div>
+                                     <div class="col-auto"><button type="submit" class="btn btn-primary btn-sm"><i class="ri-filter-3-line"></i></button> <button type="reset" class="btn btn-secondary btn-sm ms-1" id="resetAdminBiensFiltersBtn"><i class="ri-refresh-line"></i></button></div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                 </div>
+
+                <!-- Tableau des Biens -->
+                 <div class="row">
+                     <div class="col-12">
+                          <div class="card">
+                               <div class="card-header"><h5 class="card-title mb-0">Liste de Tous les Biens Immobiliers</h5></div>
+                               <div class="card-body p-0">
+                                    <div class="table-responsive">
+                                         <table id="tableAdminBiens" class="table table-hover table-centered mb-0">
+                                              <thead class="table-light">
+                                                   <tr>
+                                                        <th>Adresse</th>
+                                                        <th>Propriétaire</th>
+                                                        <th>Notaire Assigné</th>
+                                                        <th>Statut Location</th>
+                                                        <th>Statut Supervision</th>
+                                                        <th style="width: 180px;">Actions Admin</th>
+                                                   </tr>
+                                              </thead>
+                                              <tbody id="adminBiensTableBody">
+                                                   <!-- Ligne Chargement -->
+                                                   <tr class="loading-row placeholder-glow"><td><span class="placeholder col-10"></span></td><td><span class="placeholder col-8"></span></td><td><span class="placeholder col-8"></span></td><td><span class="placeholder col-6"></span></td><td><span class="placeholder col-6"></span></td><td><span class="placeholder col-10"></span></td></tr>
+                                                   <tr class="loading-row placeholder-glow"><td><span class="placeholder col-9"></span></td><td><span class="placeholder col-7"></span></td><td><span class="placeholder col-7"></span></td><td><span class="placeholder col-5"></span></td><td><span class="placeholder col-7"></span></td><td><span class="placeholder col-11"></span></td></tr>
+                                                    <!-- Ligne Aucun Résultat -->
+                                                   <tr class="no-results-row d-none"><td colspan="6">Aucun bien trouvé pour les critères sélectionnés.</td></tr>
+                                                   <!-- Données chargées par JS -->
+                                              </tbody>
+                                         </table>
+                                    </div>
+                               </div><!-- end card-body -->
+                                <div class="card-footer bg-white border-top d-flex justify-content-end">
+                                     <nav aria-label="Pagination Biens Admin"><ul id="paginationAdminBiens" class="pagination pagination-sm mb-0"></ul></nav>
+                                </div>
+                          </div> <!-- end card -->
+                     </div> <!-- end col -->
+                 </div> <!-- End row -->
+
+            </div> <!-- container-fluid -->
+        </div> <!-- page-content -->
+
+        <!-- Modal Détails Bien (peut être le même que celui du notaire) -->
+        <!-- Inclure le modal #modalBienDetailsNotaire ici -->
+
+        <!-- ========== Footer Start ========== -->
+        <!-- COLLER VOTRE CODE FOOTER ICI -->
+         <footer class="footer"> <div class="container-fluid"> <div class="row"> <div class="col-12 text-center"> <script>document.write(new Date().getFullYear())</script> © Gestion Locative Notariale - Admin. </div> </div> </div> </footer>
+        <!-- ========== Footer End ========== -->
+    </div> <!-- wrapper -->
+
+    <script src="assets/js/vendor.js"></script>
+    <script src="assets/js/app.js"></script>
+    <script>
+        // --- Fonctions Globales Admin Actions ---
+        // Utiliser les mêmes fonctions que notaire-gestion-biens.html car les actions sont similaires
+        // Assurer que les appels AJAX pointent vers des endpoints admin si la logique diffère
+         window.viewBienDetails = function(bienId) { /* ... (identique à notaire) ... */ console.log(`ADMIN: Voir détails bien ${bienId}`);};
+         window.validateBien = function(bienId) { /* ... (identique à notaire, mais endpoint admin?) ... */ console.log(`ADMIN: Validation bien ${bienId}`);};
+         window.suspendBien = function(bienId) { /* ... (identique à notaire, mais endpoint admin?) ... */ console.log(`ADMIN: Suspension bien ${bienId}`);};
+         window.reactivateBien = function(bienId) { /* ... (identique à notaire, mais endpoint admin?) ... */ console.log(`ADMIN: Réactivation bien ${bienId}`);};
+          window.assignNotaire = function(bienId) { /* Fonction spécifique admin? */ console.log(`ADMIN: Assigner notaire pour bien ${bienId}`); alert("Fonctionnalité d'assignation de notaire à implémenter.");};
+
+        // --- Script Principal ---
+        document.addEventListener('DOMContentLoaded', function() {
+            const tableBody = document.getElementById('adminBiensTableBody');
+            const loadingRow = tableBody.querySelector('.loading-row');
+            const noResultsRow = tableBody.querySelector('.no-results-row');
+            const paginationControls = document.getElementById('paginationAdminBiens');
+            const filterForm = document.getElementById('filterAdminBiensForm');
+             const resetFiltersBtn = document.getElementById('resetAdminBiensFiltersBtn');
+             const filterProprietaireSelect = document.getElementById('filterAdminProprietaire');
+             const filterNotaireSelect = document.getElementById('filterAdminNotaire');
+
+
+            // --- Chargement Filtres ---
+             function loadAdminFiltersOptions() {
+                 // TODO: Fetch backend/get_admin_filters_options.php (listes proprios et notaires)
+                  console.log("TODO: Charger filtres Proprio/Notaire pour Admin");
+                   // Simulation
+                   filterProprietaireSelect.innerHTML += '<option value="1">Dupont Jean</option><option value="2">Martin Alice</option>';
+                   filterNotaireSelect.innerHTML += '<option value="51">Maitre Kossi</option><option value="52">Maitre Agbo</option>';
+              }
+
+            // --- Fonction Chargement Biens Admin ---
+             function loadAdminBiens(page = 1, filters = {}) {
+                  tableBody.innerHTML = ''; // Vider
+                  for (let i = 0; i < 5; i++) { tableBody.appendChild(loadingRow.cloneNode(true)); }
+                  noResultsRow.classList.add('d-none');
+
+                  const params = new URLSearchParams(filters); params.append('page', page);
+                   // TODO: Endpoint réel ADMIN
+                  const url = `backend/get_admin_biens.php?${params.toString()}`;
+                   console.log("Fetching admin biens from:", url);
+
+                  // TODO: Remplacer par fetch()
+                  setTimeout(() => { // Simulation
+                      const response = {
+                          success: true,
+                          biens: [ // Inclure le notaire assigné
+                               { idBien: 1, adresse: "123 Rue Exemple, Cotonou", proprietaireNom: "Dupont Jean", notaireNom: "Maitre Kossi", statutLocation: 'Libre', statutSupervision: 'En attente' },
+                               { idBien: 2, adresse: "45 Av Cocotiers, Porto-Novo", proprietaireNom: "Martin Alice", notaireNom: "Maitre Kossi", statutLocation: 'Occupé', statutSupervision: 'Validé' },
+                               { idBien: 3, adresse: "789 Bd du Port, Ouidah", proprietaireNom: "Bello Ahmed", notaireNom: "Maitre Agbo", statutLocation: 'Libre', statutSupervision: 'Suspendu' },
+                               { idBien: 4, adresse: "10 Rue de la Paix, Parakou", proprietaireNom: "Soglo Marie", notaireNom: "Maitre Kossi", statutLocation: 'Libre', statutSupervision: 'Validé' },
+                               { idBien: 5, adresse: "Nouvelle Adresse XYZ", proprietaireNom: "Dupont Jean", notaireNom: null, statutLocation: 'Libre', statutSupervision: 'En attente' }, // Non assigné
+                           ],
+                           pagination: { currentPage: page, totalPages: 1 }
+                       };
+                       // --- Fin Simulation ---
+
+                       tableBody.innerHTML = ''; // Vider placeholders
+
+                        if (response.success && response.biens.length > 0) {
+                           response.biens.forEach(bien => {
+                                const row = document.createElement('tr');
+                                const statutLocBadge = bien.statutLocation === 'Libre' ? '<span class="badge bg-success">Libre</span>' : '<span class="badge bg-warning">Occupé</span>';
+                                let statutSupBadge = ''; let actionsHtml = '';
+
+                                // Logique badges et actions (similaire à notaire, mais potentiellement avec "Assigner")
+                                switch (bien.statutSupervision) {
+                                    case 'En attente':
+                                        statutSupBadge = '<span class="badge bg-info">En attente</span>';
+                                        actionsHtml = `<button onclick="viewBienDetails(${bien.idBien})" class="btn btn-sm btn-light" title="Détails"><i class="ri-eye-line"></i></button>
+                                                        <button onclick="validateBien(${bien.idBien})" class="btn btn-sm btn-success" title="Valider"><i class="ri-check-line"></i></button>
+                                                        <button onclick="suspendBien(${bien.idBien})" class="btn btn-sm btn-danger" title="Suspendre/Refuser"><i class="ri-close-line"></i></button>`;
+                                        if(!bien.notaireNom) actionsHtml += `<button onclick="assignNotaire(${bien.idBien})" class="btn btn-sm btn-secondary ms-1" title="Assigner Notaire"><i class="ri-user-shared-line"></i></button>`;
+                                        break;
+                                    case 'Validé':
+                                        statutSupBadge = '<span class="badge bg-success">Validé</span>';
+                                         actionsHtml = `<button onclick="viewBienDetails(${bien.idBien})" class="btn btn-sm btn-light" title="Détails"><i class="ri-eye-line"></i></button>
+                                                        <button onclick="suspendBien(${bien.idBien})" class="btn btn-sm btn-warning" title="Suspendre"><i class="ri-stop-circle-line"></i></button>`;
+                                         if(!bien.notaireNom) actionsHtml += `<button onclick="assignNotaire(${bien.idBien})" class="btn btn-sm btn-secondary ms-1" title="Assigner Notaire"><i class="ri-user-shared-line"></i></button>`;
+                                        break;
+                                    case 'Suspendu':
+                                        statutSupBadge = '<span class="badge bg-danger">Suspendu</span>';
+                                         actionsHtml = `<button onclick="viewBienDetails(${bien.idBien})" class="btn btn-sm btn-light" title="Détails"><i class="ri-eye-line"></i></button>
+                                                        <button onclick="reactivateBien(${bien.idBien})" class="btn btn-sm btn-success" title="Réactiver"><i class="ri-play-circle-line"></i></button>`;
+                                        break;
+                                    default: statutSupBadge = `<span class="badge bg-secondary">${bien.statutSupervision}</span>`; break;
+                                }
+
+                                row.innerHTML = `
+                                     <td>${bien.adresse}</td>
+                                     <td>${bien.proprietaireNom}</td>
+                                     <td>${bien.notaireNom || '<em class="text-muted">Non assigné</em>'}</td>
+                                     <td>${statutLocBadge}</td>
+                                     <td>${statutSupBadge}</td>
+                                     <td><div class="d-flex gap-1">${actionsHtml}</div></td>
+                                `;
+                                tableBody.appendChild(row);
+                           });
+                        } else {
+                            noResultsRow.classList.remove('d-none');
+                            tableBody.appendChild(noResultsRow);
+                        }
+                        updateAdminBiensPagination(response.pagination, filters);
+                    }, 500);
+              }
+
+             // --- Fonction Pagination Admin Biens ---
+              function updateAdminBiensPagination(paginationInfo, currentFilters) { /* ... */ }
+
+             // --- Gestion Filtres ---
+             filterForm.addEventListener('submit', function(e) { /* ... */ });
+             resetFiltersBtn.addEventListener('click', function() { /* ... */ });
+
+             // --- Chargement Initial ---
+             loadAdminFiltersOptions();
+             loadAdminBiens();
+
+        });
+    </script>
+</body>
+</html>

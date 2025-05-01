@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="fr"> <!-- Langue en Français -->
+
+<!-- Mirrored from techzaa.in/lahomes/admin/locataire-contrat.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 08 Apr 2025 XX:XX:XX GMT -->
+<head>
+    <!-- Title Meta -->
+    <meta charset="utf-8" />
+    <!-- Titre mis à jour -->
+    <title>Mon Contrat de Location | Gestion Locative Notariale</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Consultation du contrat de location pour les locataires." />
+    <meta name="author" content="Votre Nom/Entreprise" /> <!-- Mettre à jour -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+    <!-- App favicon -->
+    <link rel="shortcut icon" href="assets/images/favicon.ico">
+
+    <!-- Vendor css (Require in all Page) -->
+    <link href="assets/css/vendor.min.css" rel="stylesheet" type="text/css" />
+
+    <!-- Icons css (Require in all Page) -->
+    <link href="assets/css/icons.min.css" rel="stylesheet" type="text/css" />
+
+    <!-- App css (Require in all Page) -->
+    <link href="assets/css/app.min.css" rel="stylesheet" type="text/css" />
+
+    <!-- Theme Config js (Require in all Page) -->
+    <script src="assets/js/config.min.js"></script>
+
+     <!-- Custom CSS for this page -->
+     <style>
+          .contract-details dt { font-weight: 500; color: #6c757d; min-width: 130px; float: left; clear: left; margin-bottom: 0.5rem; }
+          .contract-details dd { margin-left: 140px; font-weight: 600; color: #343a40; margin-bottom: 0.5rem;}
+          .contract-actions { margin-top: 1.5rem; padding-top: 1rem; border-top: 1px solid #e9ecef; }
+          /* Placeholder style */
+          .placeholder-glow span { min-height: 1em; display: inline-block; }
+          dl dd span.placeholder { width: 60%; } /* Ajuster taille placeholder pour dd */
+          .card .placeholder { min-height: 1em; }
+     </style>
+
+</head>
+
+<body>
+
+    <!-- START Wrapper -->
+    <div class="wrapper">
+
+        <!-- ========== Topbar Start ========== -->
+        <!-- COLLER VOTRE CODE TOPBAR EXISTANT ICI -->
+        <!-- Adapter le menu utilisateur et le compteur de notifications -->
+         <header class="">
+               <div class="topbar">
+                    <div class="container-fluid">
+                         <div class="navbar-header">
+                              <div class="d-flex align-items-center gap-2">
+                                   <div class="topbar-item"><button type="button" class="button-toggle-menu topbar-button"><i class="ri-menu-2-line fs-24"></i></button></div>
+                                   <form class="app-search d-none d-md-block me-auto"><div class="position-relative"><input type="search" class="form-control border-0" placeholder="Rechercher..." autocomplete="off" value=""><i class="ri-search-line search-widget-icon"></i></div></form>
+                              </div>
+                              <div class="d-flex align-items-center gap-1">
+                                   <div class="topbar-item"><button type="button" class="topbar-button" id="light-dark-mode"><i class="ri-moon-line fs-24 light-mode"></i><i class="ri-sun-line fs-24 dark-mode"></i></button></div>
+                                   <div class="dropdown topbar-item d-none d-lg-flex"><button type="button" class="topbar-button" data-toggle="fullscreen"><i class="ri-fullscreen-line fs-24 fullscreen"></i><i class="ri-fullscreen-exit-line fs-24 quit-fullscreen"></i></button></div>
+                                   <!-- Notifications Dropdown -->
+                                   <div class="dropdown topbar-item">
+                                        <button type="button" class="topbar-button position-relative" id="page-header-notifications-dropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="ri-notification-3-line fs-24"></i><span id="topbarUnreadCount" class="position-absolute topbar-badge fs-10 translate-middle badge bg-danger rounded-pill">0<span class="visually-hidden">notifications non lues</span></span></button>
+                                        <div class="dropdown-menu py-0 dropdown-lg dropdown-menu-end" aria-labelledby="page-header-notifications-dropdown">
+                                             <div class="p-3 border-top-0 border-start-0 border-end-0 border-dashed border"><div class="row align-items-center"><div class="col"><h6 class="m-0 fs-16 fw-semibold"> Notifications</h6></div><div class="col-auto"><a href="javascript: void(0);" class="text-dark text-decoration-underline" onclick="markAllAsRead()"> <small>Marquer tout comme lu</small></a></div></div></div>
+                                             <div data-simplebar style="max-height: 280px;" id="topbarNotificationList"><!-- Aperçu rapide des notifs ici --></div>
+                                             <div class="text-center py-3"><a href="locataire-notifications.html" class="btn btn-primary btn-sm">Voir toutes les notifications <i class="ri-arrow-right-line ms-1"></i></a></div>
+                                        </div>
+                                   </div>
+                                   <!-- Theme Settings -->
+                                   <div class="topbar-item d-none d-md-flex"><button type="button" class="topbar-button" id="theme-settings-btn" data-bs-toggle="offcanvas" data-bs-target="#theme-settings-offcanvas" aria-controls="theme-settings-offcanvas"><i class="ri-settings-4-line fs-24"></i></button></div>
+                                   <!-- User Menu Locataire -->
+                                   <div class="dropdown topbar-item">
+                                        <a type="button" class="topbar-button" id="page-header-user-dropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span class="d-flex align-items-center"><img class="rounded-circle" width="32" src="assets/images/users/avatar-placeholder.png" alt="avatar-locataire"></span></a>
+                                        <div class="dropdown-menu dropdown-menu-end">
+                                             <h6 class="dropdown-header" id="userDropdownHeader">Bienvenue !</h6>
+                                             <a class="dropdown-item" href="locataire-profil.html"><i class="ri-user-line align-middle me-1"></i> <span class="align-middle">Mon Profil</span></a>
+                                             <a class="dropdown-item active" href="locataire-contrat.html"><i class="ri-file-list-3-line align-middle me-1"></i> <span class="align-middle">Mon Contrat</span></a>
+                                             <div class="dropdown-divider my-1"></div>
+                                             <a class="dropdown-item text-danger" href="auth-signin.html"><i class="ri-logout-box-line align-middle me-1"></i> <span class="align-middle">Déconnexion</span></a>
+                                        </div>
+                                   </div>
+                              </div>
+                         </div>
+                    </div>
+               </div>
+          </header>
+        <!-- ========== Topbar End ========== -->
+
+        <!-- ========== Right Sidebar (Theme Settings) Start ========== -->
+        <!-- COLLER VOTRE CODE RIGHT SIDEBAR EXISTANT ICI -->
+         <div>
+               <div class="offcanvas offcanvas-end border-0 rounded-start-4 overflow-hidden" tabindex="-1" id="theme-settings-offcanvas">
+                    <div class="d-flex align-items-center bg-primary p-3 offcanvas-header"><h5 class="text-white m-0">Theme Settings</h5><button type="button" class="btn-close btn-close-white ms-auto" data-bs-dismiss="offcanvas" aria-label="Close"></button></div><div class="offcanvas-body p-0"><div data-simplebar class="h-100"><div class="p-3 settings-bar"><!-- Settings --></div></div></div><div class="offcanvas-footer border-top p-3 text-center"><div class="row"><div class="col"><button type="button" class="btn btn-danger w-100" id="reset-layout">Reset</button></div></div></div>
+               </div>
+          </div>
+        <!-- ========== Right Sidebar (Theme Settings) End ========== -->
+
+
+        <!-- ========== App Menu Start ========== -->
+        <!-- Adapter le menu pour le locataire -->
+         <div class="main-nav">
+               <div class="logo-box"> <!-- Logo -->
+                    <a href="locataire-dashboard.html" class="logo-dark"><img src="assets/images/logo-sm.png" class="logo-sm" alt="logo sm"><img src="assets/images/logo-dark.png" class="logo-lg" alt="logo dark"></a>
+                    <a href="locataire-dashboard.html" class="logo-light"><img src="assets/images/logo-sm.png" class="logo-sm" alt="logo sm"><img src="assets/images/logo-light.png" class="logo-lg" alt="logo light"></a>
+               </div>
+               <button type="button" class="button-sm-hover" aria-label="Show Full Sidebar"><i class="ri-menu-2-line fs-24 button-sm-hover-icon"></i></button>
+               <div class="scrollbar" data-simplebar>
+                    <ul class="navbar-nav" id="navbar-nav">
+                         <li class="menu-title">Menu Locataire</li>
+                         <li class="nav-item">
+                              <a class="nav-link" href="locataire-dashboard.html"><span class="nav-icon"><i class="ri-dashboard-line"></i></span><span class="nav-text">Tableau de Bord</span></a>
+                         </li>
+                         <li class="nav-item">
+                              <!-- Lien Actif -->
+                              <a class="nav-link active" href="locataire-contrat.html"><span class="nav-icon"><i class="ri-file-text-line"></i></span><span class="nav-text">Mon Contrat</span></a>
+                         </li>
+                          <li class="nav-item">
+                              <a class="nav-link" href="locataire-paiements.html"><span class="nav-icon"><i class="ri-secure-payment-line"></i></span><span class="nav-text">Paiements & Quittances</span></a>
+                         </li>
+                         <li class="nav-item">
+                              <a class="nav-link" href="locataire-maintenance.html"><span class="nav-icon"><i class="ri-tools-line"></i></span><span class="nav-text">Maintenance</span></a>
+                         </li>
+                         <li class="nav-item">
+                              <a class="nav-link" href="locataire-notifications.html"><span class="nav-icon"><i class="ri-notification-3-line"></i></span><span class="nav-text">Notifications</span><span class="badge bg-danger badge-pill text-end" id="sidebarUnreadCount" style="display: none;"></span></a>
+                         </li>
+                    </ul>
+               </div>
+          </div>
+        <!-- ========== App Menu End ========== -->
+
+        <!-- ==================================================== -->
+        <!-- Start right Content here -->
+        <!-- ==================================================== -->
+        <div class="page-content">
+
+            <!-- Start Container Fluid -->
+            <div class="container-fluid">
+
+                <!-- ========== Page Title Start ========== -->
+                <div class="row">
+                    <div class="col-12">
+                        <div class="page-title-box">
+                            <h4 class="mb-0 fw-semibold">Mon Contrat de Location</h4>
+                            <ol class="breadcrumb mb-0">
+                                <li class="breadcrumb-item"><a href="locataire-dashboard.html">Espace Locataire</a></li>
+                                <li class="breadcrumb-item active">Mon Contrat</li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+                <!-- ========== Page Title End ========== -->
+
+                <div class="row">
+                    <div class="col-12">
+                        <div class="card">
+                             <div class="card-header">
+                                <h5 class="card-title mb-0">Détails de votre Bail</h5>
+                            </div>
+                            <div class="card-body">
+                                <div id="contractDetailsLoading" class="placeholder-glow">
+                                     <dl class="contract-details">
+                                         <dt>Bien Loué :</dt>
+                                         <dd><span id="contratAdresse" class="placeholder col-8">--</span></dd>
+
+                                         <dt>Date de Début :</dt>
+                                         <dd><span id="contratDateDebut" class="placeholder col-4">--</span></dd>
+
+                                         <dt>Date de Fin :</dt>
+                                         <dd><span id="contratDateFin" class="placeholder col-4">--</span></dd>
+
+                                         <dt>Loyer Mensuel :</dt>
+                                         <dd><span id="contratMontantLoyer" class="placeholder col-5">--</span></dd>
+
+                                         <dt>Statut :</dt>
+                                         <dd><span id="contratStatut" class="placeholder col-3">--</span></dd> <!-- Sera remplacé par un badge -->
+                                     </dl>
+                                </div>
+
+                                <div id="noContractMessage" class="alert alert-warning text-center d-none">
+                                     Vous n'avez actuellement aucun contrat de location actif enregistré sur la plateforme.
+                                 </div>
+
+                                <div class="contract-actions mt-4 pt-3 border-top">
+                                     <h6 class="mb-3">Actions</h6>
+                                     <div class="d-flex flex-wrap gap-2">
+                                          <button type="button" class="btn btn-primary" id="downloadContractBtn" onclick="downloadContract()" disabled>
+                                              <i class="ri-download-2-line me-1"></i> Télécharger le Contrat (PDF)
+                                          </button>
+                                          <button type="button" class="btn btn-info" id="requestRenewalBtn" onclick="requestRenewal()" style="display: none;"> <!-- Masqué par défaut -->
+                                              <i class="ri-refresh-line me-1"></i> Demander le Renouvellement
+                                          </button>
+                                          <button type="button" class="btn btn-danger" id="requestTerminationBtn" onclick="requestTermination()" style="display: none;"> <!-- Masqué par défaut -->
+                                               <i class="ri-close-circle-line me-1"></i> Demander la Résiliation
+                                           </button>
+                                     </div>
+                                      <small id="actionInfoText" class="d-block mt-2 text-muted" style="display: none;">
+                                         <!-- Texte info pour renouvellement/résiliation affiché par JS -->
+                                      </small>
+                                </div>
+                            </div> <!-- end card-body -->
+                        </div> <!-- end card -->
+                    </div> <!-- end col -->
+                </div> <!-- end row -->
+
+            </div>
+            <!-- End Container Fluid -->
+
+            <!-- ========== Footer Start ========== -->
+            <!-- COLLER VOTRE CODE FOOTER EXISTANT ICI -->
+             <footer class="footer">
+                   <div class="container-fluid">
+                       <div class="row">
+                           <div class="col-12 text-center">
+                               <script>document.write(new Date().getFullYear())</script> © Gestion Locative Notariale.
+                           </div>
+                       </div>
+                   </div>
+               </footer>
+            <!-- ========== Footer End ========== -->
+
+        </div>
+        <!-- ==================================================== -->
+        <!-- End Page Content -->
+        <!-- ==================================================== -->
+
+    </div>
+    <!-- END Wrapper -->
+
+    <!-- Vendor Javascript (Require in all Page) -->
+    <script src="assets/js/vendor.js"></script>
+
+    <!-- App Javascript (Require in all Page) -->
+    <script src="assets/js/app.js"></script>
+
+    <!-- Custom JS for this page -->
+     <script>
+         // Mettre les fonctions dans le scope global pour onclick
+         window.downloadContract = function() {
+             const contractId = document.getElementById('downloadContractBtn').getAttribute('data-contract-id');
+             if (!contractId) {
+                 alert("Impossible de récupérer l'identifiant du contrat.");
+                 return;
+             }
+             // TODO: Construire l'URL backend réelle
+             const downloadUrl = `backend/download_locataire_contract.php?id=${contractId}`;
+             console.log("Tentative de téléchargement depuis :", downloadUrl);
+             alert("Fonctionnalité de téléchargement à lier au backend. URL: " + downloadUrl);
+             // window.open(downloadUrl, '_blank');
+         }
+
+         window.requestRenewal = function() {
+             const contractId = document.getElementById('requestRenewalBtn').getAttribute('data-contract-id');
+             console.log(`Demande de renouvellement pour contrat ID: ${contractId}`);
+             // TODO: Envoyer une requête AJAX simple au backend pour enregistrer la demande
+             alert("Votre demande de renouvellement a été envoyée au notaire.");
+             // Optionnel: désactiver le bouton après clic
+             document.getElementById('requestRenewalBtn').disabled = true;
+             document.getElementById('requestRenewalBtn').innerHTML = '<i class="ri-check-line me-1"></i> Demande Envoyée';
+         }
+
+          window.requestTermination = function() {
+             const contractId = document.getElementById('requestTerminationBtn').getAttribute('data-contract-id');
+             if (confirm("Êtes-vous sûr de vouloir envoyer une demande de résiliation de votre contrat au notaire ?")) {
+                 console.log(`Demande de résiliation pour contrat ID: ${contractId}`);
+                 // TODO: Envoyer une requête AJAX simple au backend
+                 alert("Votre demande de résiliation a été envoyée au notaire.");
+                  document.getElementById('requestTerminationBtn').disabled = true;
+                 document.getElementById('requestTerminationBtn').innerHTML = '<i class="ri-check-line me-1"></i> Demande Envoyée';
+             }
+         }
+
+
+         document.addEventListener('DOMContentLoaded', function() {
+             const elements = {
+                 adresse: document.getElementById('contratAdresse'),
+                 dateDebut: document.getElementById('contratDateDebut'),
+                 dateFin: document.getElementById('contratDateFin'),
+                 montantLoyer: document.getElementById('contratMontantLoyer'),
+                 statut: document.getElementById('contratStatut'),
+                 downloadBtn: document.getElementById('downloadContractBtn'),
+                 renewalBtn: document.getElementById('requestRenewalBtn'),
+                 terminationBtn: document.getElementById('requestTerminationBtn'),
+                 actionInfoText: document.getElementById('actionInfoText'),
+                 loadingContainer: document.getElementById('contractDetailsLoading'),
+                 noContractMsg: document.getElementById('noContractMessage')
+             };
+
+             const currencyFormatter = new Intl.NumberFormat('fr-FR', { style: 'currency', currency: 'XOF', minimumFractionDigits: 0 });
+             const dateFormatter = new Intl.DateTimeFormat('fr-FR', { year: 'numeric', month: 'long', day: 'numeric' });
+
+             function loadContractData() {
+                 console.log("Fetching contract data for tenant...");
+                 elements.loadingContainer.style.display = 'block';
+                 elements.noContractMsg.classList.add('d-none');
+
+                 // TODO: Remplacer par l'appel AJAX réel vers backend/get_locataire_contrat_details.php
+                 fetch('backend/get_locataire_contrat_details.php')
+                     .then(response => response.ok ? response.json() : Promise.reject(`HTTP error ${response.status}`))
+                     .then(data => {
+                         elements.loadingContainer.classList.remove('placeholder-glow');
+                          elements.loadingContainer.querySelectorAll('.placeholder').forEach(el => el.classList.remove('placeholder', 'col-8', 'col-4', 'col-5', 'col-3'));
+
+                         if (data.success && data.contrat) {
+                             const contrat = data.contrat;
+
+                             elements.adresse.textContent = contrat.adresse || 'Non spécifiée';
+                             elements.dateDebut.textContent = contrat.dateDebut ? dateFormatter.format(new Date(contrat.dateDebut)) : 'N/A';
+                             elements.dateFin.textContent = contrat.dateFin ? dateFormatter.format(new Date(contrat.dateFin)) : 'N/A';
+                             elements.montantLoyer.textContent = contrat.montantLoyer ? currencyFormatter.format(contrat.montantLoyer) : 'N/A';
+
+                             // Affichage du statut avec badge
+                             let statutHtml = '<span class="badge bg-secondary">Indéfini</span>';
+                             if (contrat.statutContrat) {
+                                 const badgeClass = contrat.statutContrat === 'Actif' ? 'bg-success' : (contrat.statutContrat === 'Résilié' ? 'bg-danger' : 'bg-warning');
+                                 statutHtml = `<span class="badge ${badgeClass}">${contrat.statutContrat}</span>`;
+                             }
+                             elements.statut.innerHTML = statutHtml;
+
+                             // Gérer les boutons d'action
+                             if (contrat.idContrat) {
+                                elements.downloadBtn.setAttribute('data-contract-id', contrat.idContrat);
+                                elements.renewalBtn.setAttribute('data-contract-id', contrat.idContrat);
+                                elements.terminationBtn.setAttribute('data-contract-id', contrat.idContrat);
+                             }
+
+                             elements.downloadBtn.disabled = !contrat.hasDocument; // Activer si document existe
+
+                             // Afficher boutons renouvellement/résiliation selon logique (simplifié ici)
+                             if (contrat.statutContrat === 'Actif') {
+                                 // Exemple : afficher renouvellement 3 mois avant la fin
+                                  const today = new Date();
+                                  const endDate = new Date(contrat.dateFin);
+                                  const threeMonthsBefore = new Date(endDate);
+                                  threeMonthsBefore.setMonth(endDate.getMonth() - 3);
+
+                                  if (today >= threeMonthsBefore) {
+                                      elements.renewalBtn.style.display = 'inline-block';
+                                      elements.actionInfoText.textContent = "Vous pouvez demander le renouvellement de votre contrat.";
+                                       elements.actionInfoText.style.display = 'block';
+                                  }
+
+                                  elements.terminationBtn.style.display = 'inline-block'; // Toujours visible si actif? À définir.
+                             } else {
+                                 elements.renewalBtn.style.display = 'none';
+                                 elements.terminationBtn.style.display = 'none';
+                                  elements.actionInfoText.style.display = 'none';
+                             }
+
+                         } else {
+                             // Pas de contrat trouvé ou erreur backend
+                              elements.loadingContainer.style.display = 'none'; // Cacher les placeholders
+                             elements.noContractMsg.classList.remove('d-none'); // Afficher message "aucun contrat"
+                             console.log(data.message || "Aucun contrat actif trouvé.");
+                         }
+                     })
+                     .catch(error => {
+                         elements.loadingContainer.classList.remove('placeholder-glow');
+                          elements.loadingContainer.querySelectorAll('.placeholder').forEach(el => el.classList.remove('placeholder'));
+                          elements.loadingContainer.style.display = 'none';
+                         elements.noContractMsg.textContent = "Erreur lors du chargement des informations du contrat.";
+                         elements.noContractMsg.classList.remove('d-none', 'alert-warning');
+                          elements.noContractMsg.classList.add('alert-danger');
+                         console.error('Erreur fetch contract data:', error);
+                     });
+             }
+
+             // Chargement initial
+             loadContractData();
+         }); // Fin DOMContentLoaded
+     </script>
+
+    <!-- Iconify Icons (Import only if needed) -->
+    <!-- <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script> -->
+
+</body>
+
+<!-- Mirrored from techzaa.in/lahomes/admin/locataire-contrat.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 08 Apr 2025 XX:XX:XX GMT -->
+</html>

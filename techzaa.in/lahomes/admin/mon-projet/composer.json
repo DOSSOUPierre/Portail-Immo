@@ -1,0 +1,16 @@
+{
+    "name": "monprojet/pdf",
+    "autoload": {
+        "psr-4": {
+            "Monprojet\\Pdf\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "dine"
+        }
+    ],
+    "require": {
+        "dompdf/dompdf": "^3.1"
+    }
+}

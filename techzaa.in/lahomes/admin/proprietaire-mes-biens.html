@@ -1,0 +1,660 @@
+<!DOCTYPE html>
+<html lang="fr"> <!-- Changed language to French -->
+
+<!-- Mirrored from techzaa.in/lahomes/admin/proprietaire-mes-biens.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 08 Apr 2025 XX:XX:XX GMT -->
+<!-- NOTE: Update the mirrored from URL if needed -->
+<head>
+     <!-- Title Meta -->
+     <meta charset="utf-8" />
+     <!-- Updated Title -->
+     <title>Mes Biens Immobiliers | Gestion Locative Notariale</title>
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <meta name="description" content="Interface de gestion des biens immobiliers pour les propriétaires." />
+     <meta name="author" content="Votre Nom/Entreprise" /> <!-- Update Author -->
+     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+     <!-- App favicon -->
+     <link rel="shortcut icon" href="assets/images/favicon.ico">
+
+     <!-- Vendor css (Require in all Page) -->
+     <link href="assets/css/vendor.min.css" rel="stylesheet" type="text/css" />
+
+     <!-- Icons css (Require in all Page) -->
+     <link href="assets/css/icons.min.css" rel="stylesheet" type="text/css" />
+
+     <!-- App css (Require in all Page) -->
+     <link href="assets/css/app.min.css" rel="stylesheet" type="text/css" />
+
+     <!-- Theme Config js (Require in all Page) -->
+     <script src="assets/js/config.min.js"></script>
+
+     <!-- Custom CSS for this page (Optional) -->
+     <style>
+          .table th, .table td {
+               vertical-align: middle; /* Align content vertically */
+          }
+          .img-thumbnail-small {
+               max-width: 60px;
+               height: auto;
+          }
+          /* Style for image previews in modal */
+          .preview-image {
+            max-width: 100px;
+            max-height: 100px;
+            margin: 5px;
+            border: 1px solid #ddd;
+            padding: 2px;
+          }
+          #previewImagesDescriptionContainer img {
+             margin-right: 5px;
+             margin-bottom: 5px;
+          }
+     </style>
+</head>
+
+<body>
+
+     <!-- START Wrapper -->
+     <div class="wrapper">
+
+          <!-- ========== Topbar Start ========== -->
+          <!-- PASTE YOUR EXISTING TOPBAR HTML HERE -->
+          <!-- Example Placeholder -->
+          <header class="">
+               <div class="topbar">
+                    <div class="container-fluid">
+                         <div class="navbar-header">
+                              <div class="d-flex align-items-center gap-2">
+                                   <div class="topbar-item"><button type="button" class="button-toggle-menu topbar-button"><i class="ri-menu-2-line fs-24"></i></button></div>
+                                   <form class="app-search d-none d-md-block me-auto"><div class="position-relative"><input type="search" class="form-control border-0" placeholder="Rechercher..." autocomplete="off" value=""><i class="ri-search-line search-widget-icon"></i></div></form>
+                              </div>
+                              <div class="d-flex align-items-center gap-1">
+                                   <div class="topbar-item"><button type="button" class="topbar-button" id="light-dark-mode"><i class="ri-moon-line fs-24 light-mode"></i><i class="ri-sun-line fs-24 dark-mode"></i></button></div>
+                                   <div class="dropdown topbar-item d-none d-lg-flex"><button type="button" class="topbar-button" data-toggle="fullscreen"><i class="ri-fullscreen-line fs-24 fullscreen"></i><i class="ri-fullscreen-exit-line fs-24 quit-fullscreen"></i></button></div>
+                                   <!-- Notifications (Keep as is or adapt) -->
+                                   <div class="dropdown topbar-item">
+                                        <button type="button" class="topbar-button position-relative" id="page-header-notifications-dropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="ri-notification-3-line fs-24"></i><span class="position-absolute topbar-badge fs-10 translate-middle badge bg-danger rounded-pill">3<span class="visually-hidden">unread messages</span></span></button>
+                                        <div class="dropdown-menu py-0 dropdown-lg dropdown-menu-end" aria-labelledby="page-header-notifications-dropdown">
+                                             <!-- Notification items here -->
+                                             <div class="p-3 border-top-0 border-start-0 border-end-0 border-dashed border"><div class="row align-items-center"><div class="col"><h6 class="m-0 fs-16 fw-semibold"> Notifications</h6></div><div class="col-auto"><a href="javascript: void(0);" class="text-dark text-decoration-underline"><small>Clear All</small></a></div></div></div>
+                                             <div data-simplebar style="max-height: 280px;"><a href="javascript:void(0);" class="dropdown-item py-3 border-bottom text-wrap"><!-- ... --></a></div>
+                                             <div class="text-center py-3"><a href="javascript:void(0);" class="btn btn-primary btn-sm">Voir toutes les notifications <i class="ri-arrow-right-line ms-1"></i></a></div>
+                                        </div>
+                                   </div>
+                                   <!-- Theme Settings (Keep as is) -->
+                                   <div class="topbar-item d-none d-md-flex"><button type="button" class="topbar-button" id="theme-settings-btn" data-bs-toggle="offcanvas" data-bs-target="#theme-settings-offcanvas" aria-controls="theme-settings-offcanvas"><i class="ri-settings-4-line fs-24"></i></button></div>
+                                   <!-- User (Keep as is or adapt - Update name/links) -->
+                                   <div class="dropdown topbar-item">
+                                        <a type="button" class="topbar-button" id="page-header-user-dropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span class="d-flex align-items-center"><img class="rounded-circle" width="32" src="assets/images/users/avatar-1.jpg" alt="avatar-proprio"></span></a>
+                                        <div class="dropdown-menu dropdown-menu-end">
+                                             <h6 class="dropdown-header">Bienvenue [Nom Propriétaire]!</h6> <!-- Personalize -->
+                                             <a class="dropdown-item" href="#profil"><iconify-icon icon="solar:user-circle-broken" class="align-middle me-2 fs-18"></iconify-icon><span class="align-middle">Mon Profil</span></a>
+                                             <!-- Add other relevant links if needed -->
+                                             <div class="dropdown-divider my-1"></div>
+                                             <a class="dropdown-item text-danger" href="auth-signin.html"><iconify-icon icon="solar:logout-3-broken" class="align-middle me-2 fs-18"></iconify-icon><span class="align-middle">Déconnexion</span></a>
+                                        </div>
+                                   </div>
+                              </div>
+                         </div>
+                    </div>
+               </div>
+          </header>
+          <!-- ========== Topbar End ========== -->
+
+          <!-- ========== Right Sidebar (Theme Settings) Start ========== -->
+          <!-- PASTE YOUR EXISTING RIGHT SIDEBAR HTML HERE -->
+          <!-- Example Placeholder -->
+          <div>
+               <div class="offcanvas offcanvas-end border-0 rounded-start-4 overflow-hidden" tabindex="-1" id="theme-settings-offcanvas">
+                    <!-- Content of theme settings offcanvas here -->
+                    <div class="d-flex align-items-center bg-primary p-3 offcanvas-header"><h5 class="text-white m-0">Theme Settings</h5><button type="button" class="btn-close btn-close-white ms-auto" data-bs-dismiss="offcanvas" aria-label="Close"></button></div><div class="offcanvas-body p-0"><div data-simplebar class="h-100"><div class="p-3 settings-bar"><!-- Settings options here --></div></div></div><div class="offcanvas-footer border-top p-3 text-center"><div class="row"><div class="col"><button type="button" class="btn btn-danger w-100" id="reset-layout">Reset</button></div></div></div>
+               </div>
+          </div>
+          <!-- ========== Right Sidebar (Theme Settings) End ========== -->
+
+
+          <!-- ========== App Menu Start ========== -->
+          <!-- PASTE YOUR EXISTING APP MENU (SIDEBAR) HTML HERE -->
+          <!-- Ensure the 'Mes Biens' link is present and correctly linked/highlighted -->
+          <!-- Example Placeholder Structure (Adapt to your exact sidebar) -->
+          <div class="main-nav">
+               <div class="logo-box">
+                    <a href="index.html" class="logo-dark"><img src="assets/images/logo-sm.png" class="logo-sm" alt="logo sm"><img src="assets/images/logo-dark.png" class="logo-lg" alt="logo dark"></a>
+                    <a href="index.html" class="logo-light"><img src="assets/images/logo-sm.png" class="logo-sm" alt="logo sm"><img src="assets/images/logo-light.png" class="logo-lg" alt="logo light"></a>
+               </div>
+               <button type="button" class="button-sm-hover" aria-label="Show Full Sidebar"><i class="ri-menu-2-line fs-24 button-sm-hover-icon"></i></button>
+               <div class="scrollbar" data-simplebar>
+                    <ul class="navbar-nav" id="navbar-nav">
+                         <li class="menu-title">Menu Propriétaire</li>
+                         <li class="nav-item">
+                              <a class="nav-link" href="proprietaire-dashboard.html"> <!-- Link to Dashboard -->
+                                   <span class="nav-icon"><i class="ri-dashboard-2-line"></i></span>
+                                   <span class="nav-text">Tableau de Bord</span>
+                              </a>
+                         </li>
+                         <li class="nav-item">
+                              <!-- Add 'active' class if this is the current page -->
+                              <a class="nav-link active" href="proprietaire-mes-biens.html"> <!-- Link to this page -->
+                                   <span class="nav-icon"><i class="ri-community-line"></i></span>
+                                   <span class="nav-text">Mes Biens</span>
+                              </a>
+                         </li>
+                          <li class="nav-item">
+                              <a class="nav-link" href="proprietaire-finances.html"> <!-- Link to Finances -->
+                                   <span class="nav-icon"><i class="ri-money-dollar-circle-line"></i></span>
+                                   <span class="nav-text">Finances</span>
+                              </a>
+                         </li>
+                         <li class="nav-item">
+                              <a class="nav-link" href="proprietaire-contrats.html"> <!-- Link to Contracts -->
+                                   <span class="nav-icon"><i class="ri-file-list-3-line"></i></span>
+                                   <span class="nav-text">Contrats</span>
+                              </a>
+                         </li>
+                         <li class="nav-item">
+                              <a class="nav-link" href="proprietaire-notifications.html"> <!-- Link to Notifications -->
+                                   <span class="nav-icon"><i class="ri-notification-3-line"></i></span>
+                                   <span class="nav-text">Notifications</span>
+                              </a>
+                         </li>
+                         <!-- Add other menu items as needed -->
+                    </ul>
+               </div>
+          </div>
+          <!-- ========== App Menu End ========== -->
+
+          <!-- ==================================================== -->
+          <!-- Start right Content here -->
+          <!-- ==================================================== -->
+          <div class="page-content">
+
+               <!-- Start Container Fluid -->
+               <div class="container-fluid">
+
+                    <!-- ========== Page Title Start ========== -->
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="page-title-box">
+                                <!-- Updated Title and Breadcrumb -->
+                                <h4 class="mb-0 fw-semibold">Mes Biens Immobiliers</h4>
+                                <ol class="breadcrumb mb-0">
+                                    <li class="breadcrumb-item"><a href="proprietaire-dashboard.html">Tableau de Bord</a></li>
+                                    <li class="breadcrumb-item active">Mes Biens</li>
+                                </ol>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- ========== Page Title End ========== -->
+
+                    <!-- ========== Main Content Start: Property List ========== -->
+                    <div class="row">
+                         <div class="col-12">
+                              <div class="card">
+                                   <div class="card-header d-flex justify-content-between align-items-center">
+                                        <h5 class="card-title mb-0">Liste de mes propriétés</h5>
+                                        <!-- Button to trigger Add/Edit Modal for adding new property -->
+                                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalAjoutModifBien" onclick="prepareAddModal()">
+                                             <i class="ri-add-line me-1"></i> Ajouter un Bien
+                                        </button>
+                                   </div>
+                                   <div class="card-body">
+                                        <div class="table-responsive">
+                                             <table id="tableBiens" class="table table-hover table-striped">
+                                                  <thead class="table-light">
+                                                       <tr>
+                                                            <th>Image</th>
+                                                            <th>Adresse</th>
+                                                            <th>Statut Location</th>
+                                                            <th>Loyer Mensuel</th>
+                                                            <th>Statut Supervision</th>
+                                                            <th>Actions</th>
+                                                       </tr>
+                                                  </thead>
+                                                  <tbody>
+                                                       <!-- Sample Row 1 (Occupied, Validated) -->
+                                                       <tr>
+                                                            <td><img src="assets/images/property/property-1.jpg" alt="Image Bien 1" class="img-thumbnail-small"></td>
+                                                            <td>123 Rue de l'Exemple, Cotonou</td>
+                                                            <td><span class="badge bg-warning">Occupé</span></td>
+                                                            <td>150 000 FCFA</td>
+                                                            <td><span class="badge bg-success">Validé</span></td>
+                                                            <td>
+                                                                 <button type="button" class="btn btn-sm btn-info me-1" data-bs-toggle="modal" data-bs-target="#modalDetailsBien" onclick="loadBienDetails(1)"> <!-- Pass Bien ID -->
+                                                                      <i class="ri-eye-line" title="Détails"></i>
+                                                                 </button>
+                                                                 <button type="button" class="btn btn-sm btn-warning me-1" data-bs-toggle="modal" data-bs-target="#modalAjoutModifBien" onclick="prepareEditModal(1)"> <!-- Pass Bien ID -->
+                                                                      <i class="ri-pencil-line" title="Modifier"></i>
+                                                                 </button>
+                                                                 <button type="button" class="btn btn-sm btn-danger" onclick="confirmDeleteBien(1)"> <!-- Pass Bien ID -->
+                                                                      <i class="ri-delete-bin-line" title="Supprimer"></i>
+                                                                 </button>
+                                                            </td>
+                                                       </tr>
+                                                       <!-- Sample Row 2 (Free, Pending Validation) -->
+                                                       <tr>
+                                                            <td><img src="assets/images/property/property-2.jpg" alt="Image Bien 2" class="img-thumbnail-small"></td>
+                                                            <td>45 Avenue des Cocotiers, Porto-Novo</td>
+                                                            <td><span class="badge bg-success">Libre</span></td>
+                                                            <td>250 000 FCFA</td>
+                                                            <td><span class="badge bg-info">En attente</span></td>
+                                                            <td>
+                                                                 <button type="button" class="btn btn-sm btn-info me-1" data-bs-toggle="modal" data-bs-target="#modalDetailsBien" onclick="loadBienDetails(2)">
+                                                                      <i class="ri-eye-line" title="Détails"></i>
+                                                                 </button>
+                                                                 <button type="button" class="btn btn-sm btn-warning me-1" data-bs-toggle="modal" data-bs-target="#modalAjoutModifBien" onclick="prepareEditModal(2)">
+                                                                      <i class="ri-pencil-line" title="Modifier"></i>
+                                                                 </button>
+                                                                 <button type="button" class="btn btn-sm btn-danger" onclick="confirmDeleteBien(2)">
+                                                                      <i class="ri-delete-bin-line" title="Supprimer"></i>
+                                                                 </button>
+                                                            </td>
+                                                       </tr>
+                                                       <!-- Sample Row 3 (Free, Suspended) -->
+                                                        <tr>
+                                                            <td><img src="assets/images/property/property-3.jpg" alt="Image Bien 3" class="img-thumbnail-small"></td>
+                                                            <td>789 Boulevard du Port, Ouidah</td>
+                                                            <td><span class="badge bg-success">Libre</span></td>
+                                                            <td>180 000 FCFA</td>
+                                                            <td><span class="badge bg-danger">Suspendu</span></td>
+                                                            <td>
+                                                                 <button type="button" class="btn btn-sm btn-info me-1" data-bs-toggle="modal" data-bs-target="#modalDetailsBien" onclick="loadBienDetails(3)">
+                                                                      <i class="ri-eye-line" title="Détails"></i>
+                                                                 </button>
+                                                                 <button type="button" class="btn btn-sm btn-warning me-1" data-bs-toggle="modal" data-bs-target="#modalAjoutModifBien" onclick="prepareEditModal(3)">
+                                                                      <i class="ri-pencil-line" title="Modifier"></i>
+                                                                 </button>
+                                                                 <button type="button" class="btn btn-sm btn-danger" onclick="confirmDeleteBien(3)">
+                                                                      <i class="ri-delete-bin-line" title="Supprimer"></i>
+                                                                 </button>
+                                                            </td>
+                                                        </tr>
+                                                       <!-- Add more rows dynamically via JavaScript -->
+                                                       <!-- Placeholder if no data -->
+                                                       <!--
+                                                       <tr>
+                                                            <td colspan="6" class="text-center">Aucun bien immobilier trouvé.</td>
+                                                       </tr>
+                                                       -->
+                                                  </tbody>
+                                             </table>
+                                        </div> <!-- end table-responsive -->
+                                   </div> <!-- end card-body -->
+                              </div> <!-- end card -->
+                         </div> <!-- end col -->
+                    </div> <!-- End row -->
+                    <!-- ========== Main Content End ========== -->
+
+               </div>
+               <!-- End Container Fluid -->
+
+               <!-- ========== Footer Start ========== -->
+               <!-- PASTE YOUR EXISTING FOOTER HTML HERE -->
+               <!-- Example Placeholder -->
+               <footer class="footer">
+                   <div class="container-fluid">
+                       <div class="row">
+                           <div class="col-12 text-center">
+                               <script>document.write(new Date().getFullYear())</script> © Gestion Locative Notariale. <!-- Update Footer Text -->
+                           </div>
+                       </div>
+                   </div>
+               </footer>
+               <!-- ========== Footer End ========== -->
+
+          </div>
+          <!-- ==================================================== -->
+          <!-- End Page Content -->
+          <!-- ==================================================== -->
+
+     </div>
+     <!-- END Wrapper -->
+
+     <!-- START MODALS -->
+
+     <!-- Modal: Add / Edit Property -->
+     <div class="modal fade" id="modalAjoutModifBien" tabindex="-1" aria-labelledby="modalAjoutModifBienLabel" aria-hidden="true">
+         <div class="modal-dialog modal-lg modal-dialog-centered">
+             <div class="modal-content">
+                 <div class="modal-header">
+                     <h5 class="modal-title" id="modalAjoutModifBienLabel">Ajouter/Modifier un Bien Immobilier</h5>
+                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                 </div>
+                 <div class="modal-body">
+                     <!-- IMPORTANT: action will point to your backend script -->
+                     <form id="formBien" action="backend/traitement_bien.php" method="POST" enctype="multipart/form-data">
+                         <!-- Hidden field for Bien ID (for editing) -->
+                         <input type="hidden" id="idBien" name="idBien" value="">
+
+                         <div class="row">
+                             <div class="col-md-12 mb-3">
+                                 <label for="adresseBien" class="form-label">Adresse Complète <span class="text-danger">*</span></label>
+                                 <textarea class="form-control" id="adresseBien" name="adresse" rows="3" placeholder="Ex: Lot 100, Quartier Agla, Cotonou" required></textarea>
+                             </div>
+                         </div>
+                         <div class="row">
+                             <div class="col-md-6 mb-3">
+                                 <label for="loyerMensuelBien" class="form-label">Loyer Mensuel (FCFA) <span class="text-danger">*</span></label>
+                                 <input type="number" class="form-control" id="loyerMensuelBien" name="loyerMensuel" placeholder="Ex: 150000" required min="0">
+                             </div>
+                             <div class="col-md-6 mb-3">
+                                <label for="imageProfilBien" class="form-label">Image Principale</label>
+                                <input class="form-control" type="file" id="imageProfilBien" name="image_profil" accept="image/png, image/jpeg, image/gif" onchange="previewMainImage(event)">
+                                <div class="mt-2">
+                                     <img id="previewImageProfil" src="#" alt="Aperçu Image Principale" class="preview-image" style="display: none;" />
+                                </div>
+                            </div>
+                         </div>
+                         <div class="row">
+                             <div class="col-md-12 mb-3">
+                                <label for="imagesDescriptionBien" class="form-label">Images Secondaires (Optionnel, max 5)</label>
+                                <input class="form-control" type="file" id="imagesDescriptionBien" name="images_description[]" accept="image/png, image/jpeg, image/gif" multiple onchange="previewSecondaryImages(event)">
+                                <div class="mt-2" id="previewImagesDescriptionContainer">
+                                    <!-- Previews will be added here by JS -->
+                                </div>
+                                <div class="form-text">Sélectionnez jusqu'à 5 images supplémentaires.</div>
+                            </div>
+                         </div>
+
+                         <!-- Note: Status 'Libre'/'Occupé' is usually managed automatically -->
+                         <!-- Note: Supervision Status 'En attente'/'Validé'/'Suspendu' is managed by Admin/Notaire -->
+
+                     </form>
+                 </div>
+                 <div class="modal-footer">
+                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
+                     <!-- The submit button is outside the form but linked with the 'form' attribute -->
+                     <button type="submit" form="formBien" class="btn btn-primary" id="btnSubmitBien">Enregistrer</button>
+                 </div>
+             </div>
+         </div>
+     </div>
+     <!-- End Modal: Add / Edit Property -->
+
+     <!-- Modal: Property Details -->
+     <div class="modal fade" id="modalDetailsBien" tabindex="-1" aria-labelledby="modalDetailsBienLabel" aria-hidden="true">
+         <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
+             <div class="modal-content">
+                 <div class="modal-header">
+                     <h5 class="modal-title" id="modalDetailsBienLabel">Détails du Bien Immobilier</h5>
+                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                 </div>
+                 <div class="modal-body" id="detailsBienContenu">
+                     <!-- Content will be loaded dynamically by JavaScript -->
+                     <p class="text-center">Chargement des détails...</p>
+
+                     <!-- Example Structure (to be filled by JS) -->
+                     <!--
+                     <div class="row mb-3">
+                         <div class="col-md-4"><strong>Adresse:</strong></div>
+                         <div class="col-md-8" id="detailAdresse"></div>
+                     </div>
+                     <div class="row mb-3">
+                         <div class="col-md-4"><strong>Loyer Mensuel:</strong></div>
+                         <div class="col-md-8" id="detailLoyer"></div>
+                     </div>
+                     <div class="row mb-3">
+                         <div class="col-md-4"><strong>Statut Location:</strong></div>
+                         <div class="col-md-8" id="detailStatutLocation"></div>
+                     </div>
+                      <div class="row mb-3">
+                         <div class="col-md-4"><strong>Statut Supervision:</strong></div>
+                         <div class="col-md-8" id="detailStatutSupervision"></div>
+                     </div>
+                     <hr>
+                     <h6>Images</h6>
+                     <div class="mb-3">
+                         <strong>Image Principale:</strong><br>
+                         <img id="detailImageProfil" src="..." alt="Image Principale" class="img-fluid rounded mb-2" style="max-height: 200px;">
+                     </div>
+                     <div>
+                         <strong>Images Secondaires:</strong><br>
+                         <div id="detailImagesSecondaires" class="d-flex flex-wrap">
+                             <-- Images secondaire here ->
+                         </div>
+                     </div>
+                     <hr>
+                     <h6>Informations Contrat Actuel</h6>
+                     <div id="detailContratActuel">
+                         <-- Contract info here (if occupied) ->
+                         <p>Aucun contrat actif pour ce bien.</p>
+                     </div>
+                     <hr>
+                     <h6>Historique des Locataires</h6>
+                     <ul id="detailHistoriqueLocataires">
+                         <-- Tenant history here ->
+                         <li>Aucun historique disponible.</li>
+                     </ul>
+                      -->
+                 </div>
+                 <div class="modal-footer">
+                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
+                 </div>
+             </div>
+         </div>
+     </div>
+     <!-- End Modal: Property Details -->
+
+     <!-- END MODALS -->
+
+
+     <!-- Vendor Javascript (Require in all Page) -->
+     <script src="assets/js/vendor.js"></script>
+
+     <!-- App Javascript (Require in all Page) -->
+     <script src="assets/js/app.js"></script>
+
+     <!-- Custom JS for this page -->
+     <script>
+         // --- Functions for Modals ---
+
+         function prepareAddModal() {
+             // Reset form for adding new entry
+             document.getElementById('formBien').reset(); // Reset form fields
+             document.getElementById('idBien').value = ''; // Ensure ID is empty
+             document.getElementById('modalAjoutModifBienLabel').textContent = 'Ajouter un Nouveau Bien'; // Set modal title
+             document.getElementById('btnSubmitBien').textContent = 'Enregistrer'; // Set button text
+
+             // Clear image previews
+             document.getElementById('previewImageProfil').style.display = 'none';
+             document.getElementById('previewImageProfil').src = '#';
+             document.getElementById('previewImagesDescriptionContainer').innerHTML = '';
+         }
+
+         function prepareEditModal(bienId) {
+             // TODO: Fetch bien data via AJAX using bienId
+             console.log("Fetching data for Bien ID: " + bienId);
+
+             // --- Placeholder: Fill form with sample data (replace with AJAX call) ---
+             document.getElementById('formBien').reset(); // Reset first
+             document.getElementById('idBien').value = bienId; // Set the ID for submission
+             document.getElementById('modalAjoutModifBienLabel').textContent = 'Modifier le Bien Immobilier'; // Set modal title
+             document.getElementById('btnSubmitBien').textContent = 'Mettre à jour'; // Set button text
+
+             // Example data (replace with actual data from backend)
+             if (bienId === 1) {
+                 document.getElementById('adresseBien').value = "123 Rue de l'Exemple, Cotonou";
+                 document.getElementById('loyerMensuelBien').value = 150000;
+                 // Show existing main image preview (use actual path from backend)
+                 document.getElementById('previewImageProfil').src = 'assets/images/property/property-1.jpg';
+                 document.getElementById('previewImageProfil').style.display = 'block';
+             } else if (bienId === 2) {
+                 document.getElementById('adresseBien').value = "45 Avenue des Cocotiers, Porto-Novo";
+                 document.getElementById('loyerMensuelBien').value = 250000;
+                 document.getElementById('previewImageProfil').src = 'assets/images/property/property-2.jpg';
+                 document.getElementById('previewImageProfil').style.display = 'block';
+             } else {
+                 // Handle other IDs or errors
+                 document.getElementById('previewImageProfil').style.display = 'none';
+             }
+             // Clear secondary image preview area for editing (user needs to re-upload if changing)
+             document.getElementById('previewImagesDescriptionContainer').innerHTML = '';
+             document.getElementById('imagesDescriptionBien').value = ''; // Clear file input
+
+             // --- End Placeholder ---
+         }
+
+         function loadBienDetails(bienId) {
+            const contentDiv = document.getElementById('detailsBienContenu');
+            contentDiv.innerHTML = '<p class="text-center">Chargement des détails...</p>'; // Show loading state
+
+            // TODO: Fetch detailed data via AJAX using bienId
+            console.log("Loading details for Bien ID: " + bienId);
+
+             // --- Placeholder: Simulate fetching data (replace with AJAX call) ---
+            setTimeout(() => {
+                // Example data based on ID (replace with actual data)
+                let detailsHtml = '';
+                if (bienId === 1) {
+                    detailsHtml = `
+                        <div class="row mb-3"><div class="col-md-4"><strong>Adresse:</strong></div><div class="col-md-8">123 Rue de l'Exemple, Cotonou</div></div>
+                        <div class="row mb-3"><div class="col-md-4"><strong>Loyer Mensuel:</strong></div><div class="col-md-8">150 000 FCFA</div></div>
+                        <div class="row mb-3"><div class="col-md-4"><strong>Statut Location:</strong></div><div class="col-md-8"><span class="badge bg-warning">Occupé</span></div></div>
+                        <div class="row mb-3"><div class="col-md-4"><strong>Statut Supervision:</strong></div><div class="col-md-8"><span class="badge bg-success">Validé</span></div></div>
+                        <hr>
+                        <h6>Images</h6>
+                        <div class="mb-3"><strong>Image Principale:</strong><br><img src="assets/images/property/property-1.jpg" alt="Image Principale" class="img-fluid rounded mb-2" style="max-height: 200px;"></div>
+                        <div><strong>Images Secondaires:</strong><br><div class="d-flex flex-wrap">(Aucune image secondaire)</div></div>
+                        <hr>
+                        <h6>Informations Contrat Actuel</h6><div><p>Locataire: M. Jean Dupont<br>Début: 01/01/2024<br>Fin: 31/12/2024</p></div>
+                        <hr>
+                        <h6>Historique des Locataires</h6><ul><li>Mme. Alice Martin (2023)</li></ul>`;
+                } else if (bienId === 2) {
+                     detailsHtml = `
+                        <div class="row mb-3"><div class="col-md-4"><strong>Adresse:</strong></div><div class="col-md-8">45 Avenue des Cocotiers, Porto-Novo</div></div>
+                        <div class="row mb-3"><div class="col-md-4"><strong>Loyer Mensuel:</strong></div><div class="col-md-8">250 000 FCFA</div></div>
+                        <div class="row mb-3"><div class="col-md-4"><strong>Statut Location:</strong></div><div class="col-md-8"><span class="badge bg-success">Libre</span></div></div>
+                         <div class="row mb-3"><div class="col-md-4"><strong>Statut Supervision:</strong></div><div class="col-md-8"><span class="badge bg-info">En attente</span></div></div>
+                        <hr>
+                        <h6>Images</h6>
+                        <div class="mb-3"><strong>Image Principale:</strong><br><img src="assets/images/property/property-2.jpg" alt="Image Principale" class="img-fluid rounded mb-2" style="max-height: 200px;"></div>
+                        <div><strong>Images Secondaires:</strong><br>
+                            <div class="d-flex flex-wrap">
+                                <img src="assets/images/property/property-4.jpg" alt="Image Secondaire 1" class="preview-image">
+                                <img src="assets/images/property/property-5.jpg" alt="Image Secondaire 2" class="preview-image">
+                            </div>
+                        </div>
+                        <hr>
+                        <h6>Informations Contrat Actuel</h6><div><p>Aucun contrat actif pour ce bien.</p></div>
+                        <hr>
+                        <h6>Historique des Locataires</h6><ul><li>Aucun historique disponible.</li></ul>`;
+                } else {
+                     detailsHtml = '<p class="text-danger">Impossible de charger les détails pour ce bien.</p>';
+                }
+                contentDiv.innerHTML = detailsHtml; // Display fetched details
+            }, 500); // Simulate network delay
+             // --- End Placeholder ---
+         }
+
+         function confirmDeleteBien(bienId) {
+             // Use a confirmation dialog (e.g., SweetAlert or native confirm)
+             if (confirm(`Êtes-vous sûr de vouloir supprimer le bien ID ${bienId} ? Cette action est irréversible.`)) {
+                 // TODO: Send AJAX request to backend to delete the property
+                 console.log("Deleting Bien ID: " + bienId);
+                 // On success: remove row from table, show success message
+                 // On failure: show error message
+                 alert("Fonctionnalité de suppression à implémenter !"); // Placeholder
+             }
+         }
+
+         // --- Image Preview Functions ---
+         function previewMainImage(event) {
+             const reader = new FileReader();
+             reader.onload = function(){
+                 const output = document.getElementById('previewImageProfil');
+                 output.src = reader.result;
+                 output.style.display = 'block'; // Make it visible
+             };
+             if (event.target.files[0]) {
+                 reader.readAsDataURL(event.target.files[0]);
+             } else {
+                 // Hide preview if no file selected or selection cancelled
+                 document.getElementById('previewImageProfil').style.display = 'none';
+                 document.getElementById('previewImageProfil').src = '#';
+             }
+         }
+
+        function previewSecondaryImages(event) {
+            const previewContainer = document.getElementById('previewImagesDescriptionContainer');
+            previewContainer.innerHTML = ''; // Clear previous previews
+            const files = event.target.files;
+
+            // Limit to 5 files
+            const filesToPreview = Array.from(files).slice(0, 5);
+
+            if (files.length > 5) {
+                alert("Vous ne pouvez sélectionner que 5 images secondaires au maximum.");
+                 // Optionally clear the input or reset to first 5:
+                 // event.target.files = new FileList(filesToPreview); // This doesn't work directly for security reasons.
+                 // Best approach is just user feedback and backend validation.
+            }
+
+
+            for (const file of filesToPreview) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    const img = document.createElement('img');
+                    img.src = e.target.result;
+                    img.classList.add('preview-image');
+                    img.alt = "Aperçu";
+                    previewContainer.appendChild(img);
+                }
+                reader.readAsDataURL(file);
+            }
+        }
+
+         // --- Form Submission Handling (Example using Fetch API) ---
+         const formBien = document.getElementById('formBien');
+         if(formBien) {
+            formBien.addEventListener('submit', function(event) {
+                event.preventDefault(); // Prevent default form submission
+
+                const formData = new FormData(formBien);
+                const submitButton = document.getElementById('btnSubmitBien');
+                const originalButtonText = submitButton.innerHTML;
+                submitButton.disabled = true;
+                submitButton.innerHTML = '<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Enregistrement...';
+
+
+                // TODO: Replace 'backend/traitement_bien.php' with your actual backend endpoint
+                fetch('backend/traitement_bien.php', {
+                    method: 'POST',
+                    body: formData
+                })
+                .then(response => response.json()) // Assuming backend returns JSON
+                .then(data => {
+                    console.log('Success:', data);
+                    // TODO: Handle success (e.g., close modal, refresh table, show success message)
+                    alert('Bien enregistré avec succès ! (Implémenter la suite)'); // Placeholder
+                    bootstrap.Modal.getInstance(document.getElementById('modalAjoutModifBien')).hide(); // Close modal
+                    // You would typically reload the table data here
+                })
+                .catch((error) => {
+                    console.error('Error:', error);
+                    // TODO: Handle error (e.g., show error message in modal)
+                     alert('Erreur lors de l\'enregistrement. Vérifiez la console.'); // Placeholder
+                })
+                .finally(() => {
+                    // Re-enable button and restore text
+                    submitButton.disabled = false;
+                    submitButton.innerHTML = originalButtonText;
+                });
+            });
+         }
+
+         // --- Load initial table data on page load (Example) ---
+        // document.addEventListener('DOMContentLoaded', function() {
+        //     // TODO: Fetch initial property list via AJAX and populate the table body
+        //     console.log("Page loaded. TODO: Load property table data.");
+        // });
+
+     </script>
+
+
+     <!-- Iconify Icons (Import only if needed and not included in vendor.js) -->
+     <!-- <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script> -->
+
+</body>
+
+
+<!-- Mirrored from techzaa.in/lahomes/admin/proprietaire-mes-biens.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 08 Apr 2025 XX:XX:XX GMT -->
+</html>

@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="fr"> <!-- Langue en Français -->
+
+<!-- Mirrored from techzaa.in/lahomes/admin/locataire-notifications.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 08 Apr 2025 XX:XX:XX GMT -->
+<head>
+    <!-- Title Meta -->
+    <meta charset="utf-8" />
+    <!-- Titre mis à jour -->
+    <title>Notifications | Gestion Locative Notariale</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Centre de notifications pour les locataires." />
+    <meta name="author" content="Votre Nom/Entreprise" /> <!-- Mettre à jour -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+    <!-- App favicon -->
+    <link rel="shortcut icon" href="assets/images/favicon.ico">
+
+    <!-- Vendor css (Require in all Page) -->
+    <link href="assets/css/vendor.min.css" rel="stylesheet" type="text/css" />
+
+    <!-- Icons css (Require in all Page) -->
+    <link href="assets/css/icons.min.css" rel="stylesheet" type="text/css" />
+
+    <!-- App css (Require in all Page) -->
+    <link href="assets/css/app.min.css" rel="stylesheet" type="text/css" />
+
+    <!-- Theme Config js (Require in all Page) -->
+    <script src="assets/js/config.min.js"></script>
+
+     <!-- Custom CSS for this page (Copied from Propriétaire's version) -->
+     <style>
+          .list-group-item { cursor: pointer; transition: background-color 0.2s ease-in-out; }
+          .list-group-item:hover { background-color: #f8f9fa; }
+          .notification-unread { background-color: #eef2f7; font-weight: 500; }
+          .notification-unread .notification-content { color: #343a40; }
+          .notification-icon { width: 32px; height: 32px; font-size: 1.1rem; }
+          .notification-time { font-size: 0.8rem; color: #6c757d; }
+          #notificationList .loading-placeholder td,
+          #notificationList .no-results-placeholder { text-align: center; font-style: italic; color: #6c757d; padding: 1.5rem; }
+          #notificationList .list-group-item.d-none { display: none !important; }
+           .form-select-sm, .btn-sm { font-size: 0.875rem; padding: .25rem .5rem; height: calc(1.5em + .5rem + 2px); } /* Small filters */
+     </style>
+</head>
+
+<body>
+
+    <!-- START Wrapper -->
+    <div class="wrapper">
+
+        <!-- ========== Topbar Start ========== -->
+        <!-- COLLER VOTRE CODE TOPBAR EXISTANT ICI -->
+         <header class="">
+               <div class="topbar">
+                    <div class="container-fluid">
+                         <div class="navbar-header">
+                              <div class="d-flex align-items-center gap-2">
+                                   <div class="topbar-item"><button type="button" class="button-toggle-menu topbar-button"><i class="ri-menu-2-line fs-24"></i></button></div>
+                                   <form class="app-search d-none d-md-block me-auto"><div class="position-relative"><input type="search" class="form-control border-0" placeholder="Rechercher..." autocomplete="off" value=""><i class="ri-search-line search-widget-icon"></i></div></form>
+                              </div>
+                              <div class="d-flex align-items-center gap-1">
+                                   <div class="topbar-item"><button type="button" class="topbar-button" id="light-dark-mode"><i class="ri-moon-line fs-24 light-mode"></i><i class="ri-sun-line fs-24 dark-mode"></i></button></div>
+                                   <div class="dropdown topbar-item d-none d-lg-flex"><button type="button" class="topbar-button" data-toggle="fullscreen"><i class="ri-fullscreen-line fs-24 fullscreen"></i><i class="ri-fullscreen-exit-line fs-24 quit-fullscreen"></i></button></div>
+                                   <!-- Notifications Dropdown -->
+                                   <div class="dropdown topbar-item">
+                                        <button type="button" class="topbar-button position-relative" id="page-header-notifications-dropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="ri-notification-3-line fs-24"></i><span id="topbarUnreadCount" class="position-absolute topbar-badge fs-10 translate-middle badge bg-danger rounded-pill">0<span class="visually-hidden">notifications non lues</span></span></button>
+                                        <div class="dropdown-menu py-0 dropdown-lg dropdown-menu-end" aria-labelledby="page-header-notifications-dropdown">
+                                             <div class="p-3 border-top-0 border-start-0 border-end-0 border-dashed border"><div class="row align-items-center"><div class="col"><h6 class="m-0 fs-16 fw-semibold"> Notifications</h6></div><div class="col-auto"><a href="javascript: void(0);" class="text-dark text-decoration-underline" onclick="markAllAsRead()"> <small>Marquer tout comme lu</small></a></div></div></div>
+                                             <div data-simplebar style="max-height: 280px;" id="topbarNotificationList"><!-- Aperçu --></div>
+                                             <div class="text-center py-3"><a href="locataire-notifications.html" class="btn btn-primary btn-sm">Voir toutes les notifications <i class="ri-arrow-right-line ms-1"></i></a></div>
+                                        </div>
+                                   </div>
+                                   <!-- Theme Settings -->
+                                   <div class="topbar-item d-none d-md-flex"><button type="button" class="topbar-button" id="theme-settings-btn" data-bs-toggle="offcanvas" data-bs-target="#theme-settings-offcanvas" aria-controls="theme-settings-offcanvas"><i class="ri-settings-4-line fs-24"></i></button></div>
+                                   <!-- User Menu Locataire -->
+                                   <div class="dropdown topbar-item">
+                                        <a type="button" class="topbar-button" id="page-header-user-dropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span class="d-flex align-items-center"><img class="rounded-circle" width="32" src="assets/images/users/avatar-placeholder.png" alt="avatar-locataire"></span></a>
+                                        <div class="dropdown-menu dropdown-menu-end">
+                                             <h6 class="dropdown-header" id="userDropdownHeader">Bienvenue !</h6>
+                                              <a class="dropdown-item" href="locataire-profil.html"><i class="ri-user-line align-middle me-1"></i> <span class="align-middle">Mon Profil</span></a>
+                                             <a class="dropdown-item active" href="locataire-notifications.html"><i class="ri-notification-3-line align-middle me-1"></i> <span class="align-middle">Notifications</span></a>
+                                             <div class="dropdown-divider my-1"></div>
+                                             <a class="dropdown-item text-danger" href="auth-signin.html"><i class="ri-logout-box-line align-middle me-1"></i> <span class="align-middle">Déconnexion</span></a>
+                                        </div>
+                                   </div>
+                              </div>
+                         </div>
+                    </div>
+               </div>
+          </header>
+        <!-- ========== Topbar End ========== -->
+
+        <!-- ========== Right Sidebar (Theme Settings) Start ========== -->
+        <!-- COLLER VOTRE CODE RIGHT SIDEBAR EXISTANT ICI -->
+         <div>
+               <div class="offcanvas offcanvas-end border-0 rounded-start-4 overflow-hidden" tabindex="-1" id="theme-settings-offcanvas">
+                   <div class="d-flex align-items-center bg-primary p-3 offcanvas-header"><h5 class="text-white m-0">Theme Settings</h5><button type="button" class="btn-close btn-close-white ms-auto" data-bs-dismiss="offcanvas" aria-label="Close"></button></div><div class="offcanvas-body p-0"><div data-simplebar class="h-100"><div class="p-3 settings-bar"><!-- Settings --></div></div></div><div class="offcanvas-footer border-top p-3 text-center"><div class="row"><div class="col"><button type="button" class="btn btn-danger w-100" id="reset-layout">Reset</button></div></div></div>
+               </div>
+          </div>
+        <!-- ========== Right Sidebar (Theme Settings) End ========== -->
+
+
+        <!-- ========== App Menu Start ========== -->
+        <!-- Adapter le menu pour le locataire -->
+         <div class="main-nav">
+               <div class="logo-box"> <!-- Logo -->
+                    <a href="locataire-dashboard.html" class="logo-dark"><img src="assets/images/logo-sm.png" class="logo-sm" alt="logo sm"><img src="assets/images/logo-dark.png" class="logo-lg" alt="logo dark"></a>
+                    <a href="locataire-dashboard.html" class="logo-light"><img src="assets/images/logo-sm.png" class="logo-sm" alt="logo sm"><img src="assets/images/logo-light.png" class="logo-lg" alt="logo light"></a>
+               </div>
+               <button type="button" class="button-sm-hover" aria-label="Show Full Sidebar"><i class="ri-menu-2-line fs-24 button-sm-hover-icon"></i></button>
+               <div class="scrollbar" data-simplebar>
+                    <ul class="navbar-nav" id="navbar-nav">
+                         <li class="menu-title">Menu Locataire</li>
+                         <li class="nav-item"><a class="nav-link" href="locataire-dashboard.html"><span class="nav-icon"><i class="ri-dashboard-line"></i></span><span class="nav-text">Tableau de Bord</span></a></li>
+                         <li class="nav-item"><a class="nav-link" href="locataire-contrat.html"><span class="nav-icon"><i class="ri-file-text-line"></i></span><span class="nav-text">Mon Contrat</span></a></li>
+                         <li class="nav-item"><a class="nav-link" href="locataire-paiements.html"><span class="nav-icon"><i class="ri-secure-payment-line"></i></span><span class="nav-text">Paiements & Quittances</span></a></li>
+                         <li class="nav-item"><a class="nav-link" href="locataire-maintenance.html"><span class="nav-icon"><i class="ri-tools-line"></i></span><span class="nav-text">Maintenance</span></a></li>
+                         <li class="nav-item">
+                              <!-- Lien Actif -->
+                              <a class="nav-link active" href="locataire-notifications.html"><span class="nav-icon"><i class="ri-notification-3-line"></i></span><span class="nav-text">Notifications</span><span class="badge bg-danger badge-pill text-end" id="sidebarUnreadCount" style="display: none;"></span></a>
+                         </li>
+                    </ul>
+               </div>
+          </div>
+        <!-- ========== App Menu End ========== -->
+
+        <!-- ==================================================== -->
+        <!-- Start right Content here -->
+        <!-- ==================================================== -->
+        <div class="page-content">
+
+            <!-- Start Container Fluid -->
+            <div class="container-fluid">
+
+                <!-- ========== Page Title Start ========== -->
+                <div class="row">
+                    <div class="col-12">
+                        <div class="page-title-box">
+                            <h4 class="mb-0 fw-semibold">Centre de Notifications</h4>
+                            <ol class="breadcrumb mb-0">
+                                <li class="breadcrumb-item"><a href="locataire-dashboard.html">Espace Locataire</a></li>
+                                <li class="breadcrumb-item active">Notifications</li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+                <!-- ========== Page Title End ========== -->
+
+                 <!-- ========== Filtres Notifications Start ========== -->
+                 <div class="row mb-3">
+                     <div class="col-12">
+                         <div class="card">
+                             <div class="card-body pb-2">
+                                 <form id="filterNotificationsForm" class="row gy-2 gx-2 align-items-center">
+                                     <div class="col-md-4 col-lg-3">
+                                         <label for="filterNotifStatus" class="form-label visually-hidden">Filtrer par Statut</label>
+                                         <select class="form-select form-select-sm" id="filterNotifStatus" name="statutNotif">
+                                             <option value="">Toutes</option>
+                                             <option value="Non Lu">Non Lues</option>
+                                             <option value="Lu">Lues</option>
+                                         </select>
+                                     </div>
+                                      <div class="col-md-4 col-lg-3">
+                                         <label for="filterNotifType" class="form-label visually-hidden">Filtrer par Type</label>
+                                         <select class="form-select form-select-sm" id="filterNotifType" name="typeNotif">
+                                             <option value="">Tous Types</option>
+                                             <option value="paiement">Paiement/Rappel</option>
+                                             <option value="contrat">Contrat</option>
+                                             <option value="maintenance">Maintenance</option>
+                                             <option value="message">Message</option>
+                                             <option value="systeme">Système</option>
+                                         </select>
+                                     </div>
+                                     <div class="col-auto">
+                                         <button type="submit" class="btn btn-primary btn-sm"><i class="ri-filter-3-line me-1"></i>Filtrer</button>
+                                         <button type="reset" class="btn btn-secondary btn-sm ms-1" id="resetNotificationFilters"><i class="ri-refresh-line me-1"></i>Reset</button>
+                                     </div>
+                                 </form>
+                             </div>
+                         </div>
+                     </div>
+                 </div>
+                  <!-- ========== Filtres Notifications End ========== -->
+
+                <!-- ========== Liste des Notifications Start ========== -->
+                <div class="row">
+                     <div class="col-12">
+                          <div class="card">
+                               <div class="card-header d-flex justify-content-between align-items-center">
+                                    <h5 class="card-title mb-0">Historique des Notifications</h5>
+                                    <button type="button" class="btn btn-light btn-sm" id="markAllReadBtn" onclick="markAllAsRead()">
+                                        <i class="ri-mail-open-line me-1"></i> Marquer tout comme lu
+                                    </button>
+                               </div>
+                               <div class="card-body p-0">
+                                    <div class="list-group list-group-flush" id="notificationList">
+                                        <!-- Placeholder de chargement -->
+                                        <div class="list-group-item loading-placeholder">
+                                            <div class="d-flex justify-content-center align-items-center py-4">
+                                                <span class="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span>
+                                                Chargement des notifications...
+                                            </div>
+                                        </div>
+                                        <!-- Placeholder aucun résultat -->
+                                        <div class="list-group-item no-results-placeholder d-none">
+                                            Aucune notification trouvée pour les critères sélectionnés.
+                                        </div>
+                                        <!-- Les notifications seront ajoutées ici par JS -->
+                                    </div>
+                               </div><!-- end card-body -->
+
+                               <!-- Pied de carte pour la pagination -->
+                               <div class="card-footer bg-white border-top d-flex justify-content-end">
+                                    <nav aria-label="Pagination Notifications">
+                                      <ul id="paginationControls" class="pagination pagination-sm mb-0">
+                                        <!-- Contrôles de pagination générés par JS -->
+                                      </ul>
+                                    </nav>
+                               </div> <!-- end card-footer -->
+                          </div> <!-- end card -->
+                     </div> <!-- end col -->
+                </div> <!-- End row -->
+                <!-- ========== Liste des Notifications End ========== -->
+
+            </div>
+            <!-- End Container Fluid -->
+
+            <!-- ========== Footer Start ========== -->
+            <!-- COLLER VOTRE CODE FOOTER EXISTANT ICI -->
+              <footer class="footer">
+                   <div class="container-fluid">
+                       <div class="row">
+                           <div class="col-12 text-center">
+                               <script>document.write(new Date().getFullYear())</script> © Gestion Locative Notariale.
+                           </div>
+                       </div>
+                   </div>
+               </footer>
+            <!-- ========== Footer End ========== -->
+
+        </div>
+        <!-- ==================================================== -->
+        <!-- End Page Content -->
+        <!-- ==================================================== -->
+
+    </div>
+    <!-- END Wrapper -->
+
+    <!-- Vendor Javascript (Require in all Page) -->
+    <script src="assets/js/vendor.js"></script>
+
+    <!-- App Javascript (Require in all Page) -->
+    <script src="assets/js/app.js"></script>
+
+     <!-- Custom JS for this page (Similaire à la version Propriétaire) -->
+     <script>
+          // Mettre les fonctions dans un scope global pour être appelables depuis onclick
+          window.markAsRead = function(notificationId, element) {
+              if (!element.classList.contains('notification-unread')) return;
+              console.log(`Marking tenant notification ${notificationId} as read.`);
+
+              // TODO: Remplacer par appel AJAX vers backend/mark_locataire_notification_read.php?id=${notificationId}
+              fetch(`backend/mark_locataire_notification_read.php?id=${notificationId}`, { method: 'POST' })
+                  .then(response => response.ok ? response.json() : Promise.reject('Network response was not ok.'))
+                  .then(data => {
+                      if (data.success) {
+                          element.classList.remove('notification-unread');
+                          console.log(`Notification ${notificationId} marked as read visually.`);
+                          updateUnreadCount(); // Mettre à jour le compteur
+                      } else { throw new Error(data.message || "Failed backend update."); }
+                  })
+                  .catch(error => {
+                       console.error('Error marking notification as read:', error);
+                       alert("Erreur lors de la mise à jour du statut.");
+                  });
+          }
+
+          window.markAllAsRead = function() {
+              console.log("Marking all tenant notifications as read.");
+              const unreadItems = document.querySelectorAll('#notificationList .notification-unread');
+              if (unreadItems.length === 0) { alert("Toutes les notifications sont déjà lues."); return; }
+
+              // TODO: Remplacer par appel AJAX vers backend/mark_all_locataire_notifications_read.php
+               fetch(`backend/mark_all_locataire_notifications_read.php`, { method: 'POST' })
+                  .then(response => response.ok ? response.json() : Promise.reject('Network response was not ok.'))
+                  .then(data => {
+                      if (data.success) {
+                            unreadItems.forEach(item => item.classList.remove('notification-unread'));
+                            console.log("All notifications marked as read visually.");
+                             updateUnreadCount(); // Mettre à jour le compteur
+                             alert("Toutes les notifications ont été marquées comme lues.");
+                      } else { throw new Error(data.message || "Failed backend update."); }
+                  })
+                  .catch(error => {
+                       console.error('Error marking all notifications as read:', error);
+                       alert("Erreur lors de la mise à jour globale.");
+                  });
+          }
+
+         document.addEventListener('DOMContentLoaded', function() {
+             const filterForm = document.getElementById('filterNotificationsForm');
+             const notificationListDiv = document.getElementById('notificationList');
+             const paginationControls = document.getElementById('paginationControls');
+             const loadingPlaceholder = notificationListDiv.querySelector('.loading-placeholder');
+             const noResultsPlaceholder = notificationListDiv.querySelector('.no-results-placeholder');
+             const resetFiltersBtn = document.getElementById('resetNotificationFilters');
+             const topbarUnreadCount = document.getElementById('topbarUnreadCount');
+             const sidebarUnreadCount = document.getElementById('sidebarUnreadCount'); // Pour le badge sidebar
+
+             // --- Fonction pour charger les notifications ---
+             function loadNotifications(page = 1, filters = {}) {
+                 loadingPlaceholder.classList.remove('d-none');
+                 noResultsPlaceholder.classList.add('d-none');
+                 notificationListDiv.querySelectorAll('.list-group-item:not(.loading-placeholder):not(.no-results-placeholder)').forEach(item => item.remove());
+
+                 const params = new URLSearchParams(filters);
+                 params.append('page', page);
+                 // TODO: Remplacer par votre endpoint réel pour locataire
+                 const url = `backend/get_locataire_notifications.php?${params.toString()}`;
+                 console.log("Fetching tenant notifications from:", url);
+
+                 // TODO: Remplacer ce setTimeout par un vrai appel fetch()
+                 setTimeout(() => {
+                     // --- Simulation Réponse Backend ---
+                      const response = {
+                          success: true,
+                          data: [ // Tableau de notifications (les plus récentes en premier)
+                               { idNotif: 605, dateNotif: '2024-08-02 09:00:00', contenu: "Rappel : Votre loyer pour Août 2024 est dû prochainement.", statutNotif: 'Non Lu', typeNotif: 'rappel' },
+                               { idNotif: 604, dateNotif: '2024-07-28 16:30:00', contenu: "Votre demande de maintenance pour la fuite d'évier a été marquée comme 'Prise en charge'.", statutNotif: 'Non Lu', typeNotif: 'maintenance' },
+                               { idNotif: 603, dateNotif: '2024-07-25 10:20:00', contenu: "Votre demande de maintenance concernant la fuite d'évier a bien été reçue.", statutNotif: 'Lu', typeNotif: 'maintenance' },
+                               { idNotif: 602, dateNotif: '2024-07-05 11:00:00', contenu: "Votre paiement de 150 000 FCFA pour Juillet 2024 a été validé. Votre quittance est disponible.", statutNotif: 'Lu', typeNotif: 'paiement' },
+                               { idNotif: 601, dateNotif: '2024-06-30 08:00:00', contenu: "Information : Une maintenance générale de l'immeuble est prévue le 15 Juillet.", statutNotif: 'Lu', typeNotif: 'systeme' },
+                          ],
+                          pagination: { currentPage: page, totalPages: 1, totalItems: 5, unreadCount: 2 }
+                      };
+                     // --- Fin Simulation ---
+
+                     loadingPlaceholder.classList.add('d-none');
+
+                     if (response.success && response.data.length > 0) {
+                         response.data.forEach(notif => {
+                             const item = document.createElement('a');
+                             item.href = "javascript:void(0);"; // Pour l'effet curseur
+                             item.classList.add('list-group-item', 'list-group-item-action');
+                             item.setAttribute('data-notification-id', notif.idNotif);
+                             item.onclick = function() { markAsRead(notif.idNotif, this); };
+
+                             if (notif.statutNotif !== 'Lu') { item.classList.add('notification-unread'); }
+
+                              // Icônes/Couleurs adaptées au locataire
+                             let iconClass = 'ri-information-line'; let iconColor = 'text-secondary'; let bgColor='bg-light';
+                             switch (notif.typeNotif ? notif.typeNotif.toLowerCase() : 'systeme') {
+                                 case 'paiement': case 'rappel': iconClass = 'ri-money-dollar-circle-line'; iconColor = 'text-success'; bgColor='bg-success-subtle'; break;
+                                 case 'contrat': iconClass = 'ri-file-text-line'; iconColor = 'text-info'; bgColor='bg-info-subtle'; break;
+                                 case 'maintenance': iconClass = 'ri-tools-line'; iconColor = 'text-primary'; bgColor='bg-primary-subtle'; break;
+                                 case 'message': iconClass = 'ri-message-2-line'; iconColor = 'text-warning'; bgColor='bg-warning-subtle'; break;
+                                 default: iconClass = 'ri-notification-3-line'; iconColor = 'text-muted'; bgColor='bg-light'; break;
+                             }
+
+                             const dateObj = new Date(notif.dateNotif);
+                             const formattedDate = dateObj.toLocaleString('fr-FR', { day: '2-digit', month: 'short', year: 'numeric', hour: '2-digit', minute: '2-digit' });
+
+                             item.innerHTML = `
+                                 <div class="d-flex align-items-start">
+                                     <div class="flex-shrink-0 me-3">
+                                          <div class="avatar-sm rounded-circle ${bgColor} d-flex align-items-center justify-content-center notification-icon">
+                                              <i class="${iconClass} ${iconColor}"></i>
+                                          </div>
+                                     </div>
+                                     <div class="flex-grow-1">
+                                         <div class="notification-content">
+                                             ${notif.contenu}
+                                         </div>
+                                         <small class="notification-time text-muted">${formattedDate}</small>
+                                     </div>
+                                 </div>`;
+                             notificationListDiv.appendChild(item);
+                         });
+                         updateNotificationPagination(response.pagination, filters);
+                         updateUnreadCount(response.pagination.unreadCount);
+                     } else {
+                         noResultsPlaceholder.classList.remove('d-none');
+                         updateNotificationPagination({ currentPage: 1, totalPages: 1, unreadCount: 0 }, filters);
+                          updateUnreadCount(0);
+                     }
+                 }, 500); // Simuler délai
+             }
+
+             // --- Fonction pour màj compteur (globale) ---
+              window.updateUnreadCount = function(count = -1) {
+                 let finalCount = count;
+                 if (count === -1) { // Recalculer si -1
+                     finalCount = document.querySelectorAll('#notificationList .notification-unread').length;
+                     // Alternative : refaire un fetch pour le compte exact
+                 }
+
+                 if (topbarUnreadCount) {
+                      topbarUnreadCount.textContent = finalCount > 9 ? '9+' : finalCount;
+                      topbarUnreadCount.classList.toggle('d-none', finalCount === 0);
+                  }
+                  if (sidebarUnreadCount) {
+                      sidebarUnreadCount.textContent = finalCount;
+                      sidebarUnreadCount.style.display = finalCount > 0 ? 'inline-block' : 'none';
+                  }
+             }
+
+
+            // --- Fonction màj pagination ---
+             function updateNotificationPagination(paginationInfo, currentFilters) {
+                 paginationControls.innerHTML = ''; // Vider
+                 if (!paginationInfo || paginationInfo.totalPages <= 1) return;
+                  const createPageLink = (page, text, isDisabled = false, isActive = false) => { /* ... idem ... */ };
+                 // ... Logique Précédent, Pages, Suivant ...
+                 paginationControls.querySelectorAll('.page-link').forEach(link => {
+                     link.addEventListener('click', function(e) { /* ... idem ... */ });
+                 });
+             }
+
+             // --- Écouteurs d'événements ---
+             filterForm.addEventListener('submit', function(e) {
+                 e.preventDefault();
+                 const formData = new FormData(filterForm);
+                 const filters = Object.fromEntries(formData.entries());
+                 loadNotifications(1, filters);
+             });
+
+             resetFiltersBtn.addEventListener('click', function() {
+                 filterForm.reset();
+                 const filters = {};
+                 loadNotifications(1, filters);
+             });
+
+             // --- Chargement initial ---
+             loadNotifications();
+
+         }); // Fin DOMContentLoaded
+     </script>
+
+    <!-- Iconify Icons (Import only if needed) -->
+    <!-- <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script> -->
+
+</body>
+
+<!-- Mirrored from techzaa.in/lahomes/admin/locataire-notifications.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 08 Apr 2025 XX:XX:XX GMT -->
+</html>

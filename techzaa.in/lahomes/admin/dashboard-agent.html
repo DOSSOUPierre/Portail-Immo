@@ -1,0 +1,714 @@
+<!DOCTYPE html>
+<html lang="fr"> <!-- Langue en Français -->
+
+<!-- Mirrored from techzaa.in/lahomes/admin/proprietaire-dashboard.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 08 Apr 2025 XX:XX:XX GMT -->
+<!-- NOTE: Mettre à jour l'URL -->
+<head>
+    <!-- Title Meta -->
+    <meta charset="utf-8" />
+    <!-- Titre mis à jour -->
+    <title>Tableau de Bord Propriétaire | Gestion Locative Notariale</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Tableau de bord récapitulatif pour les propriétaires immobiliers." />
+    <meta name="author" content="Votre Nom/Entreprise" /> <!-- Mettre à jour -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+    <!-- App favicon -->
+    <link rel="shortcut icon" href="assets/images/favicon.ico">
+
+    <!-- Vendor css (Require in all Page) -->
+    <link href="assets/css/vendor.min.css" rel="stylesheet" type="text/css" />
+
+    <!-- Icons css (Require in all Page) -->
+    <link href="assets/css/icons.min.css" rel="stylesheet" type="text/css" />
+
+    <!-- App css (Require in all Page) -->
+    <link href="assets/css/app.min.css" rel="stylesheet" type="text/css" />
+
+    <!-- Theme Config js (Require in all Page) -->
+    <script src="assets/js/config.min.js"></script>
+
+     <!-- Custom CSS for Dashboard -->
+     <style>
+          .stat-card .avatar-md { /* Ajustement taille icône stats */
+               height: 50px;
+               width: 50px;
+          }
+           .stat-card .avatar-title {
+                font-size: 1.75rem; /* Taille icône dans le cercle */
+           }
+          .stat-card h4 { /* Taille valeur stat */
+               font-size: 1.5rem;
+               font-weight: 600;
+          }
+          .stat-card p { /* Taille label stat */
+               font-size: 0.9rem;
+               color: #6c757d;
+          }
+          .quick-link-card .btn {
+              margin-bottom: 0.5rem; /* Espace entre les boutons */
+          }
+           /* Style pour liste notifications récentes */
+           #recentNotificationsList .list-group-item {
+                padding: 0.75rem 1rem;
+                border-bottom: 1px solid #e9ecef;
+           }
+            #recentNotificationsList .list-group-item:last-child {
+                 border-bottom: none;
+            }
+            #recentNotificationsList .notification-icon-sm {
+                width: 28px;
+                height: 28px;
+                font-size: 1rem;
+            }
+            #recentNotificationsList .notification-text {
+                 font-size: 0.85rem;
+                 line-height: 1.4;
+            }
+           #recentNotificationsList .notification-time-sm {
+                font-size: 0.75rem;
+           }
+           /* Placeholder style */
+            .placeholder-glow span { min-height: 1em; display: inline-block; } /* Pour que les placeholders aient une hauteur */
+     </style>
+
+</head>
+
+<body>
+
+    <!-- START Wrapper -->
+    <div class="wrapper">
+
+        <!-- ========== Topbar Start ========== -->
+        <!-- COLLER VOTRE CODE TOPBAR EXISTANT ICI -->
+        <!-- ... (Identique aux pages précédentes, avec mise à jour compteur notif via JS) ... -->
+         <header class="">
+               <div class="topbar">
+                    <div class="container-fluid">
+                         <div class="navbar-header">
+                              <div class="d-flex align-items-center gap-2">
+                                   <div class="topbar-item"><button type="button" class="button-toggle-menu topbar-button"><i class="ri-menu-2-line fs-24"></i></button></div>
+                                   <form class="app-search d-none d-md-block me-auto"><div class="position-relative"><input type="search" class="form-control border-0" placeholder="Rechercher..." autocomplete="off" value=""><i class="ri-search-line search-widget-icon"></i></div></form>
+                              </div>
+                              <div class="d-flex align-items-center gap-1">
+                                   <div class="topbar-item"><button type="button" class="topbar-button" id="light-dark-mode"><i class="ri-moon-line fs-24 light-mode"></i><i class="ri-sun-line fs-24 dark-mode"></i></button></div>
+                                   <div class="dropdown topbar-item d-none d-lg-flex"><button type="button" class="topbar-button" data-toggle="fullscreen"><i class="ri-fullscreen-line fs-24 fullscreen"></i><i class="ri-fullscreen-exit-line fs-24 quit-fullscreen"></i></button></div>
+                                   <!-- Notifications Dropdown -->
+                                   <div class="dropdown topbar-item">
+                                        <button type="button" class="topbar-button position-relative" id="page-header-notifications-dropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="ri-notification-3-line fs-24"></i><span id="topbarUnreadCount" class="position-absolute topbar-badge fs-10 translate-middle badge bg-danger rounded-pill">0<span class="visually-hidden">unread messages</span></span></button>
+                                        <div class="dropdown-menu py-0 dropdown-lg dropdown-menu-end" aria-labelledby="page-header-notifications-dropdown">
+                                             <div class="p-3 border-top-0 border-start-0 border-end-0 border-dashed border"><div class="row align-items-center"><div class="col"><h6 class="m-0 fs-16 fw-semibold"> Notifications</h6></div><div class="col-auto"><a href="javascript: void(0);" class="text-dark text-decoration-underline" onclick="markAllAsRead()"> <small>Marquer tout comme lu</small></a></div></div></div>
+                                             <div data-simplebar style="max-height: 280px;" id="topbarNotificationList"><!-- Aperçu rapide des notifs ici --></div>
+                                             <div class="text-center py-3"><a href="proprietaire-notifications.html" class="btn btn-primary btn-sm">Voir toutes les notifications <i class="ri-arrow-right-line ms-1"></i></a></div>
+                                        </div>
+                                   </div>
+                                   <!-- Theme Settings -->
+                                   <div class="topbar-item d-none d-md-flex"><button type="button" class="topbar-button" id="theme-settings-btn" data-bs-toggle="offcanvas" data-bs-target="#theme-settings-offcanvas" aria-controls="theme-settings-offcanvas"><i class="ri-settings-4-line fs-24"></i></button></div>
+                                   <!-- User -->
+                                   <div class="dropdown topbar-item">
+                                        <a type="button" class="topbar-button" id="page-header-user-dropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span class="d-flex align-items-center"><img class="rounded-circle" width="32" src="assets/images/users/avatar-1.jpg" alt="avatar-proprio"></span></a>
+                                        <div class="dropdown-menu dropdown-menu-end">
+                                             <h6 class="dropdown-header">Bienvenue [Nom Propriétaire]!</h6>
+                                             <a class="dropdown-item" href="#profil"><iconify-icon icon="solar:user-circle-broken" class="align-middle me-2 fs-18"></iconify-icon><span class="align-middle">Mon Profil</span></a>
+                                             <div class="dropdown-divider my-1"></div>
+                                             <a class="dropdown-item text-danger" href="auth-signin.html"><iconify-icon icon="solar:logout-3-broken" class="align-middle me-2 fs-18"></iconify-icon><span class="align-middle">Déconnexion</span></a>
+                                        </div>
+                                   </div>
+                              </div>
+                         </div>
+                    </div>
+               </div>
+          </header>
+        <!-- ========== Topbar End ========== -->
+
+        <!-- ========== Right Sidebar (Theme Settings) Start ========== -->
+        <!-- COLLER VOTRE CODE RIGHT SIDEBAR EXISTANT ICI -->
+        <!-- ... (Identique aux pages précédentes) ... -->
+          <div>
+               <div class="offcanvas offcanvas-end border-0 rounded-start-4 overflow-hidden" tabindex="-1" id="theme-settings-offcanvas">
+                    <!-- Content of theme settings offcanvas here -->
+                    <div class="d-flex align-items-center bg-primary p-3 offcanvas-header"><h5 class="text-white m-0">Theme Settings</h5><button type="button" class="btn-close btn-close-white ms-auto" data-bs-dismiss="offcanvas" aria-label="Close"></button></div><div class="offcanvas-body p-0"><div data-simplebar class="h-100"><div class="p-3 settings-bar"><!-- Settings options here --></div></div></div><div class="offcanvas-footer border-top p-3 text-center"><div class="row"><div class="col"><button type="button" class="btn btn-danger w-100" id="reset-layout">Reset</button></div></div></div>
+               </div>
+          </div>
+        <!-- ========== Right Sidebar (Theme Settings) End ========== -->
+
+
+        <!-- ========== App Menu Start ========== -->
+        <!-- COLLER VOTRE CODE APP MENU (SIDEBAR) EXISTANT ICI -->
+        <!-- Assurer que le lien 'Tableau de Bord' est actif -->
+        <!-- Example Placeholder Structure (Adaptée) -->
+         <div class="main-nav">
+               <div class="logo-box">
+                    <a href="proprietaire-dashboard.html" class="logo-dark"><img src="assets/images/logo-sm.png" class="logo-sm" alt="logo sm"><img src="assets/images/logo-dark.png" class="logo-lg" alt="logo dark"></a>
+                    <a href="proprietaire-dashboard.html" class="logo-light"><img src="assets/images/logo-sm.png" class="logo-sm" alt="logo sm"><img src="assets/images/logo-light.png" class="logo-lg" alt="logo light"></a>
+               </div>
+               <button type="button" class="button-sm-hover" aria-label="Show Full Sidebar"><i class="ri-menu-2-line fs-24 button-sm-hover-icon"></i></button>
+               <div class="scrollbar" data-simplebar>
+                    <ul class="navbar-nav" id="navbar-nav">
+                         <li class="menu-title">Menu Propriétaire</li>
+                         <li class="nav-item">
+                              <!-- Lien Actif -->
+                              <a class="nav-link active" href="proprietaire-dashboard.html">
+                                   <span class="nav-icon"><i class="ri-dashboard-2-line"></i></span>
+                                   <span class="nav-text">Tableau de Bord</span>
+                              </a>
+                         </li>
+                         <li class="nav-item">
+                              <a class="nav-link" href="proprietaire-mes-biens.html">
+                                   <span class="nav-icon"><i class="ri-community-line"></i></span>
+                                   <span class="nav-text">Mes Biens</span>
+                              </a>
+                         </li>
+                          <li class="nav-item">
+                              <a class="nav-link" href="proprietaire-finances.html">
+                                   <span class="nav-icon"><i class="ri-money-dollar-circle-line"></i></span>
+                                   <span class="nav-text">Finances</span>
+                              </a>
+                         </li>
+                         <li class="nav-item">
+                              <a class="nav-link" href="proprietaire-contrats.html">
+                                   <span class="nav-icon"><i class="ri-file-list-3-line"></i></span>
+                                   <span class="nav-text">Contrats</span>
+                              </a>
+                         </li>
+                         <li class="nav-item">
+                              <a class="nav-link" href="proprietaire-notifications.html">
+                                   <span class="nav-icon"><i class="ri-notification-3-line"></i></span>
+                                   <span class="nav-text">Notifications</span>
+                              </a>
+                         </li>
+                         <!-- Autres éléments de menu si nécessaire -->
+                    </ul>
+               </div>
+          </div>
+        <!-- ========== App Menu End ========== -->
+
+        <!-- ==================================================== -->
+        <!-- Start right Content here -->
+        <!-- ==================================================== -->
+        <div class="page-content">
+
+            <!-- Start Container Fluid -->
+            <div class="container-fluid">
+
+                <!-- ========== Page Title Start ========== -->
+                <div class="row">
+                    <div class="col-12">
+                        <div class="page-title-box">
+                             <!-- Titre et Fil d'Ariane mis à jour -->
+                            <h4 class="mb-0 fw-semibold">Tableau de Bord Propriétaire</h4>
+                            <ol class="breadcrumb mb-0">
+                                <li class="breadcrumb-item"><a href="javascript: void(0);">Gestion Locative</a></li>
+                                <li class="breadcrumb-item active">Tableau de Bord</li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+                <!-- ========== Page Title End ========== -->
+
+                 <!-- ========== Statistiques Clés Start ========== -->
+                <div class="row">
+                    <!-- Stat 1: Total Biens -->
+                    <div class="col-md-6 col-xl-3">
+                        <div class="card stat-card">
+                            <div class="card-body">
+                                <div class="d-flex align-items-center justify-content-between">
+                                    <div>
+                                        <p class="mb-1">Nombre Total de Biens</p>
+                                         <h4 class="text-dark mb-0 placeholder-glow"><span id="statTotalBiens" class="placeholder col-4">--</span></h4>
+                                    </div>
+                                    <div class="avatar-md bg-primary-subtle rounded">
+                                        <i class="ri-community-line text-primary avatar-title"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                     <!-- Stat 2: Taux Occupation -->
+                    <div class="col-md-6 col-xl-3">
+                        <div class="card stat-card">
+                            <div class="card-body">
+                                <div class="d-flex align-items-center justify-content-between">
+                                    <div>
+                                        <p class="mb-1">Biens Occupés</p>
+                                         <h4 class="text-dark mb-0 placeholder-glow">
+                                            <span id="statBiensOccupes" class="placeholder col-2">--</span> / <small id="statTauxOccupation" class="fs-6 fw-normal placeholder col-3">--%</small>
+                                         </h4>
+                                    </div>
+                                     <div class="avatar-md bg-warning-subtle rounded">
+                                         <i class="ri-user-follow-line text-warning avatar-title"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                     <!-- Stat 3: Revenus Mois -->
+                    <div class="col-md-6 col-xl-3">
+                        <div class="card stat-card">
+                            <div class="card-body">
+                                <div class="d-flex align-items-center justify-content-between">
+                                    <div>
+                                        <p class="mb-1">Revenus Locatifs (Mois)</p>
+                                         <h4 class="text-dark mb-0 placeholder-glow"><span id="statRevenusMois" class="placeholder col-6">--</span> <small class="fs-6 fw-normal">FCFA</small></h4>
+                                    </div>
+                                     <div class="avatar-md bg-success-subtle rounded">
+                                         <i class="ri-money-dollar-circle-line text-success avatar-title"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                     <!-- Stat 4: Biens en Attente -->
+                    <div class="col-md-6 col-xl-3">
+                        <div class="card stat-card">
+                            <div class="card-body">
+                                <div class="d-flex align-items-center justify-content-between">
+                                    <div>
+                                        <p class="mb-1">Biens en Attente Validation</p>
+                                        <h4 class="text-dark mb-0 placeholder-glow"><span id="statBiensAttente" class="placeholder col-3">--</span></h4>
+                                    </div>
+                                    <div class="avatar-md bg-info-subtle rounded">
+                                         <i class="ri-time-line text-info avatar-title"></i>
+                                    </div>
+                                </div>
+                             </div>
+                        </div>
+                    </div>
+                </div>
+                 <!-- ========== Statistiques Clés End ========== -->
+
+
+                <div class="row">
+                    <!-- Colonne Principale (Graphique + Paiements Récents) -->
+                    <div class="col-xl-8">
+                        <!-- Graphique Revenus -->
+                        <div class="card">
+                            <div class="card-header d-flex justify-content-between align-items-center border-bottom-0">
+                                <h4 class="card-title">Évolution des Revenus Locatifs</h4>
+                                <!-- Optionnel: Filtre Année/Mois pour le graphique -->
+                                <div class="dropdown">
+                                    <a href="#" class="dropdown-toggle arrow-none card-drop" data-bs-toggle="dropdown" aria-expanded="false">
+                                        <i class="ri-more-2-fill"></i>
+                                    </a>
+                                    <div class="dropdown-menu dropdown-menu-end">
+                                        <a href="javascript:void(0);" class="dropdown-item">6 Derniers Mois</a>
+                                        <a href="javascript:void(0);" class="dropdown-item">Année en cours</a>
+                                        <a href="javascript:void(0);" class="dropdown-item">Année Précédente</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card-body">
+                                <!-- Conteneur pour le graphique ApexCharts -->
+                                <div id="revenusLocatifsChart" class="apex-charts" dir="ltr"></div>
+                                <div id="chartLoadingIndicator" class="text-center py-4 placeholder-glow">
+                                     <span class="placeholder col-8"></span>
+                                     <span class="placeholder col-6"></span>
+                                     <span class="placeholder col-7"></span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Paiements Récents -->
+                         <div class="card">
+                            <div class="card-header d-flex justify-content-between align-items-center">
+                                <h4 class="card-title">Derniers Paiements Reçus</h4>
+                                <a href="proprietaire-finances.html" class="btn btn-link btn-sm p-0">Voir tout <i class="ri-arrow-right-s-line"></i></a>
+                            </div>
+                             <div class="card-body p-0">
+                                <div class="table-responsive">
+                                     <table class="table table-sm table-centered table-hover mb-0">
+                                        <thead class="table-light">
+                                            <tr>
+                                                <th>Date</th>
+                                                <th>Locataire</th>
+                                                <th>Bien</th>
+                                                <th class="text-end">Montant (FCFA)</th>
+                                            </tr>
+                                        </thead>
+                                         <tbody id="recentPaymentsList">
+                                            <!-- Lignes générées par JS -->
+                                             <tr class="placeholder-glow"><td><span class="placeholder col-6"></span></td><td><span class="placeholder col-7"></span></td><td><span class="placeholder col-8"></span></td><td class="text-end"><span class="placeholder col-4"></span></td></tr>
+                                             <tr class="placeholder-glow"><td><span class="placeholder col-5"></span></td><td><span class="placeholder col-6"></span></td><td><span class="placeholder col-7"></span></td><td class="text-end"><span class="placeholder col-5"></span></td></tr>
+                                             <tr class="placeholder-glow"><td><span class="placeholder col-6"></span></td><td><span class="placeholder col-5"></span></td><td><span class="placeholder col-6"></span></td><td class="text-end"><span class="placeholder col-4"></span></td></tr>
+                                        </tbody>
+                                    </table>
+                                     <div id="noRecentPayments" class="text-center text-muted p-3 d-none">
+                                         Aucun paiement récent enregistré.
+                                     </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                     <!-- Colonne Latérale (Actions Rapides + Notifications Récentes) -->
+                     <div class="col-xl-4">
+                         <!-- Actions Rapides -->
+                        <div class="card quick-link-card">
+                            <div class="card-header">
+                                <h4 class="card-title">Actions Rapides</h4>
+                            </div>
+                             <div class="card-body">
+                                 <div class="d-grid gap-2">
+                                     <a href="proprietaire-mes-biens.html#ajouter" class="btn btn-primary">
+                                         <i class="ri-add-circle-line me-1"></i> Ajouter un Nouveau Bien
+                                     </a>
+                                     <a href="proprietaire-finances.html" class="btn btn-outline-success">
+                                          <i class="ri-money-dollar-box-line me-1"></i> Consulter mes Finances
+                                      </a>
+                                     <a href="proprietaire-contrats.html" class="btn btn-outline-info">
+                                          <i class="ri-file-list-2-line me-1"></i> Voir mes Contrats
+                                     </a>
+                                 </div>
+                             </div>
+                        </div>
+
+                         <!-- Notifications Récentes -->
+                        <div class="card">
+                            <div class="card-header d-flex justify-content-between align-items-center">
+                                <h4 class="card-title">Notifications Récentes</h4>
+                                <a href="proprietaire-notifications.html" class="btn btn-link btn-sm p-0">Tout voir <i class="ri-arrow-right-s-line"></i></a>
+                            </div>
+                             <div class="card-body p-0">
+                                 <div class="list-group list-group-flush" id="recentNotificationsList">
+                                    <!-- Items générés par JS -->
+                                     <div class="list-group-item placeholder-glow">
+                                         <div class="d-flex align-items-center">
+                                             <div class="flex-shrink-0 me-2"><span class="placeholder rounded-circle avatar-sm"></span></div>
+                                             <div class="flex-grow-1">
+                                                  <span class="placeholder col-10 d-block"></span>
+                                                 <small><span class="placeholder col-5"></span></small>
+                                             </div>
+                                         </div>
+                                     </div>
+                                      <div class="list-group-item placeholder-glow">
+                                         <div class="d-flex align-items-center">
+                                             <div class="flex-shrink-0 me-2"><span class="placeholder rounded-circle avatar-sm"></span></div>
+                                             <div class="flex-grow-1">
+                                                  <span class="placeholder col-11 d-block"></span>
+                                                  <small><span class="placeholder col-4"></span></small>
+                                             </div>
+                                         </div>
+                                     </div>
+                                     <div class="list-group-item placeholder-glow">
+                                         <div class="d-flex align-items-center">
+                                             <div class="flex-shrink-0 me-2"><span class="placeholder rounded-circle avatar-sm"></span></div>
+                                             <div class="flex-grow-1">
+                                                 <span class="placeholder col-9 d-block"></span>
+                                                  <small><span class="placeholder col-6"></span></small>
+                                             </div>
+                                         </div>
+                                     </div>
+                                 </div>
+                                  <div id="noRecentNotifications" class="text-center text-muted p-3 d-none">
+                                      Aucune notification récente.
+                                  </div>
+                             </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <!-- End Container Fluid -->
+
+            <!-- ========== Footer Start ========== -->
+            <!-- COLLER VOTRE CODE FOOTER EXISTANT ICI -->
+            <!-- ... (Identique aux pages précédentes) ... -->
+              <footer class="footer">
+                   <div class="container-fluid">
+                       <div class="row">
+                           <div class="col-12 text-center">
+                               <script>document.write(new Date().getFullYear())</script> © Gestion Locative Notariale.
+                           </div>
+                       </div>
+                   </div>
+               </footer>
+            <!-- ========== Footer End ========== -->
+
+        </div>
+        <!-- ==================================================== -->
+        <!-- End Page Content -->
+        <!-- ==================================================== -->
+
+    </div>
+    <!-- END Wrapper -->
+
+    <!-- Vendor Javascript (Require in all Page) -->
+    <script src="assets/js/vendor.js"></script>
+
+    <!-- App Javascript (Require in all Page) -->
+    <script src="assets/js/app.js"></script>
+
+    <!-- ApexCharts JS (Assurez-vous qu'il est inclus via vendor.js ou séparément) -->
+    <!-- <script src="assets/libs/apexcharts/apexcharts.min.js"></script> -->
+
+    <!-- Custom Dashboard JS -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+
+            // --- Éléments DOM ---
+            const statTotalBiensEl = document.getElementById('statTotalBiens');
+            const statBiensOccupesEl = document.getElementById('statBiensOccupes');
+            const statTauxOccupationEl = document.getElementById('statTauxOccupation');
+            const statRevenusMoisEl = document.getElementById('statRevenusMois');
+            const statBiensAttenteEl = document.getElementById('statBiensAttente');
+            const chartContainer = document.getElementById('revenusLocatifsChart');
+            const chartLoadingIndicator = document.getElementById('chartLoadingIndicator');
+            const recentPaymentsListEl = document.getElementById('recentPaymentsList');
+            const noRecentPaymentsEl = document.getElementById('noRecentPayments');
+            const recentNotificationsListEl = document.getElementById('recentNotificationsList');
+            const noRecentNotificationsEl = document.getElementById('noRecentNotifications');
+            const topbarUnreadCount = document.getElementById('topbarUnreadCount');
+
+
+            // --- Formatters ---
+            const currencyFormatter = new Intl.NumberFormat('fr-FR', { style: 'currency', currency: 'XOF', minimumFractionDigits: 0 });
+            const numberFormatter = new Intl.NumberFormat('fr-FR');
+            const percentFormatter = new Intl.NumberFormat('fr-FR', { style: 'percent', minimumFractionDigits: 0, maximumFractionDigits: 1 });
+
+
+            // --- Fonction pour charger les stats ---
+            function loadDashboardStats() {
+                console.log("Fetching dashboard stats...");
+                 // TODO: Remplacer par l'appel AJAX réel vers backend/get_proprietaire_dashboard_stats.php
+                fetch('backend/get_proprietaire_dashboard_stats.php')
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.success) {
+                            statTotalBiensEl.textContent = numberFormatter.format(data.stats.totalBiens || 0);
+                            statBiensOccupesEl.textContent = numberFormatter.format(data.stats.biensOccupes || 0);
+                            statTauxOccupationEl.textContent = percentFormatter.format((data.stats.tauxOccupation || 0) / 100); // Assuming backend sends percentage value like 75 for 75%
+                            statRevenusMoisEl.textContent = currencyFormatter.format(data.stats.revenusMois || 0).replace('XOF', '').trim(); // Remove currency symbol for space
+                            statBiensAttenteEl.textContent = numberFormatter.format(data.stats.biensEnAttente || 0);
+
+                            // Enlever les classes placeholder une fois les données chargées
+                            document.querySelectorAll('.stat-card h4 .placeholder').forEach(el => el.classList.remove('placeholder', 'col-4', 'col-2', 'col-3', 'col-6'));
+                             document.querySelectorAll('.stat-card small .placeholder').forEach(el => el.classList.remove('placeholder', 'col-3'));
+                        } else {
+                            console.error("Erreur chargement stats:", data.message);
+                             // Garder les placeholders ou afficher "N/A"
+                             statTotalBiensEl.textContent = "N/A"; statBiensOccupesEl.textContent = "N/A"; statTauxOccupationEl.textContent = "N/A"; statRevenusMoisEl.textContent = "N/A"; statBiensAttenteEl.textContent = "N/A";
+                        }
+                    })
+                    .catch(error => {
+                        console.error('Erreur fetch stats:', error);
+                         statTotalBiensEl.textContent = "Erreur"; statBiensOccupesEl.textContent = "Erreur"; statTauxOccupationEl.textContent = "Erreur"; statRevenusMoisEl.textContent = "Erreur"; statBiensAttenteEl.textContent = "Erreur";
+                    });
+            }
+
+            // --- Fonction pour charger et afficher le graphique ---
+            let revenusChart = null;
+            function loadRevenusChart() {
+                console.log("Fetching chart data...");
+                 chartLoadingIndicator.style.display = 'block';
+                 chartContainer.style.display = 'none';
+
+                // TODO: Remplacer par l'appel AJAX réel vers backend/get_proprietaire_revenus_chart_data.php
+                fetch('backend/get_proprietaire_revenus_chart_data.php')
+                    .then(response => response.json())
+                    .then(data => {
+                         chartLoadingIndicator.style.display = 'none';
+                         chartContainer.style.display = 'block';
+
+                        if (data.success && data.chartData && data.chartData.series && data.chartData.categories) {
+                            const options = {
+                                series: [{
+                                    name: 'Revenus Locatifs',
+                                    data: data.chartData.series // Ex: [150000, 180000, 150000, 200000, 190000, 210000]
+                                }],
+                                chart: {
+                                    height: 350,
+                                    type: 'area', // ou 'bar'
+                                    toolbar: { show: false },
+                                     zoom: { enabled: false }
+                                },
+                                dataLabels: { enabled: false },
+                                stroke: { curve: 'smooth', width: 2 },
+                                xaxis: {
+                                    type: 'category',
+                                    categories: data.chartData.categories, // Ex: ["Fév", "Mar", "Avr", "Mai", "Juin", "Juil"]
+                                     axisBorder: { show: false },
+                                     axisTicks: { show: false }
+                                },
+                                yaxis: {
+                                    labels: {
+                                        formatter: function (value) {
+                                             // Formatter en k FCFA pour lisibilité
+                                             if (value >= 1000) {
+                                                 return (value / 1000).toLocaleString('fr-FR') + "k";
+                                             }
+                                             return value.toLocaleString('fr-FR');
+                                        }
+                                    }
+                                },
+                                grid: {
+                                     borderColor: '#e9ecef',
+                                     strokeDashArray: 5,
+                                     xaxis: { lines: { show: false } },
+                                     yaxis: { lines: { show: true } },
+                                     padding: { top: 0, right: 10, bottom: 0, left: 10 }
+                                },
+                                colors: ['#604ae3'], // Couleur primaire du template (à adapter si besoin)
+                                tooltip: {
+                                    y: {
+                                        formatter: function(val) {
+                                            return currencyFormatter.format(val);
+                                        }
+                                    }
+                                }
+                            };
+
+                            if (revenusChart) {
+                                revenusChart.updateOptions(options); // Mettre à jour si existe déjà
+                            } else {
+                                revenusChart = new ApexCharts(chartContainer, options);
+                                revenusChart.render();
+                            }
+                        } else {
+                            chartContainer.innerHTML = '<div class="text-center text-muted py-4">Impossible de charger les données du graphique.</div>';
+                            console.error("Erreur chargement données graphique:", data.message);
+                        }
+                    })
+                    .catch(error => {
+                        chartLoadingIndicator.style.display = 'none';
+                        chartContainer.style.display = 'block';
+                        chartContainer.innerHTML = '<div class="text-center text-danger py-4">Erreur de connexion lors du chargement du graphique.</div>';
+                        console.error('Erreur fetch chart data:', error);
+                    });
+            }
+
+             // --- Fonction pour charger les paiements récents ---
+             function loadRecentPayments() {
+                 console.log("Fetching recent payments...");
+                 // Garder les placeholders visibles pendant le chargement
+                 recentPaymentsListEl.querySelectorAll('tr:not(.placeholder-glow)').forEach(el => el.remove());
+                 noRecentPaymentsEl.classList.add('d-none');
+
+                 // TODO: Remplacer par l'appel AJAX réel vers backend/get_proprietaire_recent_payments.php?limit=5
+                 fetch('backend/get_proprietaire_recent_payments.php?limit=5')
+                     .then(response => response.json())
+                     .then(data => {
+                         recentPaymentsListEl.innerHTML = ''; // Vider les placeholders
+                         if (data.success && data.payments && data.payments.length > 0) {
+                             data.payments.forEach(p => {
+                                 const row = document.createElement('tr');
+                                 const formattedAmount = numberFormatter.format(p.montant || 0);
+                                 row.innerHTML = `
+                                     <td>${p.datePaiement || '-'}</td>
+                                     <td>${p.locataireNom || '-'}</td>
+                                     <td><small>${p.bienAdresse || '-'}</small></td>
+                                     <td class="text-end fw-medium">${formattedAmount}</td>
+                                 `;
+                                 recentPaymentsListEl.appendChild(row);
+                             });
+                         } else {
+                             noRecentPaymentsEl.classList.remove('d-none'); // Afficher message si vide
+                             if (!data.success) console.error("Erreur chargement paiements:", data.message);
+                         }
+                     })
+                     .catch(error => {
+                         recentPaymentsListEl.innerHTML = ''; // Vider placeholders
+                         noRecentPaymentsEl.classList.remove('d-none');
+                         noRecentPaymentsEl.textContent = 'Erreur de chargement des paiements.';
+                         console.error('Erreur fetch paiements:', error);
+                     });
+             }
+
+             // --- Fonction pour charger les notifications récentes ---
+             function loadRecentNotifications() {
+                 console.log("Fetching recent notifications...");
+                 recentNotificationsListEl.querySelectorAll('.list-group-item:not(.placeholder-glow)').forEach(el => el.remove());
+                 noRecentNotificationsEl.classList.add('d-none');
+
+                 // TODO: Remplacer par l'appel AJAX réel vers backend/get_notifications.php?limit=5&unread_only=false (ou true si on veut que les non lues)
+                 fetch('backend/get_notifications.php?limit=4&unread_only=false') // Limite à 4 pour l'exemple
+                     .then(response => response.json())
+                     .then(data => {
+                         recentNotificationsListEl.innerHTML = ''; // Vider placeholders
+                         if (data.success && data.data && data.data.length > 0) {
+                            let unreadCount = 0;
+                             data.data.forEach(notif => {
+                                 const item = document.createElement('a');
+                                 item.href = `proprietaire-notifications.html#notif-${notif.idNotif}`; // Lien vers la page notif
+                                 item.classList.add('list-group-item', 'list-group-item-action');
+                                 if (notif.statutNotif !== 'Lu') {
+                                    item.classList.add('notification-unread');
+                                    unreadCount++;
+                                 }
+
+                                 // Adapter les icônes/couleurs comme dans la page notifications
+                                  let iconClass = 'ri-information-line'; let iconColor = 'text-secondary'; let bgColor='bg-light';
+                                   switch (notif.typeNotif ? notif.typeNotif.toLowerCase() : 'systeme') {
+                                     case 'paiement': iconClass = 'ri-money-dollar-circle-line'; iconColor = 'text-success'; bgColor='bg-success-subtle'; break;
+                                     case 'contrat': iconClass = 'ri-file-list-3-line'; iconColor = 'text-warning'; bgColor='bg-warning-subtle'; break;
+                                     case 'bien': iconClass = 'ri-community-line'; iconColor = 'text-info'; bgColor='bg-info-subtle'; break;
+                                     default: iconClass = 'ri-settings-3-line'; iconColor = 'text-muted'; bgColor='bg-light'; break;
+                                  }
+
+                                 const dateObj = new Date(notif.dateNotif);
+                                 const formattedTime = dateObj.toLocaleTimeString('fr-FR', { hour: '2-digit', minute: '2-digit' });
+                                 // Simplifier le contenu pour l'aperçu
+                                 const simpleContent = notif.contenu.replace(/<[^>]*>/g, "").substring(0, 80) + "..."; // Texte brut tronqué
+
+                                 item.innerHTML = `
+                                      <div class="d-flex align-items-center">
+                                         <div class="flex-shrink-0 me-2">
+                                              <div class="avatar-sm rounded-circle ${bgColor} d-flex align-items-center justify-content-center notification-icon-sm">
+                                                  <i class="${iconClass} ${iconColor}"></i>
+                                              </div>
+                                         </div>
+                                          <div class="flex-grow-1 overflow-hidden">
+                                              <p class="notification-text text-truncate mb-0">${simpleContent}</p>
+                                              <small class="notification-time-sm text-muted">${formattedTime}</small>
+                                          </div>
+                                      </div>
+                                  `;
+                                 recentNotificationsListEl.appendChild(item);
+                             });
+                             // Mettre à jour le compteur global (utiliser la valeur totale si fournie par le backend)
+                             updateUnreadCount(data.pagination ? data.pagination.unreadCount : unreadCount);
+                         } else {
+                             noRecentNotificationsEl.classList.remove('d-none');
+                             if (!data.success) console.error("Erreur chargement notifs:", data.message);
+                              updateUnreadCount(0); // Reset count
+                         }
+                     })
+                     .catch(error => {
+                         recentNotificationsListEl.innerHTML = '';
+                         noRecentNotificationsEl.classList.remove('d-none');
+                         noRecentNotificationsEl.textContent = 'Erreur de chargement des notifications.';
+                         console.error('Erreur fetch notifs:', error);
+                          updateUnreadCount(0); // Reset count
+                     });
+             }
+
+             // --- Fonction globale pour màj compteur topbar (copiée de la page notifs) ---
+             window.updateUnreadCount = function(count = -1) {
+                 if (!topbarUnreadCount) return;
+                 let finalCount = count;
+                 // Si count = -1, on pourrait essayer de le recalculer ou (mieux) le redemander au backend
+                 if (count === -1) {
+                      console.warn("updateUnreadCount appelé sans valeur, idéalement refaire un fetch.");
+                      // Pour la démo, on ne fait rien ou on utilise le chiffre actuel
+                      return;
+                 }
+                  topbarUnreadCount.textContent = finalCount > 9 ? '9+' : finalCount;
+                 topbarUnreadCount.classList.toggle('d-none', finalCount === 0);
+             }
+
+             // --- Chargement Initial ---
+             loadDashboardStats();
+             loadRevenusChart();
+             loadRecentPayments();
+             loadRecentNotifications();
+
+        }); // Fin DOMContentLoaded
+    </script>
+
+    <!-- Iconify Icons (Import only if needed) -->
+    <!-- <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script> -->
+
+
+</body>
+
+<!-- Mirrored from techzaa.in/lahomes/admin/proprietaire-dashboard.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 08 Apr 2025 XX:XX:XX GMT -->
+</html>

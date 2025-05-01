@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="fr">
+<!-- Mirrored from techzaa.in/lahomes/admin/admin-parametres.html -->
+<head>
+    <meta charset="utf-8" />
+    <title>Paramètres Plateforme | Espace Admin</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Paramètres généraux de la plateforme." />
+    <meta name="author" content="Votre Nom/Entreprise" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <link rel="shortcut icon" href="assets/images/favicon.ico">
+    <link href="assets/css/vendor.min.css" rel="stylesheet" type="text/css" />
+    <link href="assets/css/icons.min.css" rel="stylesheet" type="text/css" />
+    <link href="assets/css/app.min.css" rel="stylesheet" type="text/css" />
+    <script src="assets/js/config.min.js"></script>
+    <style>
+        .card-header { background-color: #f8f9fa; } /* Léger fond pour headers de section */
+        label { font-weight: 500; }
+    </style>
+</head>
+<body>
+    <div class="wrapper">
+        <!-- ========== Topbar Start ========== -->
+        <!-- COLLER VOTRE CODE TOPBAR ADMIN ICI -->
+        <header class=""> <div class="topbar"> <div class="container-fluid"> <div class="navbar-header"> <div class="d-flex align-items-center gap-2"> <div class="topbar-item"><button type="button" class="button-toggle-menu topbar-button"><i class="ri-menu-2-line fs-24"></i></button></div> <form class="app-search d-none d-md-block me-auto"><div class="position-relative"><input type="search" class="form-control border-0" placeholder="Rechercher..." autocomplete="off" value=""><i class="ri-search-line search-widget-icon"></i></div></form> </div> <div class="d-flex align-items-center gap-1"> <div class="topbar-item"><button type="button" class="topbar-button" id="light-dark-mode"><i class="ri-moon-line fs-24 light-mode"></i><i class="ri-sun-line fs-24 dark-mode"></i></button></div> <div class="dropdown topbar-item d-none d-lg-flex"><button type="button" class="topbar-button" data-toggle="fullscreen"><i class="ri-fullscreen-line fs-24 fullscreen"></i><i class="ri-fullscreen-exit-line fs-24 quit-fullscreen"></i></button></div> <div class="dropdown topbar-item"> <button type="button" class="topbar-button position-relative" id="page-header-notifications-dropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="ri-notification-3-line fs-24"></i><span id="topbarAdminUnreadCount" class="position-absolute topbar-badge fs-10 translate-middle badge bg-danger rounded-pill">0<span class="visually-hidden">unread</span></span></button> <div class="dropdown-menu py-0 dropdown-lg dropdown-menu-end" aria-labelledby="page-header-notifications-dropdown"> <div class="p-3 border-top-0 border-start-0 border-end-0 border-dashed border"><div class="row align-items-center"><div class="col"><h6 class="m-0 fs-16 fw-semibold"> Notifications Admin</h6></div><div class="col-auto"><a href="javascript: void(0);" class="text-dark text-decoration-underline"> <small>Marquer tout comme lu</small></a></div></div></div> <div data-simplebar style="max-height: 280px;" id="topbarAdminNotificationList"></div> <div class="text-center py-3"><a href="admin-notifications.html" class="btn btn-primary btn-sm">Tout voir <i class="ri-arrow-right-line ms-1"></i></a></div> </div> </div> <div class="topbar-item d-none d-md-flex"><button type="button" class="topbar-button" id="theme-settings-btn" data-bs-toggle="offcanvas" data-bs-target="#theme-settings-offcanvas" aria-controls="theme-settings-offcanvas"><i class="ri-settings-4-line fs-24"></i></button></div> <div class="dropdown topbar-item"> <a type="button" class="topbar-button" id="page-header-user-dropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span class="d-flex align-items-center"><img class="rounded-circle" width="32" src="assets/images/users/avatar-admin.png" alt="admin"></span></a> <div class="dropdown-menu dropdown-menu-end"> <h6 class="dropdown-header">Admin</h6> <a class="dropdown-item" href="admin-profil.html"><i class="ri-user-line align-middle me-1"></i> Mon Profil</a> <a class="dropdown-item active" href="admin-parametres.html"><i class="ri-settings-3-line align-middle me-1"></i> Paramètres</a> <div class="dropdown-divider my-1"></div> <a class="dropdown-item text-danger" href="auth-signin.html"><i class="ri-logout-box-line align-middle me-1"></i> Déconnexion</a> </div> </div> </div> </div> </div> </div> </header>
+        <!-- ========== Topbar End ========== -->
+
+        <!-- ========== Right Sidebar Start ========== -->
+        <!-- COLLER VOTRE CODE RIGHT SIDEBAR ICI -->
+        <div> <div class="offcanvas offcanvas-end border-0 rounded-start-4 overflow-hidden" tabindex="-1" id="theme-settings-offcanvas"> <div class="d-flex align-items-center bg-primary p-3 offcanvas-header"><h5 class="text-white m-0">Theme Settings</h5><button type="button" class="btn-close btn-close-white ms-auto" data-bs-dismiss="offcanvas" aria-label="Close"></button></div><div class="offcanvas-body p-0"><div data-simplebar class="h-100"><div class="p-3 settings-bar"></div></div></div><div class="offcanvas-footer border-top p-3 text-center"><div class="row"><div class="col"><button type="button" class="btn btn-danger w-100" id="reset-layout">Reset</button></div></div></div> </div> </div>
+        <!-- ========== Right Sidebar End ========== -->
+
+        <!-- ========== App Menu Start ========== -->
+         <div class="main-nav">
+            <div class="logo-box"> <a href="admin-dashboard.html" class="logo-dark"><img src="assets/images/logo-sm.png" class="logo-sm"><img src="assets/images/logo-dark.png" class="logo-lg"></a> <a href="admin-dashboard.html" class="logo-light"><img src="assets/images/logo-sm.png" class="logo-sm"><img src="assets/images/logo-light.png" class="logo-lg"></a> </div>
+            <button type="button" class="button-sm-hover" aria-label="Show Full Sidebar"><i class="ri-menu-2-line fs-24 button-sm-hover-icon"></i></button>
+            <div class="scrollbar" data-simplebar>
+                 <ul class="navbar-nav" id="navbar-nav">
+                      <li class="menu-title">Menu Admin</li>
+                      <li class="nav-item"><a class="nav-link" href="admin-dashboard.html"><span class="nav-icon"><i class="ri-dashboard-line"></i></span><span class="nav-text">Tableau de Bord</span></a></li>
+                      <li class="nav-item"><a class="nav-link" href="admin-gestion-utilisateurs.html"><span class="nav-icon"><i class="ri-account-circle-line"></i></span><span class="nav-text">Gestion Utilisateurs</span></a></li>
+                      <li class="nav-item"><a class="nav-link" href="admin-supervision-biens.html"><span class="nav-icon"><i class="ri-building-line"></i></span><span class="nav-text">Supervision Biens</span></a></li>
+                      <li class="nav-item"><a class="nav-link" href="admin-suivi-transactions.html"><span class="nav-icon"><i class="ri-money-dollar-box-line"></i></span><span class="nav-text">Suivi Transactions</span></a></li>
+                      <li class="nav-item"><a class="nav-link active" href="admin-parametres.html"><span class="nav-icon"><i class="ri-settings-3-line"></i></span><span class="nav-text">Paramètres</span></a></li>
+                 </ul>
+            </div>
+       </div>
+        <!-- ========== App Menu End ========== -->
+
+        <div class="page-content">
+            <div class="container-fluid">
+                <!-- ========== Page Title Start ========== -->
+                 <div class="row"> <div class="col-12"> <div class="page-title-box"> <h4 class="mb-0 fw-semibold">Paramètres de la Plateforme</h4> <ol class="breadcrumb mb-0"> <li class="breadcrumb-item"><a href="admin-dashboard.html">Admin</a></li> <li class="breadcrumb-item active">Paramètres</li> </ol> </div> </div> </div>
+                <!-- ========== Page Title End ========== -->
+
+                 <div class="row">
+                    <!-- Section Paramètres Généraux -->
+                     <div class="col-lg-6">
+                         <div class="card">
+                             <div class="card-header"><h5 class="card-title mb-0">Paramètres Généraux</h5></div>
+                             <div class="card-body">
+                                 <form id="formGeneralSettings" action="backend/update_general_settings.php" method="POST">
+                                      <div class="mb-3">
+                                           <label for="platformName" class="form-label">Nom de la Plateforme</label>
+                                           <input type="text" class="form-control" id="platformName" name="platformName" value="Portail Immobilier Notarial" required>
+                                      </div>
+                                      <div class="mb-3">
+                                           <label for="contactEmail" class="form-label">Email de Contact Principal</label>
+                                           <input type="email" class="form-control" id="contactEmail" name="contactEmail" value="contact@exemple.com" required>
+                                       </div>
+                                      <div class="mb-3">
+                                           <label for="supportEmail" class="form-label">Email du Support Technique</label>
+                                           <input type="email" class="form-control" id="supportEmail" name="supportEmail" value="support@exemple.com">
+                                       </div>
+                                       <!-- Optionnel: Logo Upload -->
+                                      <div class="mb-3">
+                                          <label for="logoUpload" class="form-label">Logo de la Plateforme</label>
+                                          <input class="form-control" type="file" id="logoUpload" name="logoFile" accept="image/png, image/jpeg">
+                                          <small class="form-text text-muted">Laisser vide pour conserver le logo actuel.</small>
+                                      </div>
+                                       <button type="submit" class="btn btn-primary">Enregistrer les Modifications</button>
+                                 </form>
+                             </div>
+                         </div>
+                     </div>
+
+                      <!-- Section Rôles & Permissions (Simplifié) -->
+                     <div class="col-lg-6">
+                         <div class="card">
+                              <div class="card-header"><h5 class="card-title mb-0">Rôles et Permissions (Visualisation)</h5></div>
+                             <div class="card-body">
+                                  <p>Cette section affiche un aperçu des permissions pour chaque rôle. Les modifications avancées se font via la configuration système.</p>
+                                   <div class="accordion" id="rolesAccordion">
+                                      <!-- Exemple pour un rôle -->
+                                       <div class="accordion-item">
+                                           <h2 class="accordion-header" id="headingNotaire">
+                                               <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseNotaire" aria-expanded="false" aria-controls="collapseNotaire">
+                                                   Rôle : Notaire
+                                               </button>
+                                           </h2>
+                                           <div id="collapseNotaire" class="accordion-collapse collapse" aria-labelledby="headingNotaire" data-bs-parent="#rolesAccordion">
+                                               <div class="accordion-body">
+                                                   <ul>
+                                                        <li>Gérer Biens (Valider/Suspendre)</li>
+                                                        <li>Gérer Locataires</li>
+                                                        <li>Gérer Contrats (Créer, Signer, Gérer)</li>
+                                                        <li>Gérer Paiements (Valider, Générer Quittance)</li>
+                                                        <li>Traiter Demandes Maintenance/Autres</li>
+                                                        <li>Communiquer (si messagerie activée)</li>
+                                                   </ul>
+                                               </div>
+                                           </div>
+                                       </div>
+                                        <!-- Ajouter d'autres rôles (Propriétaire, Locataire) -->
+                                        <div class="accordion-item"> <h2 class="accordion-header" id="headingProp">...</h2> <div id="collapseProp" class="accordion-collapse collapse" aria-labelledby="headingProp">...</div> </div>
+                                        <div class="accordion-item"> <h2 class="accordion-header" id="headingLoc">...</h2> <div id="collapseLoc" class="accordion-collapse collapse" aria-labelledby="headingLoc">...</div> </div>
+                                  </div>
+                             </div>
+                         </div>
+                     </div>
+                 </div>
+
+                 <div class="row">
+                     <!-- Section Maintenance (Simplifié) -->
+                      <div class="col-lg-6">
+                          <div class="card">
+                              <div class="card-header"><h5 class="card-title mb-0">Maintenance</h5></div>
+                              <div class="card-body">
+                                   <p>Actions de maintenance de la plateforme.</p>
+                                   <button type="button" class="btn btn-warning me-2" onclick="clearCache()">Vider le Cache</button>
+                                   <button type="button" class="btn btn-info" onclick="viewSystemLogs()">Voir les Logs Système</button>
+                                    <!-- Ajouter d'autres boutons (backup, etc.) si pertinent -->
+                              </div>
+                          </div>
+                      </div>
+                      <!-- Optionnel: Section Contenu Statique -->
+                      <div class="col-lg-6">
+                           <div class="card">
+                              <div class="card-header"><h5 class="card-title mb-0">Gestion Contenu (Exemple)</h5></div>
+                              <div class="card-body">
+                                   <p>Modifier les textes des pages statiques ou emails.</p>
+                                   <a href="/admin/edit/page/terms" class="btn btn-outline-secondary btn-sm mb-1">Modifier Termes & Conditions</a><br>
+                                   <a href="/admin/edit/email/welcome" class="btn btn-outline-secondary btn-sm mb-1">Modifier Email de Bienvenue</a>
+                                   <!-- ... autres liens ... -->
+                              </div>
+                          </div>
+                      </div>
+                 </div>
+
+            </div> <!-- container-fluid -->
+        </div> <!-- page-content -->
+
+        <!-- ========== Footer Start ========== -->
+        <!-- COLLER VOTRE CODE FOOTER ICI -->
+         <footer class="footer"> <div class="container-fluid"> <div class="row"> <div class="col-12 text-center"> <script>document.write(new Date().getFullYear())</script> © Gestion Locative Notariale - Admin. </div> </div> </div> </footer>
+        <!-- ========== Footer End ========== -->
+    </div> <!-- wrapper -->
+
+    <script src="assets/js/vendor.js"></script>
+    <script src="assets/js/app.js"></script>
+    <script>
+        // --- Fonctions Globales Actions Maintenance ---
+        window.clearCache = function() {
+            if (confirm("Êtes-vous sûr de vouloir vider le cache de l'application ?")) {
+                console.log("Vidage du cache demandé.");
+                // TODO: AJAX POST vers backend/clear_cache.php
+                alert("Cache vidé (Simulation).");
+            }
+        }
+        window.viewSystemLogs = function() {
+            console.log("Affichage des logs système demandé.");
+            // TODO: Rediriger vers une page dédiée ou afficher dans un modal
+            alert("Fonctionnalité d'affichage des logs à implémenter.");
+        }
+
+        // --- Script Principal ---
+        document.addEventListener('DOMContentLoaded', function() {
+             const formGeneralSettings = document.getElementById('formGeneralSettings');
+
+             // --- Chargement Paramètres Initiaux ---
+             function loadGeneralSettings() {
+                 console.log("Chargement des paramètres généraux...");
+                  // TODO: AJAX GET vers backend/get_general_settings.php
+                 setTimeout(() => { // Simulation
+                      const settings = { platformName: "Portail Immobilier Notarial Plus", contactEmail: "contact@portailplus.bj", supportEmail: "support@portailplus.bj" };
+                      document.getElementById('platformName').value = settings.platformName;
+                      document.getElementById('contactEmail').value = settings.contactEmail;
+                      document.getElementById('supportEmail').value = settings.supportEmail;
+                       console.log("Paramètres chargés.");
+                  }, 300);
+              }
+
+             // --- Gestion Soumission Formulaire Paramètres ---
+             formGeneralSettings.addEventListener('submit', function(e){
+                  e.preventDefault();
+                  const formData = new FormData(formGeneralSettings);
+                  console.log("Sauvegarde paramètres:", Object.fromEntries(formData.entries()));
+                  // TODO: AJAX POST vers formGeneralSettings.action
+                  alert("Paramètres enregistrés (Simulation).");
+                  // Optionnel: Mettre à jour le titre de la page/logo si changé
+             });
+
+
+             // --- Chargement Initial ---
+             loadGeneralSettings();
+
+        });
+    </script>
+</body>
+</html>

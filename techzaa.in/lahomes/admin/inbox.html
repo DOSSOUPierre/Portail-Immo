@@ -1,0 +1,1604 @@
+<!DOCTYPE html>
+<html lang="en">
+
+
+<!-- Mirrored from techzaa.in/lahomes/admin/inbox.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 08 Apr 2025 06:49:37 GMT -->
+<head>
+     <!-- Title Meta -->
+     <meta charset="utf-8" />
+     <title>Inbox | Lahomes - Real Estate Management Admin Template</title>
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <meta name="description" content="A fully responsive premium admin dashboard template, Real Estate Management Admin Template" />
+     <meta name="author" content="Techzaa" />
+     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+     <!-- App favicon -->
+     <link rel="shortcut icon" href="assets/images/favicon.ico">
+
+     <!-- Vendor css (Require in all Page) -->
+     <link href="assets/css/vendor.min.css" rel="stylesheet" type="text/css" />
+
+     <!-- Icons css (Require in all Page) -->
+     <link href="assets/css/icons.min.css" rel="stylesheet" type="text/css" />
+
+     <!-- App css (Require in all Page) -->
+     <link href="assets/css/app.min.css" rel="stylesheet" type="text/css" />
+
+     <!-- Theme Config js (Require in all Page) -->
+     <script src="assets/js/config.min.js"></script>
+</head>
+
+<body>
+
+     <!-- START Wrapper -->
+     <div class="wrapper">
+
+          <!-- ========== Topbar Start ========== -->
+          <header class="">
+               <div class="topbar">
+               <div class="container-fluid">
+                    <div class="navbar-header">
+                         <div class="d-flex align-items-center gap-2">
+                              <!-- Menu Toggle Button -->
+                              <div class="topbar-item">
+                                   <button type="button" class="button-toggle-menu topbar-button">
+                                        <i class="ri-menu-2-line fs-24"></i>
+                                   </button>
+                              </div>
+
+                              <!-- App Search-->
+                              <form class="app-search d-none d-md-block me-auto">
+                                   <div class="position-relative">
+                                        <input type="search" class="form-control border-0" placeholder="Search..." autocomplete="off" value="">
+                                        <i class="ri-search-line search-widget-icon"></i>
+                                   </div>
+                              </form>
+                         </div>
+
+                         <div class="d-flex align-items-center gap-1">
+                              <!-- Theme Color (Light/Dark) -->
+                              <div class="topbar-item">
+                                   <button type="button" class="topbar-button" id="light-dark-mode">
+                                        <i class="ri-moon-line fs-24 light-mode"></i>
+                                        <i class="ri-sun-line fs-24 dark-mode"></i>
+                                   </button>
+                              </div>
+
+                              <!-- Category -->
+                              <div class="dropdown topbar-item d-none d-lg-flex">
+                                   <button type="button" class="topbar-button" data-toggle="fullscreen">
+                                        <i class="ri-fullscreen-line fs-24 fullscreen"></i>
+                                        <i class="ri-fullscreen-exit-line fs-24 quit-fullscreen"></i>
+                                   </button>
+                              </div>
+
+                              <!-- Notification -->
+                              <div class="dropdown topbar-item">
+                                   <button type="button" class="topbar-button position-relative" id="page-header-notifications-dropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        <i class="ri-notification-3-line fs-24"></i>
+                                        <span class="position-absolute topbar-badge fs-10 translate-middle badge bg-danger rounded-pill">3<span class="visually-hidden">unread messages</span></span>
+                                   </button>
+                                   <div class="dropdown-menu py-0 dropdown-lg dropdown-menu-end" aria-labelledby="page-header-notifications-dropdown">
+                                        <div class="p-3 border-top-0 border-start-0 border-end-0 border-dashed border">
+                                             <div class="row align-items-center">
+                                                  <div class="col">
+                                                       <h6 class="m-0 fs-16 fw-semibold"> Notifications</h6>
+                                                  </div>
+                                                  <div class="col-auto">
+                                                       <a href="javascript: void(0);" class="text-dark text-decoration-underline">
+                                                            <small>Clear All</small>
+                                                       </a>
+                                                  </div>
+                                             </div>
+                                        </div>
+                                        <div data-simplebar style="max-height: 280px;">
+                                             <!-- Item -->
+                                             <a href="javascript:void(0);" class="dropdown-item py-3 border-bottom text-wrap">
+                                                  <div class="d-flex">
+                                                       <div class="flex-shrink-0">
+                                                            <img src="assets/images/users/avatar-1.jpg" class="img-fluid me-2 avatar-sm rounded-circle" alt="avatar-1" />
+                                                       </div>
+                                                       <div class="flex-grow-1">
+                                                            <p class="mb-0"><span class="fw-medium">Josephine Thompson </span>commented on admin panel <span>" Wow 😍! this admin looks good and awesome design"</span></p>
+                                                       </div>
+                                                  </div>
+                                             </a>
+                                             <!-- Item -->
+                                             <a href="javascript:void(0);" class="dropdown-item py-3 border-bottom">
+                                                  <div class="d-flex">
+                                                       <div class="flex-shrink-0">
+                                                            <div class="avatar-sm me-2">
+                                                                 <span class="avatar-title bg-soft-info text-info fs-20 rounded-circle">
+                                                                      D
+                                                                 </span>
+                                                            </div>
+                                                       </div>
+                                                       <div class="flex-grow-1">
+                                                            <p class="mb-0 fw-semibold">Donoghue Susan</p>
+                                                            <p class="mb-0 text-wrap">
+                                                                 Hi, How are you? What about our next meeting
+                                                            </p>
+                                                       </div>
+                                                  </div>
+                                             </a>
+                                             <!-- Item -->
+                                             <a href="javascript:void(0);" class="dropdown-item py-3 border-bottom">
+                                                  <div class="d-flex">
+                                                       <div class="flex-shrink-0">
+                                                            <img src="assets/images/users/avatar-3.jpg" class="img-fluid me-2 avatar-sm rounded-circle" alt="avatar-3" />
+                                                       </div>
+                                                       <div class="flex-grow-1">
+                                                            <p class="mb-0 fw-semibold">Jacob Gines</p>
+                                                            <p class="mb-0 text-wrap">
+                                                                 Answered to your comment on the cash flow forecast's graph 🔔.
+                                                            </p>
+                                                       </div>
+                                                  </div>
+                                             </a>
+                                             <!-- Item -->
+                                             <a href="javascript:void(0);" class="dropdown-item py-3 border-bottom">
+                                                  <div class="d-flex">
+                                                       <div class="flex-shrink-0">
+                                                            <div class="avatar-sm me-2">
+                                                                 <span class="avatar-title bg-soft-warning text-warning fs-20 rounded-circle">
+                                                                      <iconify-icon icon="solar:leaf-broken"></iconify-icon>
+                                                                 </span>
+                                                            </div>
+                                                       </div>
+                                                       <div class="flex-grow-1">
+                                                            <p class="mb-0 fw-semibold text-wrap">You have received <b>20</b> new messages in the
+                                                                 conversation</p>
+                                                       </div>
+                                                  </div>
+                                             </a>
+                                             <!-- Item -->
+                                             <a href="javascript:void(0);" class="dropdown-item py-3 border-bottom">
+                                                  <div class="d-flex">
+                                                       <div class="flex-shrink-0">
+                                                            <img src="assets/images/users/avatar-5.jpg" class="img-fluid me-2 avatar-sm rounded-circle" alt="avatar-5" />
+                                                       </div>
+                                                       <div class="flex-grow-1">
+                                                            <p class="mb-0 fw-semibold">Shawn Bunch</p>
+                                                            <p class="mb-0 text-wrap">
+                                                                 Commented on Admin
+                                                            </p>
+                                                       </div>
+                                                  </div>
+                                             </a>
+                                        </div>
+                                        <div class="text-center py-3">
+                                             <a href="javascript:void(0);" class="btn btn-primary btn-sm">View All Notification <i class="ri-arrow-right-line ms-1"></i></a>
+                                        </div>
+                                   </div>
+                              </div>
+
+                              <!-- Theme Setting -->
+                              <div class="topbar-item d-none d-md-flex">
+                                   <button type="button" class="topbar-button" id="theme-settings-btn" data-bs-toggle="offcanvas" data-bs-target="#theme-settings-offcanvas" aria-controls="theme-settings-offcanvas">
+                                        <i class="ri-settings-4-line fs-24"></i>
+                                   </button>
+                              </div>
+
+                              <!-- User -->
+                              <div class="dropdown topbar-item">
+                                   <a type="button" class="topbar-button" id="page-header-user-dropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        <span class="d-flex align-items-center">
+                                             <img class="rounded-circle" width="32" src="assets/images/users/avatar-1.jpg" alt="avatar-3">
+                                        </span>
+                                   </a>
+                                   <div class="dropdown-menu dropdown-menu-end">
+                                        <!-- item-->
+                                        <h6 class="dropdown-header">Welcome Gaston!</h6>
+                              
+                                        <a class="dropdown-item" href="pages-calendar.html">
+                                             <iconify-icon icon="solar:calendar-broken" class="align-middle me-2 fs-18"></iconify-icon><span class="align-middle">My Schedules</span>
+                                        </a>
+
+                                        <a class="dropdown-item" href="pages-pricing.html">
+                                             <iconify-icon icon="solar:wallet-broken" class="align-middle me-2 fs-18"></iconify-icon><span class="align-middle">Pricing</span>
+                                        </a>
+                                        <a class="dropdown-item" href="pages-faqs.html">
+                                             <iconify-icon icon="solar:help-broken" class="align-middle me-2 fs-18"></iconify-icon><span class="align-middle">Help</span>
+                                        </a>
+                                        <a class="dropdown-item" href="auth-lock-screen.html">
+                                             <iconify-icon icon="solar:lock-keyhole-broken" class="align-middle me-2 fs-18"></iconify-icon><span class="align-middle">Lock screen</span>
+                                        </a>
+
+                                        <div class="dropdown-divider my-1"></div>
+
+                                        <a class="dropdown-item text-danger" href="auth-signin.html">
+                                             <iconify-icon icon="solar:logout-3-broken" class="align-middle me-2 fs-18"></iconify-icon><span class="align-middle">Logout</span>
+                                        </a>
+                                   </div>
+                              </div>
+                         </div>
+                    </div>
+               </div></div>
+          </header>
+
+          <!-- Right Sidebar (Theme Settings) -->
+          <div>
+               <div class="offcanvas offcanvas-end border-0 rounded-start-4 overflow-hidden" tabindex="-1" id="theme-settings-offcanvas">
+                    <div class="d-flex align-items-center bg-primary p-3 offcanvas-header">
+                         <h5 class="text-white m-0">Theme Settings</h5>
+                         <button type="button" class="btn-close btn-close-white ms-auto" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                    </div>
+
+                    <div class="offcanvas-body p-0">
+                         <div data-simplebar class="h-100">
+                              <div class="p-3 settings-bar">
+
+                                   <div>
+                                        <h5 class="mb-3 font-16 fw-semibold">Color Scheme</h5>
+
+                                        <div class="form-check mb-2">
+                                             <input class="form-check-input" type="radio" name="data-bs-theme" id="layout-color-light" value="light">
+                                             <label class="form-check-label" for="layout-color-light">Light</label>
+                                        </div>
+
+                                        <div class="form-check mb-2">
+                                             <input class="form-check-input" type="radio" name="data-bs-theme" id="layout-color-dark" value="dark">
+                                             <label class="form-check-label" for="layout-color-dark">Dark</label>
+                                        </div>
+                                   </div>
+
+                                   <div>
+                                        <h5 class="my-3 font-16 fw-semibold">Topbar Color</h5>
+
+                                        <div class="form-check mb-2">
+                                             <input class="form-check-input" type="radio" name="data-topbar-color" id="topbar-color-light" value="light">
+                                             <label class="form-check-label" for="topbar-color-light">Light</label>
+                                        </div>
+                                        <div class="form-check mb-2">
+                                             <input class="form-check-input" type="radio" name="data-topbar-color" id="topbar-color-dark" value="dark">
+                                             <label class="form-check-label" for="topbar-color-dark">Dark</label>
+                                        </div>
+                                   </div>
+
+
+                                   <div>
+                                        <h5 class="my-3 font-16 fw-semibold">Menu Color</h5>
+
+                                        <div class="form-check mb-2">
+                                             <input class="form-check-input" type="radio" name="data-menu-color" id="leftbar-color-light" value="light">
+                                             <label class="form-check-label" for="leftbar-color-light">
+                                                  Light
+                                             </label>
+                                        </div>
+
+                                        <div class="form-check mb-2">
+                                             <input class="form-check-input" type="radio" name="data-menu-color" id="leftbar-color-dark" value="dark">
+                                             <label class="form-check-label" for="leftbar-color-dark">
+                                                  Dark
+                                             </label>
+                                        </div>
+                                   </div>
+
+                                   <div>
+                                        <h5 class="my-3 font-16 fw-semibold">Sidebar Size</h5>
+
+                                        <div class="form-check mb-2">
+                                             <input class="form-check-input" type="radio" name="data-menu-size" id="leftbar-size-default" value="default">
+                                             <label class="form-check-label" for="leftbar-size-default">
+                                                  Default
+                                             </label>
+                                        </div>
+
+                                        <div class="form-check mb-2">
+                                             <input class="form-check-input" type="radio" name="data-menu-size" id="leftbar-size-small" value="condensed">
+                                             <label class="form-check-label" for="leftbar-size-small">
+                                                  Condensed
+                                             </label>
+                                        </div>
+
+                                        <div class="form-check mb-2">
+                                             <input class="form-check-input" type="radio" name="data-menu-size" id="leftbar-hidden" value="hidden">
+                                             <label class="form-check-label" for="leftbar-hidden">
+                                                  Hidden
+                                             </label>
+                                        </div>
+
+                                        <div class="form-check mb-2">
+                                             <input class="form-check-input" type="radio" name="data-menu-size" id="leftbar-size-small-hover-active" value="sm-hover-active">
+                                             <label class="form-check-label" for="leftbar-size-small-hover-active">
+                                                  Small Hover Active
+                                             </label>
+                                        </div>
+
+                                        <div class="form-check mb-2">
+                                             <input class="form-check-input" type="radio" name="data-menu-size" id="leftbar-size-small-hover" value="sm-hover">
+                                             <label class="form-check-label" for="leftbar-size-small-hover">
+                                                  Small Hover
+                                             </label>
+                                        </div>
+                                   </div>
+
+                              </div>
+                         </div>
+                    </div>
+                    <div class="offcanvas-footer border-top p-3 text-center">
+                         <div class="row">
+                              <div class="col">
+                                   <button type="button" class="btn btn-danger w-100" id="reset-layout">Reset</button>
+                              </div>
+                         </div>
+                    </div>
+               </div>
+          </div>
+          <!-- ========== Topbar End ========== -->
+
+          <!-- ========== App Menu Start ========== -->
+          <div class="main-nav">
+               <!-- Sidebar Logo -->
+               <div class="logo-box">
+                    <a href="index.html" class="logo-dark">
+                         <img src="assets/images/logo-sm.png" class="logo-sm" alt="logo sm">
+                         <img src="assets/images/logo-dark.png" class="logo-lg" alt="logo dark">
+                    </a>
+
+                    <a href="index.html" class="logo-light">
+                         <img src="assets/images/logo-sm.png" class="logo-sm" alt="logo sm">
+                         <img src="assets/images/logo-light.png" class="logo-lg" alt="logo light">
+                    </a>
+               </div>
+
+               <!-- Menu Toggle Button (sm-hover) -->
+               <button type="button" class="button-sm-hover" aria-label="Show Full Sidebar">
+                    <i class="ri-menu-2-line fs-24 button-sm-hover-icon"></i>
+               </button>
+
+               <div class="scrollbar" data-simplebar>
+
+                    <ul class="navbar-nav" id="navbar-nav">
+
+                         <li class="menu-title">Menu</li>
+
+                         <li class="nav-item">
+                              <a class="nav-link menu-arrow" href="#sidebarDashboards" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="sidebarDashboards">
+                                   <span class="nav-icon">
+                                        <i class="ri-dashboard-2-line"></i>
+                                   </span>
+                                   <span class="nav-text"> Dashboards </span>
+                              </a>
+                              <div class="collapse" id="sidebarDashboards">
+                                   <ul class="nav sub-navbar-nav">
+                                        <li class="sub-nav-item">
+                                             <a class="sub-nav-link" href="index.html">Analytics</a>
+                                        </li>
+                                        <li class="sub-nav-item">
+                                             <a class="sub-nav-link" href="dashboard-agent.html">Agent</a>
+                                        </li>
+                                        <li class="sub-nav-item">
+                                             <a class="sub-nav-link" href="dashboard-customer.html">Customer</a>
+                                        </li>
+                                   </ul>
+                              </div>
+                         </li>
+
+                         <li class="nav-item">
+                              <a class="nav-link menu-arrow" href="#sidebarProperty" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="sidebarProperty">
+                                   <span class="nav-icon">
+                                        <i class="ri-community-line"></i>
+                                   </span>
+                                   <span class="nav-text"> Property </span>
+                              </a>
+                              <div class="collapse" id="sidebarProperty">
+                                   <ul class="nav sub-navbar-nav">
+                                        <li class="sub-nav-item">
+                                             <a class="sub-nav-link" href="property-grid.html">Property Grid</a>
+                                        </li>
+                                        <li class="sub-nav-item">
+                                             <a class="sub-nav-link" href="property-list.html">Property List</a>
+                                        </li>
+                                        <li class="sub-nav-item">
+                                             <a class="sub-nav-link" href="property-details.html">Property Details</a>
+                                        </li>
+                                        <li class="sub-nav-item">
+                                             <a class="sub-nav-link" href="property-add.html">Add Property</a>
+                                        </li>
+                                   </ul>
+                              </div>
+                         </li> <!-- end Pages Menu -->
+
+                         <li class="nav-item">
+                              <a class="nav-link menu-arrow" href="#sidebarAgents" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="sidebarAgents">
+                                   <span class="nav-icon">
+                                        <i class="ri-group-line"></i>
+                                   </span>
+                                   <span class="nav-text"> Agents </span>
+                              </a>
+                              <div class="collapse" id="sidebarAgents">
+                                   <ul class="nav sub-navbar-nav">
+                                        <li class="sub-nav-item">
+                                             <a class="sub-nav-link" href="agents-list.html">List View</a>
+                                        </li>
+                                        <li class="sub-nav-item">
+                                             <a class="sub-nav-link" href="agents-grid.html">Grid View</a>
+                                        </li>
+                                        <li class="sub-nav-item">
+                                             <a class="sub-nav-link" href="agents-details.html">Agent Details</a>
+                                        </li>
+                                        <li class="sub-nav-item">
+                                             <a class="sub-nav-link" href="agents-add.html">Add Agent</a>
+                                        </li>
+                                   </ul>
+                              </div>
+                         </li> <!-- end Pages Menu -->
+
+                         <li class="nav-item">
+                              <a class="nav-link menu-arrow" href="#sidebarCustomers" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="sidebarCustomers">
+                                   <span class="nav-icon">
+                                        <i class="ri-contacts-book-3-line"></i>
+                                   </span>
+                                   <span class="nav-text"> Customers </span>
+                              </a>
+                              <div class="collapse" id="sidebarCustomers">
+                                   <ul class="nav sub-navbar-nav">
+                                        <li class="sub-nav-item">
+                                             <a class="sub-nav-link" href="customers-list.html">List View</a>
+                                        </li>
+                                        <li class="sub-nav-item">
+                                             <a class="sub-nav-link" href="customers-grid.html">Grid View</a>
+                                        </li>
+                                        <li class="sub-nav-item">
+                                             <a class="sub-nav-link" href="customers-details.html">Customer Details</a>
+                                        </li>
+                                        <li class="sub-nav-item">
+                                             <a class="sub-nav-link" href="customers-add.html">Add Customer</a>
+                                        </li>
+                                   </ul>
+                              </div>
+                         </li> <!-- end Pages Menu -->
+               
+                         <li class="nav-item">
+                              <a class="nav-link" href="orders.html">
+                                   <span class="nav-icon">
+                                        <i class="ri-home-office-line"></i>
+                                   </span>
+                                   <span class="nav-text">Orders</span>
+                              </a>
+                         </li>
+
+                         <li class="nav-item">
+                              <a class="nav-link" href="transactions.html">
+                                   <span class="nav-icon">
+                                        <i class="ri-arrow-left-right-line"></i>
+                                   </span>
+                                   <span class="nav-text">Transactions</span>
+                              </a>
+                         </li>
+
+                         <li class="nav-item">
+                              <a class="nav-link" href="reviews.html">
+                                   <span class="nav-icon">
+                                        <i class="ri-chat-quote-line"></i>
+                                   </span>
+                                   <span class="nav-text">Reviews</span>
+                              </a>
+                         </li>
+
+                         <li class="nav-item">
+                              <a class="nav-link" href="messages.html">
+                                   <span class="nav-icon">
+                                        <i class="ri-discuss-line"></i>
+                                   </span>
+                                   <span class="nav-text">Messages</span>
+                              </a>
+                         </li>
+                         <li class="nav-item">
+                              <a class="nav-link" href="inbox.html">
+                                   <span class="nav-icon">
+                                        <i class="ri-inbox-line"></i>
+                                   </span>
+                                   <span class="nav-text">Inbox</span>
+                              </a>
+                         </li>
+               
+                         <li class="nav-item">
+                              <a class="nav-link menu-arrow" href="#sidebarBlog" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="sidebarBlog">
+                                   <span class="nav-icon">
+                                        <i class="ri-news-line"></i>
+                                   </span>
+                                   <span class="nav-text">Post </span>
+                              </a>
+                              <div class="collapse" id="sidebarBlog">
+                                   <ul class="nav sub-navbar-nav">
+                                        <li class="sub-nav-item">
+                                             <a class="sub-nav-link" href="post.html">Post</a>
+                                        </li>
+                                        <li class="sub-nav-item">
+                                             <a class="sub-nav-link" href="post-details.html">Post Details</a>
+                                        </li>    
+                                        <li class="sub-nav-item">
+                                             <a class="sub-nav-link" href="post-create.html">Create Post</a>
+                                        </li>                           
+                                   </ul>
+                              </div>
+                         </li> <!-- end Pages Menu -->
+
+                         <li class="menu-title">Custom</li>
+
+                         <li class="nav-item">
+                              <a class="nav-link menu-arrow" href="#sidebarPages" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="sidebarPages">
+                                   <span class="nav-icon">
+                                        <i class="ri-pages-line"></i>
+                                   </span>
+                                   <span class="nav-text"> Pages </span>
+                              </a>
+                              <div class="collapse" id="sidebarPages">
+                                   <ul class="nav sub-navbar-nav">
+                                        <li class="sub-nav-item">
+                                             <a class="sub-nav-link" href="pages-starter.html">Welcome</a>
+                                        </li>
+                                        <li class="sub-nav-item">
+                                             <a class="sub-nav-link" href="pages-calendar.html">Calendar</a>
+                                        </li>
+                                        <li class="sub-nav-item">
+                                             <a class="sub-nav-link" href="pages-invoice.html">Invoice</a>
+                                        </li>
+                                        <li class="sub-nav-item">
+                                             <a class="sub-nav-link" href="pages-faqs.html">FAQs</a>
+                                        </li>
+                                        <li class="sub-nav-item">
+                                             <a class="sub-nav-link" href="pages-comingsoon.html">Coming Soon</a>
+                                        </li>
+                                        <li class="sub-nav-item">
+                                             <a class="sub-nav-link" href="pages-timeline.html">Timeline</a>
+                                        </li>
+                                        <li class="sub-nav-item">
+                                             <a class="sub-nav-link" href="pages-pricing.html">Pricing</a>
+                                        </li>
+                                        <li class="sub-nav-item">
+                                             <a class="sub-nav-link" href="pages-maintenance.html">Maintenance</a>
+                                        </li>
+                                        <li class="sub-nav-item">
+                                             <a class="sub-nav-link" href="pages-404.html">404 Error</a>
+                                        </li>
+                                        <li class="sub-nav-item">
+                                             <a class="sub-nav-link" href="pages-404-alt.html">404 Error (alt)</a>
+                                        </li>
+                                   </ul>
+                              </div>
+                         </li> <!-- end Pages Menu -->
+
+                         <li class="nav-item">
+                              <a class="nav-link menu-arrow" href="#sidebarAuthentication" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="sidebarAuthentication">
+                                   <span class="nav-icon">
+                                        <i class="ri-lock-password-line"></i>
+                                   </span>
+                                   <span class="nav-text"> Authentication </span>
+                              </a>
+                              <div class="collapse" id="sidebarAuthentication">
+                                   <ul class="nav sub-navbar-nav">
+                                        <li class="sub-nav-item">
+                                             <a class="sub-nav-link" href="auth-signin.html">Sign In</a>
+                                        </li>
+                                        <li class="sub-nav-item">
+                                             <a class="sub-nav-link" href="auth-signup.html">Sign Up</a>
+                                        </li>
+                                        <li class="sub-nav-item">
+                                             <a class="sub-nav-link" href="auth-password.html">Reset Password</a>
+                                        </li>
+                                        <li class="sub-nav-item">
+                                             <a class="sub-nav-link" href="auth-lock-screen.html">Lock Screen</a>
+                                        </li>
+                                   </ul>
+                              </div>
+                         </li>
+
+                         <li class="nav-item">
+                              <a class="nav-link" href="widgets.html">
+                                   <span class="nav-icon">
+                                        <i class="ri-shapes-line"></i>
+                                   </span>
+                                   <span class="nav-text">Widgets</span>
+                                   <span class="badge bg-danger badge-pill text-end">Hot</span>
+                              </a>
+                         </li>
+
+                         <li class="nav-item">
+                              <a class="nav-link menu-arrow" href="#sidebarLayouts" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="sidebarLayouts">
+                                   <span class="nav-icon">
+                                        <i class="ri-layout-line"></i>
+                                   </span>
+                                   <span class="nav-text"> Layouts </span>
+                              </a>
+                              <div class="collapse" id="sidebarLayouts">
+                                   <ul class="nav sub-navbar-nav">
+                                        <li class="sub-nav-item">
+                                             <a class="sub-nav-link" href="layouts-dark-sidenav.html" target="_blank">Dark Sidenav</a>
+                                        </li>
+                                        <li class="sub-nav-item">
+                                             <a class="sub-nav-link" href="layouts-dark-topnav.html" target="_blank">Dark Topnav</a>
+                                        </li>
+                                        <li class="sub-nav-item">
+                                             <a class="sub-nav-link" href="layouts-simple-sidenav.html" target="_blank">Simple Sidenav</a>
+                                        </li>
+                                        <li class="sub-nav-item">
+                                             <a class="sub-nav-link" href="layouts-small-sidenav.html" target="_blank">Small Sidenav</a>
+                                        </li>
+                                        <li class="sub-nav-item">
+                                             <a class="sub-nav-link" href="layouts-small-hover.html" target="_blank">Small Hover</a>
+                                        </li>
+                                        <li class="sub-nav-item">
+                                             <a class="sub-nav-link" href="layouts-small-hover-active.html" target="_blank">Small Hover Active</a>
+                                        </li>
+                                        <li class="sub-nav-item">
+                                             <a class="sub-nav-link" href="layouts-hidden-sidenav.html" target="_blank">Hidden Sidenav</a>
+                                        </li>
+                                        <li class="sub-nav-item">
+                                             <a class="sub-nav-link" target="_blank" href="layouts-dark.html">
+                                                  <span class="nav-text">Dark Mode</span>
+                                                  <span class="badge badge-soft-danger badge-pill text-end">Hot</span>
+                                             </a>
+                                        </li>
+                                   </ul>
+                              </div>
+                         </li>
+
+                         <li class="menu-title">Components</li>
+
+                         <li class="nav-item">
+                              <a class="nav-link menu-arrow" href="#sidebarBaseUI" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="sidebarBaseUI">
+                                   <span class="nav-icon"><i class="ri-contrast-drop-line"></i></span>
+                                   <span class="nav-text"> Base UI </span>
+                              </a>
+                              <div class="collapse" id="sidebarBaseUI">
+                                   <ul class="nav sub-navbar-nav">
+                                        <li class="sub-nav-item">
+                                             <a class="sub-nav-link" href="ui-accordion.html">Accordion</a>
+                                        </li>
+                                        <li class="sub-nav-item">
+                                             <a class="sub-nav-link" href="ui-alerts.html">Alerts</a>
+                                        </li>
+                                        <li class="sub-nav-item">
+                                             <a class="sub-nav-link" href="ui-avatar.html">Avatar</a>
+                                        </li>
+                                        <li class="sub-nav-item">
+                                             <a class="sub-nav-link" href="ui-badge.html">Badge</a>
+                                        </li>
+                                        <li class="sub-nav-item">
+                                             <a class="sub-nav-link" href="ui-breadcrumb.html">Breadcrumb</a>
+                                        </li>
+                                        <li class="sub-nav-item">
+                                             <a class="sub-nav-link" href="ui-buttons.html">Buttons</a>
+                                        </li>
+                                        <li class="sub-nav-item">
+                                             <a class="sub-nav-link" href="ui-card.html">Card</a>
+                                        </li>
+                                        <li class="sub-nav-item">
+                                             <a class="sub-nav-link" href="ui-carousel.html">Carousel</a>
+                                        </li>
+                                        <li class="sub-nav-item">
+                                             <a class="sub-nav-link" href="ui-collapse.html">Collapse</a>
+                                        </li>
+                                        <li class="sub-nav-item">
+                                             <a class="sub-nav-link" href="ui-dropdown.html">Dropdown</a>
+                                        </li>
+                                        <li class="sub-nav-item">
+                                             <a class="sub-nav-link" href="ui-list-group.html">List Group</a>
+                                        </li>
+                                        <li class="sub-nav-item">
+                                             <a class="sub-nav-link" href="ui-modal.html">Modal</a>
+                                        </li>
+                                        <li class="sub-nav-item">
+                                             <a class="sub-nav-link" href="ui-tabs.html">Tabs</a>
+                                        </li>
+                                        <li class="sub-nav-item">
+                                             <a class="sub-nav-link" href="ui-offcanvas.html">Offcanvas</a>
+                                        </li>
+                                        <li class="sub-nav-item">
+                                             <a class="sub-nav-link" href="ui-pagination.html">Pagination</a>
+                                        </li>
+                                        <li class="sub-nav-item">
+                                             <a class="sub-nav-link" href="ui-placeholders.html">Placeholders</a>
+                                        </li>
+                                        <li class="sub-nav-item">
+                                             <a class="sub-nav-link" href="ui-popovers.html">Popovers</a>
+                                        </li>
+                                        <li class="sub-nav-item">
+                                             <a class="sub-nav-link" href="ui-progress.html">Progress</a>
+                                        </li>
+                                        <li class="sub-nav-item">
+                                             <a class="sub-nav-link" href="ui-scrollspy.html">Scrollspy</a>
+                                        </li>
+                                        <li class="sub-nav-item">
+                                             <a class="sub-nav-link" href="ui-spinners.html">Spinners</a>
+                                        </li>
+                                        <li class="sub-nav-item">
+                                             <a class="sub-nav-link" href="ui-toasts.html">Toasts</a>
+                                        </li>
+                                        <li class="sub-nav-item">
+                                             <a class="sub-nav-link" href="ui-tooltips.html">Tooltips</a>
+                                        </li>
+                                   </ul>
+                              </div>
+                         </li> <!-- end Base UI Menu -->
+
+                         <li class="nav-item">
+                              <a class="nav-link menu-arrow" href="#sidebarExtendedUI" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="sidebarExtendedUI">
+                                   <span class="nav-icon"><i class="ri-briefcase-line"></i></span>
+                                   <span class="nav-text"> Advanced UI </span>
+                              </a>
+                              <div class="collapse" id="sidebarExtendedUI">
+                                   <ul class="nav sub-navbar-nav">
+                                        <li class="sub-nav-item">
+                                             <a class="sub-nav-link" href="extended-ratings.html">Ratings</a>
+                                        </li>
+                                        <li class="sub-nav-item">
+                                             <a class="sub-nav-link" href="extended-sweetalert.html">Sweet Alert</a>
+                                        </li>
+                                        <li class="sub-nav-item">
+                                             <a class="sub-nav-link" href="extended-swiper-silder.html">Swiper Slider</a>
+                                        </li>
+                                        <li class="sub-nav-item">
+                                             <a class="sub-nav-link" href="extended-scrollbar.html">Scrollbar</a>
+                                        </li>
+                                        <li class="sub-nav-item">
+                                             <a class="sub-nav-link" href="extended-toastify.html">Toastify</a>
+                                        </li>
+                                   </ul>
+                              </div>
+                         </li> <!-- end Extended UI Menu -->
+
+                         <li class="nav-item">
+                              <a class="nav-link menu-arrow" href="#sidebarCharts" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="sidebarCharts">
+                                   <span class="nav-icon">
+                                        <i class="ri-bar-chart-line"></i>
+                                   </span>
+                                   <span class="nav-text"> Charts </span>
+                              </a>
+                              <div class="collapse" id="sidebarCharts">
+                                   <ul class="nav sub-navbar-nav">
+                                        <li class="sub-nav-item">
+                                             <a class="sub-nav-link" href="charts-apex-area.html">Area</a>
+                                        </li>
+                                        <li class="sub-nav-item">
+                                             <a class="sub-nav-link" href="charts-apex-bar.html">Bar</a>
+                                        </li>
+                                        <li class="sub-nav-item">
+                                             <a class="sub-nav-link" href="charts-apex-bubble.html">Bubble</a>
+                                        </li>
+                                        <li class="sub-nav-item">
+                                             <a class="sub-nav-link" href="charts-apex-candlestick.html">Candlestick</a>
+                                        </li>
+                                        <li class="sub-nav-item">
+                                             <a class="sub-nav-link" href="charts-apex-column.html">Column</a>
+                                        </li>
+                                        <li class="sub-nav-item">
+                                             <a class="sub-nav-link" href="charts-apex-heatmap.html">Heatmap</a>
+                                        </li>
+                                        <li class="sub-nav-item">
+                                             <a class="sub-nav-link" href="charts-apex-line.html">Line</a>
+                                        </li>
+                                        <li class="sub-nav-item">
+                                             <a class="sub-nav-link" href="charts-apex-mixed.html">Mixed</a>
+                                        </li>
+                                        <li class="sub-nav-item">
+                                             <a class="sub-nav-link" href="charts-apex-timeline.html">Timeline</a>
+                                        </li>
+                                        <li class="sub-nav-item">
+                                             <a class="sub-nav-link" href="charts-apex-boxplot.html">Boxplot</a>
+                                        </li>
+                                        <li class="sub-nav-item">
+                                             <a class="sub-nav-link" href="charts-apex-treemap.html">Treemap</a>
+                                        </li>
+                                        <li class="sub-nav-item">
+                                             <a class="sub-nav-link" href="charts-apex-pie.html">Pie</a>
+                                        </li>
+                                        <li class="sub-nav-item">
+                                             <a class="sub-nav-link" href="charts-apex-radar.html">Radar</a>
+                                        </li>
+                                        <li class="sub-nav-item">
+                                             <a class="sub-nav-link" href="charts-apex-radialbar.html">RadialBar</a>
+                                        </li>
+                                        <li class="sub-nav-item">
+                                             <a class="sub-nav-link" href="charts-apex-scatter.html">Scatter</a>
+                                        </li>
+                                        <li class="sub-nav-item">
+                                             <a class="sub-nav-link" href="charts-apex-polar-area.html">Polar Area</a>
+                                        </li>
+                                   </ul>
+                              </div>
+                         </li> <!-- end Chart library Menu -->
+
+                         <li class="nav-item">
+                              <a class="nav-link menu-arrow" href="#sidebarForms" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="sidebarForms">
+                                   <span class="nav-icon">
+                                        <i class="ri-survey-line"></i>
+                                   </span>
+                                   <span class="nav-text"> Forms </span>
+                              </a>
+                              <div class="collapse" id="sidebarForms">
+                                   <ul class="nav sub-navbar-nav">
+                                        <li class="sub-nav-item">
+                                             <a class="sub-nav-link" href="forms-basic.html">Basic Elements</a>
+                                        </li>
+                                        <li class="sub-nav-item">
+                                             <a class="sub-nav-link" href="forms-checkbox-radio.html">Checkbox &amp; Radio</a>
+                                        </li>
+                                        <li class="sub-nav-item">
+                                             <a class="sub-nav-link" href="forms-choices.html">Choice Select</a>
+                                        </li>
+                                        <li class="sub-nav-item">
+                                             <a class="sub-nav-link" href="forms-clipboard.html">Clipboard</a>
+                                        </li>
+                                        <li class="sub-nav-item">
+                                             <a class="sub-nav-link" href="forms-flatepicker.html">Flatepicker</a>
+                                        </li>
+                                        <li class="sub-nav-item">
+                                             <a class="sub-nav-link" href="forms-validation.html">Validation</a>
+                                        </li>
+                                        <li class="sub-nav-item">
+                                             <a class="sub-nav-link" href="forms-wizard.html">Wizard</a>
+                                        </li>
+                                        <li class="sub-nav-item">
+                                             <a class="sub-nav-link" href="forms-fileuploads.html">File Upload</a>
+                                        </li>
+                                        <li class="sub-nav-item">
+                                             <a class="sub-nav-link" href="forms-editors.html">Editors</a>
+                                        </li>
+                                        <li class="sub-nav-item">
+                                             <a class="sub-nav-link" href="forms-input-mask.html">Input Mask</a>
+                                        </li>
+                                        <li class="sub-nav-item">
+                                             <a class="sub-nav-link" href="forms-range-slider.html">Slider</a>
+                                        </li>
+                                   </ul>
+                              </div>
+                         </li> <!-- end Form Menu -->
+
+                         <li class="nav-item">
+                              <a class="nav-link menu-arrow" href="#sidebarTables" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="sidebarTables">
+                                   <span class="nav-icon">
+                                        <i class="ri-table-line"></i>
+                                   </span>
+                                   <span class="nav-text"> Tables </span>
+                              </a>
+                              <div class="collapse" id="sidebarTables">
+                                   <ul class="nav sub-navbar-nav">
+                                        <li class="sub-nav-item">
+                                             <a class="sub-nav-link" href="tables-basic.html">Basic Tables</a>
+                                        </li>
+                                        <li class="sub-nav-item">
+                                             <a class="sub-nav-link" href="tables-gridjs.html">Grid Js</a>
+                                        </li>
+                                   </ul>
+                              </div>
+                         </li> <!-- end Table Menu -->
+
+                         <li class="nav-item">
+                              <a class="nav-link menu-arrow" href="#sidebarIcons" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="sidebarIcons">
+                                   <span class="nav-icon">
+                                        <i class="ri-pencil-ruler-2-line"></i>
+                                   </span>
+                                   <span class="nav-text"> Icons </span>
+                              </a>
+                              <div class="collapse" id="sidebarIcons">
+                                   <ul class="nav sub-navbar-nav">
+                                        <li class="sub-nav-item">
+                                             <a class="sub-nav-link" href="icons-remix.html">Remix Icons</a>
+                                        </li>
+                                        <li class="sub-nav-item">
+                                             <a class="sub-nav-link" href="icons-solar.html">Solar Icons</a>
+                                        </li>
+                                   </ul>
+                              </div>
+                         </li> <!-- end Icons library Menu -->
+
+                         <li class="nav-item">
+                              <a class="nav-link menu-arrow" href="#sidebarMaps" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="sidebarMaps">
+                                   <span class="nav-icon">
+                                        <i class="ri-road-map-line"></i>
+                                   </span>
+                                   <span class="nav-text"> Maps </span>
+                              </a>
+                              <div class="collapse" id="sidebarMaps">
+                                   <ul class="nav sub-navbar-nav">
+                                        <li class="sub-nav-item">
+                                             <a class="sub-nav-link" href="maps-google.html">Google Maps</a>
+                                        </li>
+                                        <li class="sub-nav-item">
+                                             <a class="sub-nav-link" href="maps-vector.html">Vector Maps</a>
+                                        </li>
+                                   </ul>
+                              </div>
+                         </li> <!-- end Map Menu -->
+
+                         <li class="menu-title">Style</li>
+
+                         <li class="nav-item">
+                              <a class="nav-link" href="javascript:void(0);">
+                                   <span class="nav-icon">
+                                        <i class="ri-shield-star-line"></i>
+                                   </span>
+                                   <span class="nav-text">Badge Menu</span>
+                                   <span class="badge bg-primary badge-pill text-end">1</span>
+                              </a>
+                         </li>
+
+                         <li class="nav-item">
+                              <a class="nav-link menu-arrow" href="#sidebarMultiLevelDemo" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="sidebarMultiLevelDemo">
+                                   <span class="nav-icon">
+                                        <i class="ri-share-line"></i>
+                                   </span>
+                                   <span class="nav-text"> Menu Items </span>
+                              </a>
+                              <div class="collapse" id="sidebarMultiLevelDemo">
+                                   <ul class="nav sub-navbar-nav">
+                                        <li class="sub-nav-item">
+                                             <a class="sub-nav-link" href="javascript:void(0);">Menu Item 1</a>
+                                        </li>
+                                        <li class="sub-nav-item">
+                                             <a class="sub-nav-link  menu-arrow" href="#sidebarItemDemoSubItem" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="sidebarItemDemoSubItem">
+                                                  <span> Menu Item 2 </span>
+                                             </a>
+                                             <div class="collapse" id="sidebarItemDemoSubItem">
+                                                  <ul class="nav sub-navbar-nav">
+                                                       <li class="sub-nav-item">
+                                                            <a class="sub-nav-link" href="javascript:void(0);">Menu Sub item</a>
+                                                       </li>
+                                                  </ul>
+                                             </div>
+                                        </li>
+                                   </ul>
+                              </div>
+                         </li> <!-- end Demo Menu Item -->
+
+                         <li class="nav-item">
+                              <a class="nav-link disabled" href="javascript:void(0);">
+                                   <span class="nav-icon">
+                                        <i class="ri-prohibited-2-line"></i>
+                                   </span>
+                                   <span class="nav-text"> Disable Item </span>
+                              </a>
+                         </li> <!-- end Demo Menu Item -->
+                    </ul>
+               </div>
+          </div>
+          <!-- ========== App Menu End ========== -->
+
+          <!-- ==================================================== -->
+          <!-- Start right Content here -->
+          <!-- ==================================================== -->
+          <div class="page-content">
+
+               <!-- Start Container Fluid -->
+               <div class="container-fluid">
+
+                    <!-- ========== Page Title Start ========== -->
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="page-title-box">
+                                <h4 class="mb-0 fw-semibold">Inbox</h4>
+                                <ol class="breadcrumb mb-0">
+                                    <li class="breadcrumb-item"><a href="javascript: void(0);">Real Estate</a></li>
+                                    <li class="breadcrumb-item active">Inbox</li>
+                                </ol>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- ========== Page Title End ========== -->
+
+
+                    <div class="card">
+                         <div class="row g-0">
+                              <div class="col-xl-2">
+                                   <div class="offcanvas-xl offcanvas-start" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
+
+                                        <div>
+                                             <div class="bg-body-secondary card-body d-flex justify-content-between gap-1">
+                                                  <button type="button" class="btn btn-danger w-100 d-flex align-items-center justify-content-center" data-bs-toggle="modal" data-bs-target="#compose-modal">
+                                                       <span class="fw-semibold"><iconify-icon icon="solar:pen-new-square-broken" class="align-middle me-1 fs-16"></iconify-icon>Compose</span>
+                                                  </button>
+                                                  <button type="button" class="btn btn-icon btn-soft-danger d-xl-none" data-bs-dismiss="offcanvas" data-bs-target="#offcanvasExample" aria-label="Close">
+                                                       <i class="ri-close-line fs-22"></i>
+                                                  </button>
+                                             </div>
+                                        </div>
+
+                                        <div data-simplebar style="height: calc(100vh - 280px)">
+
+
+                                             <div class="card-body pt-0">
+                                                  <div class="email-menu-list d-flex flex-column gap-2">
+                                                       <a href="javascript: void(0);" class="active">
+                                                            <iconify-icon icon="solar:inbox-broken" class="me-2 fs-18 text-muted"></iconify-icon>
+                                                            <span>Your Inbox</span>
+                                                            <span class="fs-12 text-primary ms-auto">5</span>
+                                                       </a>
+                                                       <a href="javascript: void(0);">
+                                                            <iconify-icon icon="solar:bookmark-broken" class="me-2 fs-18 text-muted"></iconify-icon>
+                                                            <span>Important</span>
+                                                       </a>
+                                                       <a href="javascript: void(0);">
+                                                            <iconify-icon icon="solar:stopwatch-play-broken" class="me-2 fs-18 text-muted"></iconify-icon>
+                                                            <span>Snoozed</span>
+                                                       </a>
+                                                       <a href="javascript: void(0);">
+                                                            <iconify-icon icon="solar:pen-2-broken" class="me-2 fs-18 text-muted"></iconify-icon>
+                                                            <span>Draft</span>
+                                                            <span class="fs-12 text-muted ms-auto">8</span>
+                                                       </a>
+                                                       <a href="javascript: void(0);">
+                                                            <iconify-icon icon="solar:file-send-broken" class="me-2 fs-18 text-muted"></iconify-icon>
+                                                            <span>Sent</span>
+                                                       </a>
+                                                       <a href="javascript: void(0);">
+                                                            <iconify-icon icon="solar:bag-3-broken" class="me-2 fs-18 text-muted"></iconify-icon>
+                                                            <span>Promotions</span>
+                                                            <span class="fs-12 text-muted ms-auto">3</span>
+                                                       </a>
+                                                       <a href="javascript: void(0);">
+                                                            <iconify-icon icon="solar:bell-bing-broken" class="me-2 fs-18 text-muted"></iconify-icon>
+                                                            <span>Update</span>
+                                                            <span class="fs-12 text-muted ms-auto">14</span>
+                                                       </a>
+                                                       <a href="javascript: void(0);">
+                                                            <span><i class="ri-arrow-down-s-line"></i> More</span>
+                                                       </a>
+                                                  </div>
+                                             </div>
+
+                                             <div class="card-body border-top border-light">
+                                                  <a href="#" class="btn-link d-flex align-items-center text-dark fw-semibold  mb-0" data-bs-toggle="collapse" data-bs-target="#labels" aria-expanded="false" aria-controls="labels">Labels <i class="ri-arrow-down-s-line ms-auto"></i></a>
+
+                                                  <div id="labels" class="collapse show">
+                                                       <div class="email-menu-list d-flex flex-column gap-2 mt-2">
+                                                            <a href="javascript: void(0);">
+                                                                 <iconify-icon icon="solar:camera-square-bold" class="me-2 fs-18 text-success"></iconify-icon>
+                                                                 <span>Collaboration</span>
+                                                            </a>
+
+                                                            <a href="javascript: void(0);">
+                                                                 <iconify-icon icon="solar:camera-square-bold" class="me-2 fs-18 text-warning"></iconify-icon>
+                                                                 <span>New Client</span>
+                                                            </a>
+                                                            <a href="javascript: void(0);">
+                                                                 <iconify-icon icon="solar:camera-square-bold" class="me-2 fs-18 text-info"></iconify-icon>
+                                                                 <span>Wedding</span>
+                                                            </a>
+
+                                                       </div>
+                                                  </div>
+                                             </div>
+
+                                             <div class="card-body border-top border-light">
+                                                  <a href="#" class="btn-link d-flex align-items-center text-dark fw-semibold  mb-0" data-bs-toggle="collapse" data-bs-target="#contacts" aria-expanded="false" aria-controls="contacts">Contacts <i class="ri-arrow-down-s-line ms-auto"></i></a>
+
+                                                  <div id="contacts" class="collapse show">
+                                                       <div class="email-menu-list d-flex flex-column gap-1 mt-2">
+                                                            <a href="javascript: void(0);">
+                                                                 <div class="d-flex align-items-center gap-2">
+                                                                      <img src="assets/images/users/avatar-12.jpg" alt="" class="avatar-sm rounded-circle">
+                                                                      <p class="mb-0">Alberto Milano</p>
+                                                                 </div>
+                                                            </a>
+
+                                                            <a href="javascript: void(0);">
+                                                                 <div class="d-flex align-items-center gap-2">
+                                                                      <img src="assets/images/users/avatar-11.jpg" alt="" class="avatar-sm rounded-circle">
+                                                                      <p class="mb-0">Alda Barese</p>
+                                                                 </div>
+                                                            </a>
+
+                                                            <a href="javascript: void(0);">
+                                                                 <div class="d-flex align-items-center gap-2">
+                                                                      <img src="assets/images/users/avatar-10.jpg" alt="" class="avatar-sm rounded-circle">
+                                                                      <p class="mb-0">Giovanna Dellucci</p>
+                                                                 </div>
+                                                            </a>
+
+                                                            <a href="javascript: void(0);">
+                                                                 <div class="d-flex align-items-center gap-2">
+                                                                      <img src="assets/images/users/avatar-8.jpg" alt="" class="avatar-sm rounded-circle">
+                                                                      <p class="mb-0">Fidenzio Lo Duca</p>
+                                                                 </div>
+                                                            </a>
+                                                       </div>
+                                                  </div>
+                                             </div>
+                                        </div>
+                                   </div>
+                              </div>
+
+                              <div class="col-xl-3">
+                                   <div class="offcanvas-xl offcanvas-end" tabindex="-1" id="emaillist" aria-labelledby="emaillistLabel">
+                                        <div class="border-start border-light border-end h-100">
+                                             <div class="card-body">
+                                                  
+                                                  <div class="d-flex justify-content-between align-items-center gap-2">
+                                                       <button type="button" class="btn p-0 d-lg-none d-flex" data-bs-dismiss="offcanvas" data-bs-target="#emaillist" aria-label="Close">
+                                                            <i class='ri-expand-right-line fs-22'></i>
+                                                       </button>
+                                                       <h5 class="mb-0 text-dark d-flex align-items-center gap-1"><iconify-icon icon="solar:inbox-bold-duotone" class="align-middle"></iconify-icon> Inbox Mail</h5>
+                                                       <div class="dropdown">
+                                                            <a href="javascript: void(0);" class="dropdown-toggle arrow-none text-dark" data-bs-toggle="dropdown" aria-expanded="false">
+                                                                 <i class="ri-more-2-fill fs-18"></i>
+                                                            </a>
+                                                            <div class="dropdown-menu dropdown-menu-end">
+                                                                 <a class="dropdown-item" href="javascript: void(0);"><i class="ri-user-line me-2"></i>View Profile</a>
+                                                                 <a class="dropdown-item" href="javascript: void(0);"><i class="ri-music-2-line me-2"></i>Media, Links and Docs</a>
+                                                                 <a class="dropdown-item" href="javascript: void(0);"><i class="ri-search-line me-2"></i>Search</a>
+                                                                 <a class="dropdown-item" href="javascript: void(0);"><i class="ri-image-line me-2"></i>Wallpaper</a>
+                                                                 <a class="dropdown-item" href="javascript: void(0);"><i class="ri-arrow-right-circle-line me-2"></i>More</a>
+                                                            </div>
+                                                       </div>
+                                                  </div>
+                                                  <div class="d-flex justify-content-between mt-3">
+                                                       <form class="app-search d-none d-md-block w-100">
+                                                            <div class="position-relative">
+                                                                 <input type="search" class="form-control" placeholder="Search" autocomplete="off" value="">
+                                                                 <iconify-icon icon="solar:magnifer-broken" class="search-widget-icon"></iconify-icon>
+                                                            </div>
+                                                       </form>
+                                                  </div>
+                                             </div>
+
+                                             <div class="border-top border-light overflow-hidden">
+                                                  <div data-simplebar style="max-height: calc(100vh - 301px)">
+
+                                                       <ul class="list-unstyled email-list-group mb-0">
+                                                            <li class="">
+                                                                 <div class="d-flex flex-column h-100 border-bottom">
+                                                                      <a href="#!" class="d-block">
+                                                                           <div class="mail-select d-flex align-items-center p-3 m-1 rounded">
+                                                                                <div class="position-relative">
+                                                                                     <img src="assets/images/users/avatar-2.jpg" alt="" class="avatar rounded-circle flex-shrink-0">
+                                                                                </div>
+                                                                                <div class="d-block ms-3 flex-grow-1">
+                                                                                     <div class="d-flex justify-content-between align-items-center mb-1">
+                                                                                          <h5 class="mb-0">Oberto Onio</h5>
+                                                                                          <div>
+                                                                                               <p class="text-muted fs-13 mb-0">09:24 AM</p>
+                                                                                          </div>
+                                                                                     </div>
+                                                                                     <div class="d-flex justify-content-between align-items-center">
+                                                                                          <p class="mb-0 text-muted d-flex align-items-center gap-1">Thank you all for your hard ...</p>
+                                                                                     </div>
+                                                                                </div>
+                                                                           </div>
+                                                                      </a>
+                                                                 </div>
+                                                            </li>
+                                                            <li class="email-read-done">
+                                                                 <div class="d-flex flex-column h-100 border-bottom">
+                                                                      <a href="#!" class="d-block">
+                                                                           <div class="mail-select d-flex align-items-center p-3 selected m-1 rounded">
+                                                                                <div class="position-relative">
+                                                                                     <img src="assets/images/users/avatar-3.jpg" alt="" class="avatar rounded-circle flex-shrink-0">
+                                                                                </div>
+                                                                                <div class="d-block ms-3 flex-grow-1">
+                                                                                     <div class="d-flex justify-content-between align-items-center mb-1">
+                                                                                          <h5 class="mb-0 text-white">Dianna Blair</h5>
+                                                                                          <div>
+                                                                                               <p class="text-white fs-13 mb-0">10:50 AM</p>
+                                                                                          </div>
+                                                                                     </div>
+                                                                                     <div class="d-flex justify-content-between align-items-center">
+                                                                                          <p class="mb-0 text-white d-flex align-items-center gap-1">In recognition of your achieve...</p>
+                                                                                     </div>
+                                                                                </div>
+                                                                           </div>
+                                                                      </a>
+                                                                 </div>
+                                                            </li>
+                                                            <li class="">
+                                                                 <div class="d-flex flex-column h-100 border-bottom">
+                                                                      <a href="#!" class="d-block">
+                                                                           <div class="mail-select d-flex align-items-center p-3 m-1 rounded">
+                                                                                <div class="position-relative">
+                                                                                     <img src="assets/images/users/avatar-4.jpg" alt="" class="avatar rounded-circle flex-shrink-0">
+                                                                                </div>
+                                                                                <div class="d-block ms-3 flex-grow-1">
+                                                                                     <div class="d-flex justify-content-between align-items-center mb-1">
+                                                                                          <h5 class="mb-0">Dirk Kuhn</h5>
+                                                                                          <div>
+                                                                                               <p class="text-muted fs-13 mb-0">09:45 AM</p>
+                                                                                          </div>
+                                                                                     </div>
+                                                                                     <div class="d-flex justify-content-between align-items-center">
+                                                                                          <p class="mb-0 text-muted d-flex align-items-center gap-1">Additionally, I would like to remind eve...</p>
+                                                                                     </div>
+                                                                                </div>
+                                                                           </div>
+                                                                      </a>
+                                                                 </div>
+                                                            </li>
+
+                                                            <li class="">
+                                                                 <div class="d-flex flex-column h-100 border-bottom">
+                                                                      <a href="#!" class="d-block">
+                                                                           <div class="mail-select d-flex align-items-center p-3 m-1 rounded">
+                                                                                <div class="position-relative">
+                                                                                     <img src="assets/images/users/avatar-5.jpg" alt="" class="avatar rounded-circle flex-shrink-0">
+                                                                                </div>
+                                                                                <div class="d-block ms-3 flex-grow-1">
+                                                                                     <div class="d-flex justify-content-between align-items-center mb-1">
+                                                                                          <h5 class="mb-0">Sandra Fischer</h5>
+                                                                                          <div>
+                                                                                               <p class="text-muted fs-13 mb-0">08:10 AM</p>
+                                                                                          </div>
+                                                                                     </div>
+                                                                                     <div class="d-flex justify-content-between align-items-center">
+                                                                                          <p class="mb-0 text-muted d-flex align-items-center gap-1">After reviewing the current progres...</p>
+                                                                                     </div>
+                                                                                </div>
+                                                                           </div>
+                                                                      </a>
+                                                                 </div>
+                                                            </li>
+
+                                                            <li class="">
+                                                                 <div class="d-flex flex-column h-100 border-bottom">
+                                                                      <a href="#!" class="d-block">
+                                                                           <div class="mail-select d-flex align-items-center p-3 m-1 rounded">
+                                                                                <div class="position-relative">
+                                                                                     <img src="assets/images/users/avatar-6.jpg" alt="" class="avatar rounded-circle flex-shrink-0">
+                                                                                </div>
+                                                                                <div class="d-block ms-3 flex-grow-1">
+                                                                                     <div class="d-flex justify-content-between align-items-center mb-1">
+                                                                                          <h5 class="mb-0">Marina Eberhardt</h5>
+                                                                                          <div>
+                                                                                               <p class="text-muted fs-13 mb-0">Wednesday</p>
+                                                                                          </div>
+                                                                                     </div>
+                                                                                     <div class="d-flex justify-content-between align-items-center">
+                                                                                          <p class="mb-0 text-muted d-flex align-items-center gap-1">we have decided to adjust the deadlin...</p>
+                                                                                     </div>
+                                                                                </div>
+                                                                           </div>
+                                                                      </a>
+                                                                 </div>
+                                                            </li>
+
+                                                            <li class="email-read-done">
+                                                                 <div class="d-flex flex-column h-100 border-bottom">
+                                                                      <a href="#!" class="d-block">
+                                                                           <div class="mail-select d-flex align-items-center p-3 m-1 rounded">
+                                                                                <div class="position-relative">
+                                                                                     <img src="assets/images/users/avatar-7.jpg" alt="" class="avatar rounded-circle flex-shrink-0">
+                                                                                </div>
+                                                                                <div class="d-block ms-3 flex-grow-1">
+                                                                                     <div class="d-flex justify-content-between align-items-center mb-1">
+                                                                                          <h5 class="mb-0">Erik Holzman</h5>
+                                                                                          <div>
+                                                                                               <p class="text-muted fs-13 mb-0">Thursday</p>
+                                                                                          </div>
+                                                                                     </div>
+                                                                                     <div class="d-flex justify-content-between align-items-center">
+                                                                                          <p class="mb-0 text-muted d-flex align-items-center gap-1">We'd like to thank you for being su...</p>
+                                                                                     </div>
+                                                                                </div>
+                                                                           </div>
+                                                                      </a>
+                                                                 </div>
+                                                            </li>
+
+                                                            <li class="email-read-done">
+                                                                 <div class="d-flex flex-column h-100 border-bottom">
+                                                                      <a href="#!" class="d-block">
+                                                                           <div class="mail-select d-flex align-items-center p-3 m-1 rounded">
+                                                                                <div class="position-relative">
+                                                                                     <img src="assets/images/users/avatar-8.jpg" alt="" class="avatar rounded-circle flex-shrink-0">
+                                                                                </div>
+                                                                                <div class="d-block ms-3 flex-grow-1">
+                                                                                     <div class="d-flex justify-content-between align-items-center mb-1">
+                                                                                          <h5 class="mb-0">Sven Hirsch</h5>
+                                                                                          <div>
+                                                                                               <p class="text-muted fs-13 mb-0">10:50 AM</p>
+                                                                                          </div>
+                                                                                     </div>
+                                                                                     <div class="d-flex justify-content-between align-items-center">
+                                                                                          <p class="mb-0 text-muted d-flex align-items-center gap-1">February, you will be paid to your nomina...</p>
+                                                                                     </div>
+                                                                                </div>
+                                                                           </div>
+                                                                      </a>
+                                                                 </div>
+                                                            </li>
+                                                            <li class="email-read-done">
+                                                                 <div class="d-flex flex-column h-100 border-bottom">
+                                                                      <a href="#!" class="d-block">
+                                                                           <div class="mail-select d-flex align-items-center p-3 m-1 rounded">
+                                                                                <div class="position-relative">
+                                                                                     <img src="assets/images/users/avatar-9.jpg" alt="" class="avatar rounded-circle flex-shrink-0">
+                                                                                </div>
+                                                                                <div class="d-block ms-3 flex-grow-1">
+                                                                                     <div class="d-flex justify-content-between align-items-center mb-1">
+                                                                                          <h5 class="mb-0">Katrin Naumann</h5>
+                                                                                          <div>
+                                                                                               <p class="text-muted fs-13 mb-0">3 Day Ago</p>
+                                                                                          </div>
+                                                                                     </div>
+                                                                                     <div class="d-flex justify-content-between align-items-center">
+                                                                                          <p class="mb-0 text-muted d-flex align-items-center gap-1">$250 cash reward. This will be paid out...</p>
+                                                                                     </div>
+                                                                                </div>
+                                                                           </div>
+                                                                      </a>
+                                                                 </div>
+                                                            </li>
+                                                            <li>
+                                                                 <div class="d-flex justify-content-center my-2">
+                                                                      <div class="spinner-border" role="status">
+                                                                           <span class="visually-hidden">Loading...</span>
+                                                                      </div>
+                                                                 </div>
+                                                            </li>
+                                                       </ul>
+                                                  </div>
+                                             </div>
+                                        </div>
+                                   </div>
+                              </div>
+
+                              <div class="col-xl-7">
+                                   <div class="position-relative">
+                                        <div class="card-header border-bottom bg-light-subtle d-flex align-items-center justify-content-between gap-2">
+                                             <button class="btn btn-sm btn-icon btn-soft-primary d-xl-none d-flex align-items-center px-2" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasExample" aria-controls="offcanvasExample">
+                                                  <i class='ri-menu-line fs-18'></i>
+                                             </button>
+
+                                             <form class="app-search d-none d-md-block w-50 me-auto">
+                                                  <div class="position-relative">
+                                                       <input type="search" class="form-control" placeholder="Search In Mails" autocomplete="off" value="">
+                                                       <iconify-icon icon="solar:magnifer-broken" class="search-widget-icon"></iconify-icon>
+                                                  </div>
+                                             </form>
+
+                                             <div>
+                                                  <ul class="list-inline d-flex gap-1 mb-0 align-items-center">
+
+                                                       <li class="list-inline-item">
+                                                            <a data-bs-toggle="offcanvas" href="#user-profile" class="btn btn-light avatar-sm d-flex align-items-center justify-content-center text-warning fs-20">
+                                                                 <iconify-icon icon="solar:star-bold-duotone"></iconify-icon>
+                                                            </a>
+                                                       </li>
+
+                                                       <li class="list-inline-item dropdown d-none d-md-flex">
+                                                            <a href="javascript: void(0);" class="dropdown-toggle btn btn-light avatar-sm d-flex align-items-center justify-content-center fs-20 arrow-none text-dark fs-20" data-bs-toggle="dropdown" aria-expanded="false">
+                                                                 <i class="ri-more-2-fill"></i>
+                                                            </a>
+                                                            <div class="dropdown-menu dropdown-menu-end">
+                                                                 <a class="dropdown-item" href="javascript: void(0);"><i class="ri-user-line me-2"></i>View Profile</a>
+                                                                 <a class="dropdown-item" href="javascript: void(0);"><i class="ri-music-2-line me-2"></i>Media, Links and Docs</a>
+                                                                 <a class="dropdown-item" href="javascript: void(0);"><i class="ri-search-line me-2"></i>Search</a>
+                                                                 <a class="dropdown-item" href="javascript: void(0);"><i class="ri-image-line me-2"></i>Wallpaper</a>
+                                                                 <a class="dropdown-item" href="javascript: void(0);"><i class="ri-arrow-right-circle-line me-2"></i>More</a>
+                                                            </div>
+                                                       </li>
+                                                       <li class="list-inline-item">
+                                                            <a href="javascript: void(0);" class="btn btn-primary d-flex align-items-center gap-1"><iconify-icon icon="solar:stopwatch-play-broken" class="fs-18"></iconify-icon>Snoozed</a>
+                                                       </li>
+                                                  </ul>
+                                             </div>
+
+                                             <button class="btn btn-sm btn-icon btn-soft-primary d-xl-none d-flex align-items-center px-2" type="button" data-bs-toggle="offcanvas" data-bs-target="#emaillist" aria-controls="emaillist">
+                                                  <i class='ri-menu-unfold-line fs-18'></i>
+                                             </button>
+                                        </div>
+
+                                        <div class="card-body" data-simplebar style="height: calc(100vh - 442px)">
+
+                                             <div class="d-flex flex-column h-100">
+                                                  <div class="d-block">
+                                                       <div class="d-flex rounded gap-2">
+                                                            <div class="position-relative ">
+                                                                 <img src="assets/images/users/avatar-3.jpg" alt="" class="avatar rounded-circle flex-shrink-0">
+                                                            </div>
+                                                            <div class="d-block flex-grow-1">
+                                                                 <div class="d-flex flex-wrap justify-content-between align-items-center">
+                                                                      <div>
+                                                                           <a href="#!" class="text-dark fw-medium fs-15">diannablair46skl@dayrep.com</a>
+                                                                           <p class="mb-0 text-muted d-flex align-items-center gap-1">to hello@dundermuffilin.com</p>
+                                                                      </div>
+                                                                      <div>
+                                                                           <p class="text-muted fs-13 mb-0">Mon , 1 Apr , 23.12</p>
+                                                                      </div>
+                                                                 </div>
+                                                                 <div class="mt-4">
+                                                                      <h4>
+                                                                           Documentation of last meeting
+                                                                      </h4>
+                                                                      <p class="text-dark mt-3">Hey : <span class="badge bg-primary-subtle fs-13 text-primary p-1">@Gaston Lapierre</span></p>
+                                                                      <p>Thank you all for your hard work and dedication to this project. Your contributions are invaluable, and I am confident that together we will achieve our goals successfully. After reviewing the current progress and considering various factors, I would like to share some observations and next steps.</p>
+                                                                      <p>Additionally, I would like to remind everyone of our upcoming team meeting scheduled for this week. During this meeting, we will discuss the revised timeline in detail and address any concerns or questions you may have ...</p>
+
+                                                                      <div class="my-4 bg-light rounded p-2">
+                                                                           <div class="row g-2">
+                                                                                <div class="col-lg-3">
+                                                                                     <a href="#!">
+                                                                                          <img src="assets/images/small/img-1.jpg" alt="" class="img-fluid rounded">
+                                                                                     </a>
+                                                                                </div>
+                                                                                <div class="col-lg-3">
+                                                                                     <a href="#!">
+                                                                                          <img src="assets/images/small/img-2.jpg" alt="" class="img-fluid rounded">
+                                                                                     </a>
+                                                                                </div>
+                                                                                <div class="col-lg-3">
+                                                                                     <a href="#!">
+                                                                                          <img src="assets/images/small/img-3.jpg" alt="" class="img-fluid rounded">
+                                                                                     </a>
+                                                                                </div>
+                                                                                <div class="col-lg-3">
+                                                                                     <a href="#!">
+                                                                                          <img src="assets/images/small/img-4.jpg" alt="" class="img-fluid rounded">
+                                                                                     </a>
+                                                                                </div>
+                                                                           </div>
+                                                                           <div class="d-flex align-items-center gap-2 mt-3">
+                                                                                <img src="assets/images/users/avatar-3.jpg" alt="" class="avatar-sm rounded-circle">
+                                                                                <a href="#!" class="text-dark fw-medium">Dianna Blair</a>
+                                                                                <p class="mb-0">attached 4 photos</p>
+                                                                                <div class="ms-auto">
+                                                                                     <a href="#!" class="text-muted d-flex align-items-center gap-1">See Photo <iconify-icon icon="solar:eye-bold" class="align-middle"></iconify-icon></a>
+                                                                                </div>
+                                                                           </div>
+                                                                      </div>
+                                                                      <div class="my-4">
+                                                                           <div class="row align-items-center text-center g-2">
+                                                                                <div class="col-lg-2">
+                                                                                     <div class="border p-2 rounded bg-light-subtle">
+                                                                                          <iconify-icon icon="solar:file-download-bold" class="fs-28 text-primary"></iconify-icon>
+                                                                                          <p class="mb-0">
+                                                                                               <a href="#!" class="text-dark fw-medium">Project About..</a>
+                                                                                          </p>
+                                                                                     </div>
+                                                                                </div>
+                                                                                <div class="col-lg-2">
+                                                                                     <div class="border p-2 rounded bg-light-subtle">
+                                                                                          <iconify-icon icon="solar:figma-file-bold" class="fs-28 text-success"></iconify-icon>
+                                                                                          <p class="mb-0">
+                                                                                               <a href="#!" class="text-dark fw-medium">Photo Psd...</a>
+                                                                                          </p>
+                                                                                     </div>
+                                                                                </div>
+                                                                                <div class="col-lg-2">
+                                                                                     <div class="border p-2 rounded bg-light-subtle">
+                                                                                          <iconify-icon icon="solar:checklist-minimalistic-bold" class="fs-28 text-danger"></iconify-icon>
+                                                                                          <p class="mb-0">
+                                                                                               <a href="#!" class="text-dark fw-medium">Price List...</a>
+                                                                                          </p>
+                                                                                     </div>
+                                                                                </div>
+                                                                                <div class="col-lg-4">
+                                                                                     <a href="#!" class="link-primary fw-medium d-flex align-items-center gap-1">Download All File <iconify-icon icon="solar:download-bold"></iconify-icon></a>
+                                                                                </div>
+                                                                           </div>
+                                                                      </div>
+                                                                      <div class="mt-4">
+                                                                           <p>We'd like to thank you for being an exceptional author and encourage you to continue creating great work!</p>
+                                                                           <p class="mb-1 mt-3">Best Regards ,</p>
+                                                                           <p class="mb-0 text-dark fw-medium">Dianna Blair</p>
+                                                                      </div>
+                                                                 </div>
+                                                            </div>
+                                                       </div>
+                                                  </div>
+                                             </div>
+
+                                        </div>
+
+                                        <div class="card-footer bg-light-subtle border-top w-100">
+                                             <div class="d-flex gap-2">
+                                                  <img src="assets/images/users/avatar-1.jpg" alt="" class="avatar rounded-circle">
+                                                  <div class="w-100">
+                                                       <p class="mb-2"><span class="text-dark fw-medium">To : </span>diannablair46skl@dayrep.com</p>
+                                                       <textarea class="form-control" id="property-address" rows="3" placeholder="Type Message...."></textarea>
+                                                       <div class="d-flex flex-wrap justify-content-between mt-2 align-items-center">
+                                                            <div class="d-flex gap-3">
+                                                                 <form>
+                                                                      <label for="file" class="text-dark fs-18 fw-medium"><iconify-icon icon="solar:folder-with-files-broken"></iconify-icon></label>
+                                                                      <input type="file" id="file" class="d-none">
+                                                                 </form>
+                                                                 <form>
+                                                                      <label for="photo" class="text-dark fs-18 fw-medium"><iconify-icon icon="solar:album-broken"></iconify-icon></label>
+                                                                      <input type="file" id="photo" class="d-none">
+                                                                 </form>
+                                                                 <a href="#!" class="text-dark fs-18 fw-medium"><iconify-icon icon="solar:pen-broken"></iconify-icon></a>
+                                                                 <a href="#!" class="text-dark fs-18 fw-medium"><iconify-icon icon="solar:link-broken"></iconify-icon></a>
+                                                                 <a href="#!" class="text-dark fs-18 fw-medium"><iconify-icon icon="solar:trash-bin-2-broken"></iconify-icon></a>
+                                                            </div>
+                                                            <div>
+                                                                 <a href="#!" class="btn btn-primary">Send</a>
+                                                                 <a href="javascript: void(0);" class="btn btn-outline-secondary">Forward</a>
+
+                                                            </div>
+                                                       </div>
+                                                  </div>
+                                             </div>
+                                        </div>
+
+                                   </div>
+                              </div>
+                         </div>
+                    </div>
+                    <!-- End Container Fluid -->
+               </div>
+               <!-- End Container Fluid -->
+
+               <!-- ========== Footer Start ========== -->
+               <footer class="footer">
+                   <div class="container-fluid">
+                       <div class="row">
+                           <div class="col-12 text-center">
+                               <script>document.write(new Date().getFullYear())</script> &copy; Lahomes. Crafted by <iconify-icon icon="solar:hearts-bold-duotone" class="fs-18 align-middle text-danger"></iconify-icon> <a
+                                   href="https://1.envato.market/techzaa" class="fw-bold footer-text" target="_blank">Techzaa</a>
+                           </div>
+                       </div>
+                   </div>
+               </footer>
+               <!-- ========== Footer End ========== -->
+
+
+
+               <!-- Modal -->
+               <div class="modal fade compose-mail" id="compose-modal" tabindex="-1" aria-labelledby="compose-modalLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-lg">
+                         <div class="modal-content">
+                              <div class="modal-header overflow-hidden bg-primary p-2">
+                                   <h5 class="modal-title text-white" id="compose-modalLabel">New Message</h5>
+                                   <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                              </div>
+                              <div class="modal-body p-4">
+                                   <div class="overflow-hidden">
+
+                                        <div class="mb-2">
+                                             <input type="email" class="form-control" id="toEmail" placeholder="To: ">
+                                        </div>
+                                        <div class="mb-2">
+                                             <input type="text" class="form-control" id="subject" placeholder="Subject ">
+                                        </div>
+
+                                        <div class="my-2">
+                                             <div id="snow-editor2" style="height: 200px;"></div>
+                                        </div>
+
+                                        <div class="d-flex float-end">
+                                             <div class="dropdown me-1">
+                                                  <a href="javascript:void(0);" class="dropdown-toggle arrow-none btn btn-light" data-bs-toggle="dropdown" aria-expanded="false">
+                                                       <i class="ri-more-2-fill fs-18"></i>
+                                                  </a>
+                                                  <div class="dropdown-menu dropdown-menu-up">
+                                                       <a href="javascript:void(0);" class="dropdown-item">Default to full screen</a>
+                                                       <div class="dropdown-divider"></div>
+                                                       <a href="javascript:void(0);" class="dropdown-item">Label</a>
+                                                       <a href="javascript:void(0);" class="dropdown-item">Palin text mode</a>
+                                                       <div class="dropdown-divider"></div>
+                                                       <a href="javascript:void(0);" class="dropdown-item">Smart Compose Feedback</a>
+                                                  </div>
+                                             </div>
+                                             <a href="javascript: void(0);" class="btn btn-light compose-close"><i class="ri-delete-bin-line fs-18"></i></a>
+                                        </div>
+                                        <div>
+                                             <a href="javascript: void(0);" class="btn btn-primary">Send</a>
+                                        </div>
+
+                                   </div>
+                              </div>
+                         </div>
+                    </div>
+               </div>
+          </div>
+          <!-- ==================================================== -->
+          <!-- End Page Content -->
+          <!-- ==================================================== -->
+
+     </div>
+     <!-- END Wrapper -->
+
+     <!-- Vendor Javascript (Require in all Page) -->
+     <script src="assets/js/vendor.js"></script>
+
+     <!-- App Javascript (Require in all Page) -->
+     <script src="assets/js/app.js"></script>
+
+
+
+</body>
+
+
+<!-- Mirrored from techzaa.in/lahomes/admin/inbox.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 08 Apr 2025 06:49:37 GMT -->
+</html>

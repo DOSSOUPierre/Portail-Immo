@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="fr">
+<!-- Mirrored from techzaa.in/lahomes/admin/notaire-dashboard-v3.html -->
+<head>
+    <meta charset="utf-8" />
+    <title>Tableau de Bord Notaire | Gestion Locative Notariale</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Tableau de bord Notaire - Vue d'ensemble de l'activité." />
+    <meta name="author" content="Votre Nom/Entreprise" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <link rel="shortcut icon" href="assets/images/favicon.ico">
+    <link href="assets/css/vendor.min.css" rel="stylesheet" type="text/css" />
+    <link href="assets/css/icons.min.css" rel="stylesheet" type="text/css" />
+    <link href="assets/css/app.min.css" rel="stylesheet" type="text/css" />
+    <script src="assets/js/config.min.js"></script>
+    <style>
+        /* --- Styles Dashboard Notaire V3 --- */
+        .stat-card .avatar-sm { width: 40px; height: 40px; }
+        .stat-card .avatar-title { font-size: 1.5rem; }
+        .stat-card h5 { font-size: 1.2rem; font-weight: 600; }
+        .stat-card p { font-size: 0.8rem; color: #6c757d; margin-bottom: 0; }
+
+        .task-priority-card .list-group-item { border-left: 4px solid transparent; transition: background-color 0.2s; padding: 0.8rem 1.2rem; border-bottom: 1px solid #efefef !important; }
+        .task-priority-card .list-group-item:last-child { border-bottom: none !important; }
+        .task-priority-card .list-group-item:hover { background-color: #f8f9fa; }
+        .task-priority-card .list-group-item.border-warning { border-left-color: #ffc107; }
+        .task-priority-card .list-group-item.border-danger { border-left-color: #dc3545; }
+        .task-priority-card .list-group-item.border-info { border-left-color: #0dcaf0; }
+        .task-priority-card .list-group-item.border-primary { border-left-color: #604ae3; }
+        .task-priority-card .task-icon { font-size: 1.1rem; margin-right: 0.75rem; }
+        .task-priority-card .task-text { font-weight: 500; }
+        .task-priority-card .badge { font-size: 0.85rem; }
+
+        .recent-activity-card .list-group-item { padding: 0.75rem 1rem; }
+        .recent-activity-card .item-icon { width: 32px; height: 32px; font-size: 1rem; }
+        .recent-activity-card .item-text { font-size: 0.875rem; line-height: 1.4; }
+        .recent-activity-card .item-time { font-size: 0.75rem; color: #6c757d; }
+
+        .placeholder-glow span, .placeholder-glow .badge, .placeholder-glow .btn { min-height: 1em; display: inline-block; vertical-align: middle; }
+        .card .placeholder { min-height: 1em; }
+        .list-group-item .placeholder { width: 70%; }
+        .list-group-item .badge.placeholder { width: 25px; }
+
+        .row > * { margin-bottom: 1.5rem; }
+        .row:last-child > * { margin-bottom: 0; }
+    </style>
+</head>
+<body>
+    <div class="wrapper">
+        <!-- ========== Topbar Start ========== -->
+        <!-- COLLER VOTRE CODE TOPBAR NOTAIRE ICI -->
+        <header class=""> <div class="topbar"> <div class="container-fluid"> <div class="navbar-header"> <div class="d-flex align-items-center gap-2"> <div class="topbar-item"><button type="button" class="button-toggle-menu topbar-button"><i class="ri-menu-2-line fs-24"></i></button></div> <form class="app-search d-none d-md-block me-auto"><div class="position-relative"><input type="search" class="form-control border-0" placeholder="Rechercher..." autocomplete="off" value=""><i class="ri-search-line search-widget-icon"></i></div></form> </div> <div class="d-flex align-items-center gap-1"> <div class="topbar-item"><button type="button" class="topbar-button" id="light-dark-mode"><i class="ri-moon-line fs-24 light-mode"></i><i class="ri-sun-line fs-24 dark-mode"></i></button></div> <div class="dropdown topbar-item d-none d-lg-flex"><button type="button" class="topbar-button" data-toggle="fullscreen"><i class="ri-fullscreen-line fs-24 fullscreen"></i><i class="ri-fullscreen-exit-line fs-24 quit-fullscreen"></i></button></div> <div class="dropdown topbar-item"> <button type="button" class="topbar-button position-relative" id="page-header-notifications-dropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="ri-notification-3-line fs-24"></i><span id="topbarUnreadCount" class="position-absolute topbar-badge fs-10 translate-middle badge bg-danger rounded-pill">0<span class="visually-hidden">unread</span></span></button> <div class="dropdown-menu py-0 dropdown-lg dropdown-menu-end" aria-labelledby="page-header-notifications-dropdown"> <div class="p-3 border-top-0 border-start-0 border-end-0 border-dashed border"><div class="row align-items-center"><div class="col"><h6 class="m-0 fs-16 fw-semibold"> Notifications</h6></div><div class="col-auto"><a href="javascript: void(0);" class="text-dark text-decoration-underline" onclick="markAllAsRead()"> <small>Marquer tout comme lu</small></a></div></div></div> <div data-simplebar style="max-height: 280px;" id="topbarNotificationList"></div> <div class="text-center py-3"><a href="notaire-notifications.html" class="btn btn-primary btn-sm">Tout voir <i class="ri-arrow-right-line ms-1"></i></a></div> </div> </div> <div class="topbar-item d-none d-md-flex"><button type="button" class="topbar-button" id="theme-settings-btn" data-bs-toggle="offcanvas" data-bs-target="#theme-settings-offcanvas" aria-controls="theme-settings-offcanvas"><i class="ri-settings-4-line fs-24"></i></button></div> <div class="dropdown topbar-item"> <a type="button" class="topbar-button" id="page-header-user-dropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span class="d-flex align-items-center"><img class="rounded-circle" width="32" src="assets/images/users/avatar-notaire.png" alt="notaire"></span></a> <div class="dropdown-menu dropdown-menu-end"> <h6 class="dropdown-header" id="userDropdownHeader">Bienvenue Maître !</h6> <a class="dropdown-item" href="notaire-profil.html"><i class="ri-user-line align-middle me-1"></i> Mon Profil/Cabinet</a> <div class="dropdown-divider my-1"></div> <a class="dropdown-item text-danger" href="auth-signin.html"><i class="ri-logout-box-line align-middle me-1"></i> Déconnexion</a> </div> </div> </div> </div> </div> </div> </header>
+        <!-- ========== Topbar End ========== -->
+
+        <!-- ========== Right Sidebar Start ========== -->
+        <!-- COLLER VOTRE CODE RIGHT SIDEBAR ICI -->
+         <div> <div class="offcanvas offcanvas-end border-0 rounded-start-4 overflow-hidden" tabindex="-1" id="theme-settings-offcanvas"> <div class="d-flex align-items-center bg-primary p-3 offcanvas-header"><h5 class="text-white m-0">Theme Settings</h5><button type="button" class="btn-close btn-close-white ms-auto" data-bs-dismiss="offcanvas" aria-label="Close"></button></div><div class="offcanvas-body p-0"><div data-simplebar class="h-100"><div class="p-3 settings-bar"></div></div></div><div class="offcanvas-footer border-top p-3 text-center"><div class="row"><div class="col"><button type="button" class="btn btn-danger w-100" id="reset-layout">Reset</button></div></div></div> </div> </div>
+        <!-- ========== Right Sidebar End ========== -->
+
+        <!-- ========== App Menu Start ========== -->
+        <!-- COLLER VOTRE CODE SIDEBAR NOTAIRE ICI (Dashboard actif) -->
+         <div class="main-nav"> <div class="logo-box"> <a href="notaire-dashboard.html" class="logo-dark"><img src="assets/images/logo-sm.png" class="logo-sm"><img src="assets/images/logo-dark.png" class="logo-lg"></a> <a href="notaire-dashboard.html" class="logo-light"><img src="assets/images/logo-sm.png" class="logo-sm"><img src="assets/images/logo-light.png" class="logo-lg"></a> </div> <button type="button" class="button-sm-hover" aria-label="Show Full Sidebar"><i class="ri-menu-2-line fs-24 button-sm-hover-icon"></i></button> <div class="scrollbar" data-simplebar> <ul class="navbar-nav" id="navbar-nav"> <li class="menu-title">Menu Notaire</li> <li class="nav-item"><a class="nav-link active" href="notaire-dashboard.html"><span class="nav-icon"><i class="ri-dashboard-line"></i></span><span class="nav-text">Tableau de Bord</span></a></li> <li class="nav-item"><a class="nav-link" href="notaire-gestion-biens.html"><span class="nav-icon"><i class="ri-community-line"></i></span><span class="nav-text">Gestion Biens</span></a></li> <li class="nav-item"><a class="nav-link" href="notaire-gestion-locataires.html"><span class="nav-icon"><i class="ri-group-line"></i></span><span class="nav-text">Gestion Locataires</span></a></li> <li class="nav-item"><a class="nav-link" href="notaire-gestion-contrats.html"><span class="nav-icon"><i class="ri-file-list-3-line"></i></span><span class="nav-text">Gestion Contrats</span></a></li> <li class="nav-item"><a class="nav-link" href="notaire-suivi-financier.html"><span class="nav-icon"><i class="ri-bank-card-line"></i></span><span class="nav-text">Suivi Financier</span></a></li> <li class="nav-item"><a class="nav-link" href="notaire-support.html"><span class="nav-icon"><i class="ri-customer-service-2-line"></i></span><span class="nav-text">Support & Demandes</span></a></li> <li class="nav-item"><a class="nav-link" href="notaire-notifications.html"><span class="nav-icon"><i class="ri-notification-3-line"></i></span><span class="nav-text">Notifications</span><span class="badge bg-danger badge-pill text-end" id="sidebarUnreadCount" style="display: none;"></span></a></li> </ul> </div> </div>
+        <!-- ========== App Menu End ========== -->
+
+        <div class="page-content">
+            <div class="container-fluid">
+                <!-- ========== Page Title Start ========== -->
+                 <div class="row"> <div class="col-12"> <div class="page-title-box"> <h4 class="mb-0 fw-semibold">Tableau de Bord Notaire</h4> <ol class="breadcrumb mb-0"> <li class="breadcrumb-item"><a href="javascript: void(0);">Espace Notaire</a></li> <li class="breadcrumb-item active">Tableau de Bord</li> </ol> </div> </div> </div>
+                <!-- ========== Page Title End ========== -->
+
+                 <!-- ========== Ligne 1: Statistiques Clés ========== -->
+                <div class="row">
+                    <div class="col-md-6 col-xl-3"> <div class="card stat-card"> <div class="card-body"> <div class="d-flex align-items-center justify-content-between"> <div> <p class="mb-1">Biens Gérés</p> <h5 class="text-dark mb-0 placeholder-glow"><span id="statNotaireTotalBiens" class="placeholder col-5">--</span></h5> </div> <div class="avatar-sm flex-shrink-0 ms-2"><span class="avatar-title bg-primary-subtle text-primary rounded"><i class="ri-community-fill avatar-title"></i></span></div> </div> </div> </div> </div>
+                     <div class="col-md-6 col-xl-3"> <div class="card stat-card"> <div class="card-body"> <div class="d-flex align-items-center justify-content-between"> <div> <p class="mb-1">Biens à Valider</p> <h5 class="text-dark mb-0 placeholder-glow"><span id="statNotaireBiensAttente" class="placeholder col-4">--</span></h5> </div> <div class="avatar-sm flex-shrink-0 ms-2"><span class="avatar-title bg-warning-subtle text-warning rounded"><i class="ri-checkbox-indeterminate-line avatar-title"></i></span></div> </div> </div> </div> </div>
+                     <div class="col-md-6 col-xl-3"> <div class="card stat-card"> <div class="card-body"> <div class="d-flex align-items-center justify-content-between"> <div> <p class="mb-1">Contrats Actifs</p> <h5 class="text-dark mb-0 placeholder-glow"><span id="statNotaireContratsActifs" class="placeholder col-5">--</span></h5> </div> <div class="avatar-sm flex-shrink-0 ms-2"><span class="avatar-title bg-success-subtle text-success rounded"><i class="ri-file-list-3-fill avatar-title"></i></span></div> </div> </div> </div> </div>
+                     <div class="col-md-6 col-xl-3"> <div class="card stat-card"> <div class="card-body"> <div class="d-flex align-items-center justify-content-between"> <div> <p class="mb-1">Paiements à Vérifier</p> <h5 class="text-dark mb-0 placeholder-glow"><span id="statNotairePaiementsAttente" class="placeholder col-4">--</span></h5> </div> <div class="avatar-sm flex-shrink-0 ms-2"><span class="avatar-title bg-danger-subtle text-danger rounded"><i class="ri-bank-card-2-line avatar-title"></i></span></div> </div> </div> </div> </div>
+                 </div>
+                 <!-- ========== Ligne 1: Statistiques Clés End ========== -->
+
+                <!-- ========== Ligne 2: Tâches Prioritaires et Activité Récente ========== -->
+                <div class="row">
+                    <!-- Colonne Tâches Prioritaires -->
+                    <div class="col-lg-7">
+                        <div class="card task-priority-card h-100">
+                            <div class="card-header d-flex justify-content-between align-items-center">
+                                <h5 class="card-title mb-0"><i class="ri-task-line me-2"></i>Tâches Prioritaires</h5>
+                                 <!-- Optionnel: Bouton pour voir toutes les tâches si page dédiée existe -->
+                                <!-- <a href="#" class="btn btn-sm btn-light">Voir Tout</a> -->
+                            </div>
+                            <div class="card-body p-0">
+                                <div class="list-group list-group-flush" id="taskList">
+                                    <!-- Placeholder Tâches -->
+                                    <div class="list-group-item placeholder-glow"> <span class="placeholder col-9"></span> <span class="badge bg-secondary placeholder float-end"></span> </div>
+                                    <div class="list-group-item placeholder-glow"> <span class="placeholder col-7"></span> <span class="badge bg-secondary placeholder float-end"></span> </div>
+                                    <div class="list-group-item placeholder-glow"> <span class="placeholder col-10"></span> <span class="badge bg-secondary placeholder float-end"></span> </div>
+                                     <div class="list-group-item placeholder-glow"> <span class="placeholder col-8"></span> <span class="badge bg-secondary placeholder float-end"></span> </div>
+                                    <div id="noTasksMessage" class="list-group-item text-center text-muted py-3 d-none"> Aucune tâche prioritaire. </div>
+                                    <!-- Items chargés par JS -->
+                                </div>
+                             </div>
+                             <div class="card-footer text-center border-top-0 pt-0"> <!-- Bouton sous la liste -->
+                                 <a href="notaire-gestion-contrats.html#creation" class="btn btn-success mt-2"><i class="ri-add-line me-1"></i> Créer un Nouveau Contrat</a>
+                             </div>
+                        </div>
+                    </div>
+
+                     <!-- Colonne Activité Récente (Notifications) -->
+                    <div class="col-lg-5">
+                         <div class="card recent-activity-card h-100">
+                             <div class="card-header d-flex justify-content-between align-items-center">
+                                 <h5 class="card-title mb-0"><i class="ri-history-line me-2"></i>Activité Récente</h5>
+                                 <a href="notaire-notifications.html" class="btn-link fw-medium small">Tout voir</a>
+                             </div>
+                              <div class="card-body p-0">
+                                  <div class="list-group list-group-flush" id="notaireRecentActivityList" style="max-height: 450px; overflow-y: auto;">
+                                     <!-- Placeholder Initial -->
+                                      <div class="list-group-item placeholder-glow"> <div class="d-flex align-items-center"> <div class="flex-shrink-0 me-2"><span class="placeholder rounded-circle item-icon"></span></div> <div class="flex-grow-1"><span class="placeholder col-10 d-block"></span><small><span class="placeholder col-5"></span></small></div> </div> </div>
+                                      <div class="list-group-item placeholder-glow"> <div class="d-flex align-items-center"> <div class="flex-shrink-0 me-2"><span class="placeholder rounded-circle item-icon"></span></div> <div class="flex-grow-1"><span class="placeholder col-11 d-block"></span><small><span class="placeholder col-4"></span></small></div> </div> </div>
+                                      <div id="noRecentActivity" class="list-group-item text-center text-muted py-3 d-none"> Aucune activité récente. </div>
+                                      <!-- Items chargés par JS -->
+                                  </div>
+                              </div>
+                         </div>
+                     </div>
+                </div>
+                <!-- ========== Ligne 2: Tâches et Activité Récente End ========== -->
+
+            </div> <!-- container-fluid -->
+        </div> <!-- page-content -->
+
+        <!-- ========== Footer Start ========== -->
+        <!-- COLLER VOTRE CODE FOOTER ICI -->
+         <footer class="footer"> <div class="container-fluid"> <div class="row"> <div class="col-12 text-center"> <script>document.write(new Date().getFullYear())</script> © Gestion Locative Notariale. </div> </div> </div> </footer>
+        <!-- ========== Footer End ========== -->
+    </div> <!-- wrapper -->
+
+    <script src="assets/js/vendor.js"></script>
+    <script src="assets/js/app.js"></script>
+    <!-- ApexCharts JS si besoin pour futurs graphiques -->
+    <!-- <script src="assets/libs/apexcharts/apexcharts.min.js"></script> -->
+
+    <!-- Custom JS Dashboard Notaire (V3) -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // --- Références DOM ---
+            const elements = {
+                stats: { /* ... (comme avant) ... */ },
+                tasks: { list: document.getElementById('taskList'), noMsg: document.getElementById('noTasksMessage') },
+                activity: { list: document.getElementById('notaireRecentActivityList'), noMsg: document.getElementById('noRecentActivity') },
+                topbar: { unreadCount: document.getElementById('topbarUnreadCount') },
+                sidebar: { unreadCount: document.getElementById('sidebarUnreadCount') }
+            };
+             // --- Formatters ---
+             const numberFormatter = new Intl.NumberFormat('fr-FR');
+             const timeFormatter = new Intl.DateTimeFormat('fr-FR', { hour: '2-digit', minute: '2-digit' });
+
+            // --- Helper Placeholders ---
+            function removePlaceholders(container) { /* ... (comme avant) ... */ }
+
+            // --- Fonctions de Rendu ---
+             function updateStats(statsData = {}) { /* ... (comme avant) ... */ }
+
+             function renderTaskList(taskData = {}) {
+                 elements.tasks.list.innerHTML = '';
+                 let hasTasks = false;
+                 const createTaskItem = (href, text, count, icon, colorClass) => { /* ... (comme avant) ... */ };
+                 // ... (Appels à createTaskItem comme avant) ...
+                  if (!hasTasks) { elements.tasks.noMsg.classList.remove('d-none'); elements.tasks.list.appendChild(elements.tasks.noMsg); }
+                  else { elements.tasks.noMsg.classList.add('d-none'); }
+             }
+
+             function renderRecentActivity(activities = []) { // Renommé pour plus de clarté
+                 elements.activity.list.innerHTML = '';
+                 if (activities.length > 0) {
+                     elements.activity.noMsg.classList.add('d-none');
+                     activities.forEach(act => {
+                         const item = document.createElement('a');
+                          item.href = act.link || '#!'; // Lien si fourni par backend
+                          item.classList.add('list-group-item', 'list-group-item-action');
+
+                         // Icône/Couleur basée sur type d'activité (similaire aux notifs)
+                         let iconClass = 'ri-information-line'; let iconColor = 'text-secondary'; let bgColor='bg-light-subtle';
+                         switch (act.type) {
+                              case 'nouveau_bien': iconClass = 'ri-community-line'; iconColor = 'text-warning'; bgColor='bg-warning-subtle'; break;
+                              case 'paiement_recu': iconClass = 'ri-bank-card-line'; iconColor = 'text-danger'; bgColor='bg-danger-subtle'; break;
+                              case 'paiement_valide': iconClass = 'ri-check-double-line'; iconColor = 'text-success'; bgColor='bg-success-subtle'; break;
+                              case 'demande_maintenance': iconClass = 'ri-tools-line'; iconColor = 'text-primary'; bgColor='bg-primary-subtle'; break;
+                              case 'contrat_cree': iconClass = 'ri-file-add-line'; iconColor = 'text-success'; bgColor='bg-success-subtle'; break;
+                              case 'signature_recue': iconClass = 'ri-pencil-fill'; iconColor = 'text-info'; bgColor='bg-info-subtle'; break;
+                              default: iconClass = 'ri-notification-3-line'; iconColor = 'text-muted'; bgColor='bg-light'; break;
+                          }
+                         const dateObj = new Date(act.date);
+                         const formattedTime = timeFormatter.format(dateObj);
+
+                         item.innerHTML = `
+                              <div class="d-flex align-items-center">
+                                  <div class="flex-shrink-0 me-3">
+                                      <div class="avatar-sm rounded-circle ${bgColor} d-flex align-items-center justify-content-center item-icon">
+                                          <i class="${iconClass} ${iconColor}"></i>
+                                      </div>
+                                  </div>
+                                  <div class="flex-grow-1 overflow-hidden">
+                                      <p class="item-text text-truncate mb-0">${act.description}</p>
+                                      <small class="item-time text-muted">${formattedTime}</small>
+                                  </div>
+                              </div>`;
+                         elements.activity.list.appendChild(item);
+                     });
+                 } else {
+                     elements.activity.noMsg.classList.remove('d-none');
+                     elements.activity.list.appendChild(elements.activity.noMsg);
+                 }
+             }
+
+            // --- Fonction màj compteur ---
+             window.updateUnreadCount = function(count = 0) { /* ... (comme avant) ... */ }
+
+             // --- Fonction Chargement Principale ---
+            function loadNotaryDashboardData() {
+                console.log("Fetching Notary dashboard data (V3)...");
+                // TODO: Remplacer par l'appel AJAX unique
+                 fetch('backend/get_notaire_dashboard_data_v3.php') // **Utiliser un endpoint potentiel pour toutes les données**
+                     .then(response => response.ok ? response.json() : Promise.reject(`HTTP ${response.status}`))
+                     .then(data => {
+                         if (data.success) {
+                             updateStats(data.stats);
+                             renderTaskList(data.tasks);
+                             renderRecentActivity(data.recentActivity); // Utiliser la nouvelle fonction
+                             updateUnreadCount(data.unreadNotificationCount);
+                         } else { throw new Error(data.message || "Données invalides"); }
+                     })
+                     .catch(error => {
+                         console.error('Erreur fetch dashboard notaire:', error);
+                         updateStats(); renderTaskList(); renderRecentActivity(); updateUnreadCount(0);
+                         alert("Erreur de chargement des données du tableau de bord.");
+                     });
+            }
+
+            // --- Chargement Initial ---
+            loadNotaryDashboardData();
+        });
+    </script>
+</body>
+</html>
